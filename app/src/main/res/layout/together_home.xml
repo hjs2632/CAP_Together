@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/White"
+    tools:context=".Group.Together_home">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        // 그래비티로 우측에 버튼 넣어주려고 프레임 사용
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/Yellow">
+
+            // 메뉴 버튼
+            <ImageButton
+                android:id="@+id/menu_btn"
+                android:layout_width="50dp"
+                android:layout_height="50dp"></ImageButton>
+
+            // 그룹 검색 버튼
+            <ImageButton
+                android:id="@+id/search_btn"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="right"></ImageButton>
+
+        </FrameLayout>
+
+
+
+    </LinearLayout>
+
+    //그룹 생성버튼 (플로팅 버튼)
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/fab_btn"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="16dp"
+        app:fabSize="normal"
+        app:backgroundTint="@color/colorPrimary"
+        app:elevation="6dp"
+        android:src="@drawable/ic_add_black_24dp"></com.google.android.material.floatingactionbutton.FloatingActionButton>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

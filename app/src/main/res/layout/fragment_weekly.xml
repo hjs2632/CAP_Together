@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Weekly">
+
+    <!-- TODO: Update blank fragment layout -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:background="@color/White"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <!--상위 구간 표시-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="나는 상위 "
+                    android:textSize="25dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/LightPink"
+                    android:text="7%"
+                    android:textSize="25dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" 입니다."
+                    android:textSize="25dp" />
+            </LinearLayout>
+
+            <!--주간 달설도를 보여주기 위한 표(표 테두리는 TableLayout을 검정으로 설정하고, 텍스트 뷰를 흰색으로 설정(마진 0.1dp)-->
+            <TableLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:background="@color/Black"
+                >
+                <TableRow
+                    >
+                    <TextView
+                        android:layout_margin="0.1dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:background="@color/White"
+                        android:textSize="15sp"
+                        android:text="1/25"/>
+                    <TextView
+                        android:layout_margin="0.1dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:background="@color/White"
+                        android:textSize="15sp"
+                        android:text="1/26"/>
+                    <TextView
+                        android:layout_margin="0.1dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:background="@color/White"
+                        android:textSize="15sp"
+                        android:text="1/27"/>
+                    <TextView
+                        android:layout_margin="0.1dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:background="@color/White"
+                        android:textSize="15sp"
+                        android:text="1/28"/>
+                    <TextView
+                        android:layout_margin="0.1dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:background="@color/White"
+                        android:textSize="15sp"
+                        android:text="1/29"/>
+                    <TextView
+                        android:layout_margin="0.1dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:background="@color/White"
+                        android:textSize="15sp"
+                        android:text="1/30"/>
+                    <TextView
+                        android:layout_margin="0.1dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:background="@color/White"
+                        android:textSize="15sp"
+                        android:text="1/31"/>
+                </TableRow>
+                <TableRow
+                    >
+
+                    <TextView
+                        android:layout_margin="0.1dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:background="@color/White"
+                        android:textSize="24sp"
+                        android:text="O"/>
+                    <TextView
+                        android:layout_margin="0.1dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:background="@color/White"
+                        android:textSize="24sp"
+                        android:text="O"/>
+                    <TextView
+                        android:layout_margin="0.1dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:background="@color/White"
+                        android:textSize="24sp"
+                        android:text="X"/>
+                    <TextView
+                        android:layout_margin="0.1dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:background="@color/White"
+                        android:textSize="24sp"
+                        android:text="O"/>
+                    <TextView
+                        android:layout_margin="0.1dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:background="@color/White"
+                        android:textSize="24sp"
+                        android:text="O"/>
+                    <TextView
+                        android:layout_margin="0.1dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:background="@color/White"
+                        android:textSize="24sp"
+                        android:text="X"/>
+                    <TextView
+                        android:layout_margin="0.1dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:background="@color/White"
+                        android:textSize="24sp"
+                        android:text="O"/>
+                </TableRow>
+                <TableRow
+                    >
+
+                    <TextView
+                        android:layout_margin="0.1dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:background="@color/White"
+                        android:textSize="24sp"
+                        android:text="5H"/>
+                    <TextView
+                        android:layout_margin="0.1dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:background="@color/White"
+                        android:textSize="24sp"
+                        android:text="6H"/>
+                    <TextView
+                        android:layout_margin="0.1dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:background="@color/White"
+                        android:textSize="24sp"
+                        android:text="7H"/>
+                    <TextView
+                        android:layout_margin="0.1dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:background="@color/White"
+                        android:textSize="24sp"
+                        android:text="5H"/>
+                    <TextView
+                        android:layout_margin="0.1dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:background="@color/White"
+                        android:textSize="24sp"
+                        android:text="4H"/>
+                    <TextView
+                        android:layout_margin="0.1dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:background="@color/White"
+                        android:textSize="24sp"
+                        android:text="3H"/>
+                    <TextView
+                        android:layout_margin="0.1dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:background="@color/White"
+                        android:textSize="24sp"
+                        android:text="7H"/>
+                </TableRow>
+            </TableLayout>
+
+            <!--주간공부 통계-->
+            <com.github.mikephil.charting.charts.PieChart
+                android:id="@+id/weeklyPicChart"
+                android:layout_width="289dp"
+                android:layout_height="328dp" />
+
+            <!--과목별 공부 순위-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="공부 순위"
+                android:textSize="25dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1위: 정처기"
+                android:textSize="25dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2위: 자바"
+                android:textSize="25dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3위: C언어"
+                android:textSize="25dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4위: 기타"
+                android:textSize="25dp" />
+
+            <!--공부 시간-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="나의 하루 평균 공부 시간"
+                android:textSize="25dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="00:00:00"
+                android:textSize="25dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="전체 하루 평균 공부 시간"
+                android:textSize="25dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="00:00:00"
+                android:textSize="25dp" />
+
+            <!--공부 시간 추천-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="목표 시간을 80% 준수했습니다."
+                android:textSize="25dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="잘하셨습니다."
+                android:textSize="25dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="목표시간을 5시간으로"
+                android:textSize="25dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="변경하는 것을 추천합니다."
+                android:textSize="25dp" />
+        </LinearLayout>
+
+    </ScrollView>
+</FrameLayout>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/Yellow"
+    android:orientation="vertical">
+
+    <!--하루, 주간 ,월간 탭구현//선택된 탭은 다른 색으로 변경(주황)-->
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/chart_tab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/White"
+        app:tabSelectedTextColor="@color/SelectedText"
+        app:tabIndicatorColor="@color/SelectedText">
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/chart_daily"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="하루통계" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/chart_weekly"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="주간통계" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/chart_monthly"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="월간통계" />
+    </com.google.android.material.tabs.TabLayout>
+
+    <!--화면을 슬라이드해서 넘길 수 있도록 ViewPager(뷰페이저) 설정-->
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

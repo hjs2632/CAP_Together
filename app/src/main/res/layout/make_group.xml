@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <!--뒤로가기 버튼, 그룹 만들기 텍스트 표시 레이아웃-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1">
+        <!--뒤로 가기 버튼-->
+        <ImageButton
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:id="@+id/backmain1"
+            android:layout_margin="10dp"/>
+        <!--공백 표현-->
+        <TextView
+            android:layout_width="20dp"
+            android:layout_height="match_parent" />
+        <!--그룹 만들기 텍스트-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:text="그룹 만들기"
+            android:textSize="30dp"/>
+    </LinearLayout>
+
+    <!--그룹을 만들기 위한 스크룰뷰 작성-->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="40" >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="1">
+                <!--그룹명-->
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:textSize="20dp"
+                    android:text="그룹명"/>
+                <!--그룹 입력하기-->
+                <EditText
+                    android:id="@+id/Gname_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="그룹명을 입력하시오."/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="1">
+                <!--그룹소개-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:textSize="20dp"
+                    android:text="그룹소개"/>
+                <!--그룹소개 입력하기-->
+                <EditText
+                    android:id="@+id/Gintro_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="그룹소개를 입력하시오."/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="1">
+                <!--그룹의 목표 시간-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:textSize="20dp"
+                    android:text="목표시간"/>
+                <!--그룹의 목표 시간설정 / 모드는 spinner로 설정-->
+                <TimePicker
+                    android:timePickerMode="spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="1">
+                <!--그룹의 목표 날짜 성정-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:textSize="20dp"
+                    android:text="목표날짜"/>
+                <!--캘린더뷰로 날짜 설정-->
+                <CalendarView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="1">
+                <!--그룹 참자 조건-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:textSize="20dp"
+                    android:text="참가조건"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="참가 조건을 입력."/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="1">
+                <!--그룹 p/w 설정-->
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:textSize="20dp"
+                    android:text="p/w"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="20dp"
+                    android:hint="********"/>
+            </LinearLayout>
+
+            <Button
+                android:text="추가하기"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/addGroup_btn"></Button>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
