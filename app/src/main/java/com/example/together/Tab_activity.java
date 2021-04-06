@@ -25,8 +25,8 @@ public class Tab_activity extends TabActivity{
 
         Intent intent;  //객체
 
-        intent = new Intent().setClass(this, Daily.class); //탭에서 액티비티를 사용할 수 있도록 인텐트 생성
-        spec = tabHost.newTabSpec("Together_home"); // 객체를 생성
+        intent = new Intent().setClass(this, Study.class); //탭에서 액티비티를 사용할 수 있도록 인텐트 생성
+        spec = tabHost.newTabSpec("Study"); // 객체를 생성
         spec.setIndicator("공부하기"); //탭의 이름 설정
         spec.setContent(intent);
         tabHost.addTab(spec);
