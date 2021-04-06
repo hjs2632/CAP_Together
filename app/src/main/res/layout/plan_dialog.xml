@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_margin="10dp"
+    android:orientation="vertical"
+    android:background="@drawable/round_bg">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:textSize="20dp"
+        android:layout_marginHorizontal="60dp"
+        android:layout_marginVertical="30dp"
+        android:text="일정을 입력해주세요."/>
+
+    <EditText
+        android:id="@+id/test_Edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/Yellow"
+        android:textCursorDrawable="@color/Yellow"
+        android:textColorHighlight="@color/Yellow"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/noBtn"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:text="취소"
+            style="@style/Widget.AppCompat.Button.Borderless"/>
+
+        <Button
+            android:id="@+id/yesBtn"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:text="저장"
+            style="@style/Widget.AppCompat.Button.Borderless" />
+    </LinearLayout>
+
+</LinearLayout>

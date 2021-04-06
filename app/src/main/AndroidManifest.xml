@@ -23,6 +23,8 @@
         <activity android:name=".Group.make_group" android:label="그룹 만들기"/>
         <activity android:name=".Group.look_group" android:label="그룹 자세히 보기"/>
         <activity android:name=".Daily" android:label="통계"/>
+        <activity android:name=".Study" android:label="공부"/>
+        <activity android:name=".Calendar_note" android:label="일정관리"/>
         <activity android:name=".Group.Together_Customlist" android:label="그룹 커스텀 리스트뷰"/>
     </application>
 
