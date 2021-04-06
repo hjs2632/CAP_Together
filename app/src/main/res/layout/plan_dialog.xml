@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!--테두리를 둥굴게 하기 위해 background 지정-->
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -7,6 +9,8 @@
     android:layout_margin="10dp"
     android:orientation="vertical"
     android:background="@drawable/round_bg">
+
+    <!--일정 입력 안내 문구-->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
@@ -15,18 +19,22 @@
         android:layout_marginVertical="30dp"
         android:text="일정을 입력해주세요."/>
 
+    <!--일정 내용 등록 EditText-->
     <EditText
         android:id="@+id/test_Edit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/Yellow"
+        android:hint="여기에 일정을 입력해주세요."
         android:textCursorDrawable="@color/Yellow"
         android:textColorHighlight="@color/Yellow"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal">
 
+        <!--취소(뒤로가기 버튼), style을 아래와 같이 지정하면 투명 버튼 설정 가능-->
         <Button
             android:id="@+id/noBtn"
             android:layout_width="60dp"
@@ -35,6 +43,7 @@
             android:text="취소"
             style="@style/Widget.AppCompat.Button.Borderless"/>
 
+        <!--저장(일정저장 버튼), style을 아래와 같이 지정하면 투명 버튼 설정 가능-->
         <Button
             android:id="@+id/yesBtn"
             android:layout_width="60dp"

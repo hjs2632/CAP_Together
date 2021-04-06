@@ -8,7 +8,7 @@ import android.widget.ImageButton;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.together.R;
+import com.example.together.Calendar.Calendar_note;
 
 public class Study extends AppCompatActivity {
 

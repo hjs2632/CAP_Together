@@ -8,6 +8,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
                 <!--커스텀 캘린더-->
                 <com.applandeo.materialcalendarview.CalendarView
                     android:id="@+id/calendarView"
@@ -20,6 +21,7 @@
                     app:selectionLabelColor="@color/Black"
                     app:todayLabelColor="@color/colorPrimaryDark"
                     app:type="one_day_picker" />
+
                 <!--일정 문구 출력-->
                 <TextView
                     android:layout_width="wrap_content"
@@ -27,7 +29,8 @@
                     android:layout_gravity="center"
                     android:text="일정"
                     android:textColor="@color/Black"
-                    android:textSize="25dp" />
+                    android:textSize="20dp" />
+
                 <!--일정 내용 확인-->
                 <TextView
                     android:id="@+id/Plan"
@@ -39,20 +42,23 @@
         <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_margin="10dp"
         android:orientation="horizontal">
+
                 <!--일정 추가 버튼-->
                 <ImageButton
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
+                    android:layout_width="60dp"
+                    android:layout_height="50dp"
                     android:id="@+id/plan_add_btn"
                     android:background="@drawable/add_plan"
                     android:layout_weight="1"
                     android:text="일정 추가 버튼"
                     android:layout_margin="5dp"/>
 
+                <!--일정 삭제 버튼-->
                 <ImageButton
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
+                    android:layout_width="60dp"
+                    android:layout_height="50dp"
                     android:layout_weight="1"
                     android:background="@drawable/del_plan"
                     android:id="@+id/remove_btn"
