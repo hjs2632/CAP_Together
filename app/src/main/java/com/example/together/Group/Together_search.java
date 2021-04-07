@@ -23,7 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 
-public class Together_search extends AppCompatActivity {
+public class Together_search extends AppCompatActivity {// 히히
 
     ImageButton back_btn, search_btn; //이미지버튼 변수 생성
     EditText search_edit;// 검색 에딧텍스트
