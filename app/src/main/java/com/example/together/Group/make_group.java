@@ -13,7 +13,7 @@ import com.example.together.R;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class make_group extends AppCompatActivity { //메이크 그룹
+public class make_group extends AppCompatActivity { //make group
 
     ImageButton backmain1; //이미지버튼 변수 선언
     EditText Gname_edit, Gintro_edit; //그룹 이름, 그룹 설명 변수 선언
