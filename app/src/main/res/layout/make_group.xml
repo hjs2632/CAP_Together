@@ -13,13 +13,13 @@
         android:layout_weight="1">
         <!--뒤로 가기 버튼-->
         <ImageButton
-            android:layout_width="80dp"
-            android:layout_height="match_parent"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:id="@+id/backmain1"
-            android:layout_margin="10dp"/>
+            android:layout_margin="5dp"/>
         <!--공백 표현-->
         <TextView
-            android:layout_width="20dp"
+            android:layout_width="70dp"
             android:layout_height="match_parent" />
         <!--그룹 만들기 텍스트-->
         <TextView
@@ -45,13 +45,14 @@
                 android:orientation="horizontal"
                 android:layout_weight="1">
                 <!--그룹명-->
+                <!--그룹 입력하기-->
                 <TextView
-                    android:layout_width="80dp"
+                    android:layout_width="74dp"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
-                    android:textSize="20dp"
-                    android:text="그룹명"/>
-                <!--그룹 입력하기-->
+                    android:text="그룹명"
+                    android:textSize="20dp" />
+
                 <EditText
                     android:id="@+id/Gname_edit"
                     android:layout_width="match_parent"
@@ -92,10 +93,12 @@
                     android:textSize="20dp"
                     android:text="목표시간"/>
                 <!--그룹의 목표 시간설정 / 모드는 spinner로 설정-->
-                <TimePicker
-                    android:timePickerMode="spinner"
+                <EditText
+                    android:id="@+id/goaltime_edit"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:hint="목표시간을 숫자로 적어주세요.  ex) 3"
+                    ></EditText>
             </LinearLayout>
 
             <LinearLayout
@@ -112,26 +115,9 @@
                     android:text="목표날짜"/>
                 <!--캘린더뷰로 날짜 설정-->
                 <CalendarView
+                    android:id="@+id/calendarView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_weight="1">
-                <!--그룹 참자 조건-->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:textSize="20dp"
-                    android:text="참가조건"/>
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:hint="참가 조건을 입력."/>
             </LinearLayout>
 
             <LinearLayout
@@ -154,6 +140,7 @@
             </LinearLayout>
 
             <Button
+                android:layout_marginTop="5dp"
                 android:text="추가하기"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

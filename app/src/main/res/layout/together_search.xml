@@ -1,38 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Group.Together_search">
+    android:background="@color/White">
 
-    // 그래비티로 우측에 버튼 넣어주려고 프레임 사용
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#F8EAAE">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        // 뒤로가기 버튼
-        <ImageButton
-            android:id="@+id/back_btn"
-            android:layout_width="50dp"
-            android:layout_height="50dp"></ImageButton>
 
-        // 검색창 글씨가 너무 왼쪽에 붙어서 나오지 않도록 리니어를 배경으로 까는데, 검색창보다 가로가 더 길게 깐다.
-        <LinearLayout
-            android:layout_width="280dp"
-            android:layout_height="40dp"
-            android:background="#FFFFFF"
-            android:layout_gravity="center"
-            ></LinearLayout>
+        // 그래비티로 우측에 버튼 넣어주려고 프레임 사용
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/Yellow">
 
-        // 검색창
-        <EditText
-            android:id="@+id/search"
-            android:layout_width="270dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center"
-            android:background="#FFFFFF"></EditText>
+            // 뒤로가기
+            <ImageButton
+                android:id="@+id/back_btn"
+                android:layout_width="50dp"
+                android:layout_height="50dp"></ImageButton>
+
+            // 검색창
+            <EditText
+                android:id="@+id/search_edit"
+                android:layout_width="270dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:background="#FFFFFF"></EditText>
 
             // 그룹 검색 버튼
             <ImageButton
@@ -41,98 +39,17 @@
                 android:layout_height="50dp"
                 android:layout_gravity="right"></ImageButton>
 
-    </FrameLayout>
+        </FrameLayout>
 
-    // 검색 후 결과 그룹들( 검색 전에는 추천 그룹들을 나열한 상태로 할까 고민 )
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        // 스크롤 뷰를 적용시키기 위해 쓰는 리니어. (이거 없으면 안됨)
-        <LinearLayout
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            //각각의 그룹 요소들을 프레임 레이아웃으로 묶음
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="7dp"
-                android:layout_marginBottom="7dp"
-                android:orientation="horizontal">
-
-                // 그룹명
-                <TextView
-                    android:id="@+id/together_name"
-                    android:layout_width="230dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="5dp"
-                    android:text="한울 스터디 그룹"
-                    android:textSize="20sp"
-
-                    ></TextView>
-
-                // 프레임 레이아웃 속에서 우측으로 요소들을 밀려고 사용
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_gravity="right"
-                    android:layout_marginRight="7dp">
-
-                    //자물쇠모양 아이콘
-                    <ImageView
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
-                        android:background="#2196F3"
-                        android:layout_marginRight="40dp"></ImageView>
-
-                // 사람모양 아이콘
-                <ImageView
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:background="#2196F3"></ImageView>
-
-
-                    /* 사람모양 아이콘과 일정한 간격을 띄우기 위해 사용함.
-                (인원수 1000자리 그룹과 한자리 그룹의 숫자 나열이 우측에 붙어서 나오도록 한 것)
-                ex)    100000
-                            1
-                         1000*/
-                    <FrameLayout
-                        android:layout_width="45dp"
-                        android:layout_height="wrap_content">
-
-                    // 그룹 전체 인원 수
-                    <TextView
-                        android:id="@+id/all_person"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:text="18"
-                        android:textSize="20sp"
-                        android:layout_gravity="right"></TextView>
-                    </FrameLayout>
-
-                </LinearLayout>
+            android:layout_height="match_parent">
+        </androidx.recyclerview.widget.RecyclerView>
 
 
 
-            </FrameLayout>
-
-            // 그룹들 나열된거 보기 편하라고 중간에 선 하나 넣어줌
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="1.5dp"
-                android:background="#81000000"></LinearLayout>
-
-        </LinearLayout>
+    </LinearLayout>
 
 
-
-    </ScrollView>
-
-</LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

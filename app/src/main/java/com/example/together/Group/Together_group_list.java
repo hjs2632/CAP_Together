@@ -6,6 +6,8 @@ public class Together_group_list {
     private int GAP; //그룹 전체 인원
     private String Gname; //그룹 이름
     private String Gintro; //그룹 설명
+    private String Goaltime; //목표 시간
+    private String Goalday; //목표 날짜
     private String iv_people; //인원 앞에 사람 이미지
 
 
@@ -19,6 +21,7 @@ public class Together_group_list {
     public void setiv_people(String iv_people) { this.iv_people = iv_people; }
      */
 
+    //여기 작성 잘못하면 데이터 저장 안됩니다~~
     public String getGname() {
         return Gname;
     }
@@ -51,11 +54,28 @@ public class Together_group_list {
         this.Gintro = Gintro;
     }
 
-    public Together_group_list(String Gname, String Gintro, int GCP, int GAP) { //그룹 만들기에서 사용할 녀석
+    public String getGoaltime() {
+        return Goaltime;
+    }
+
+    public void setGoaltime(String Goaltime) { this.Goaltime = Goaltime; }
+
+    public String getGoalday() {
+        return Goalday;
+    }
+
+    public void setGoalday(String Goalday) {
+        this.Goalday = Goalday;
+    }
+
+    //그룹 만들기에서 사용할 녀석
+    public Together_group_list(String Gname, String Gintro, int GCP, int GAP, String Goaltime, String Goalday) {
         this.Gname = Gname;
         this.Gintro = Gintro;
         this.GCP = GCP;
         this.GAP = GAP;
+        this.Goaltime = Goaltime;
+        this.Goalday = Goalday;
 
     }
 
