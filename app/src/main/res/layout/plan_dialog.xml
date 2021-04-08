@@ -33,6 +33,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal">
+        <!--저장(일정저장 버튼), style을 아래와 같이 지정하면 투명 버튼 설정 가능-->
+        <Button
+            android:id="@+id/yesBtn"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:text="저장"
+            style="@style/Widget.AppCompat.Button.Borderless" />
 
         <!--취소(뒤로가기 버튼), style을 아래와 같이 지정하면 투명 버튼 설정 가능-->
         <Button
@@ -43,14 +51,7 @@
             android:text="취소"
             style="@style/Widget.AppCompat.Button.Borderless"/>
 
-        <!--저장(일정저장 버튼), style을 아래와 같이 지정하면 투명 버튼 설정 가능-->
-        <Button
-            android:id="@+id/yesBtn"
-            android:layout_width="60dp"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:text="저장"
-            style="@style/Widget.AppCompat.Button.Borderless" />
+
     </LinearLayout>
 
 </LinearLayout>
