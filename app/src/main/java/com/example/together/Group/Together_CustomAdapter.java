@@ -17,6 +17,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.together.R;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
@@ -26,6 +28,10 @@ public class Together_CustomAdapter extends RecyclerView.Adapter<Together_Custom
 
     private ArrayList<Together_group_list> arrayList;
     private Context context;
+
+    private FirebaseDatabase database;
+    private DatabaseReference databaseReference;
+
 
     Dialog PlanDialog;//그룹 가입을 위한 Dialog
     TextView dia_content; //다이얼로그 내용
@@ -80,8 +86,8 @@ public class Together_CustomAdapter extends RecyclerView.Adapter<Together_Custom
             @Override
             public boolean onLongClick(View view) {
                 String GName = holder.Gname.getText().toString(); //그룹 이름을 저 변수에 담는다!
-                showPlanDialog(holder);
                 dia_content.setText(GName+" 그룹을 탈퇴하시겠습니까?");
+                showPlanDialog(GName);
                 return true;
             }
         });
@@ -94,15 +100,6 @@ public class Together_CustomAdapter extends RecyclerView.Adapter<Together_Custom
         return (arrayList != null ? arrayList.size() : 0);
     }
 
-    //현재 선택된 데이터 내용을 지우는 코드
-    public void remove(int position){
-        try {
-            arrayList.remove(position);
-            notifyItemRemoved(position);
-        } catch (IndexOutOfBoundsException ex){
-            ex.printStackTrace();
-        }
-    }
 
     public class CustomViewHoler extends RecyclerView.ViewHolder {
         //ImageView iv_people;
@@ -120,7 +117,7 @@ public class Together_CustomAdapter extends RecyclerView.Adapter<Together_Custom
     }
 
     //그룹 탈퇴 다이얼로그 호출(다이얼로그 관련 코드)
-    public void showPlanDialog(final CustomViewHoler holder){
+    public void showPlanDialog(String ittt){
         PlanDialog.show(); //다이얼로그 출력
         PlanDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));//끝부분을 둥굴게 하기 위해 투명색 지정
         Button noBtn= PlanDialog.findViewById(R.id.noBtn);//취소 버튼
@@ -139,7 +136,9 @@ public class Together_CustomAdapter extends RecyclerView.Adapter<Together_Custom
             @Override
             public void onClick(View v) {
                 try{
-                    remove(holder.getAdapterPosition());
+                    database=FirebaseDatabase.getInstance(); //데이터베이스 연결
+                    databaseReference=database.getReference().child("Together_group_list").child(ittt);
+                    databaseReference.removeValue();//선택한 데이터를 삭제
 
 
                 }catch(Exception e){//예외
