@@ -32,7 +32,8 @@ public class Search_Adapter extends RecyclerView.Adapter<Search_Adapter.CustomVi
     private ArrayList<Together_group_list> arrayList;
     private Context context;
 
-    Dialog PlanDialog;//일정 기록을 위한 Dialog
+    Dialog PlanDialog;//그룹 가입을 위한 Dialog
+    TextView dia_content; //다이얼로그 내용
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
 
@@ -60,7 +61,9 @@ public class Search_Adapter extends RecyclerView.Adapter<Search_Adapter.CustomVi
         //다이얼로그 관련 설정
         PlanDialog=new Dialog(context); //context로 하니까 잘 됩니다.
         PlanDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);//제목 제거
-        PlanDialog.setContentView(R.layout.plan_dialog);
+        PlanDialog.setContentView(R.layout.group_dialog);
+
+        dia_content = (TextView)PlanDialog.findViewById(R.id.dia_content);// setContentView에 대한 고찰..
 
         database = FirebaseDatabase.getInstance(); // 파이어베이스 데이터베이스 연동
         databaseReference = database.getReference("Together_group_list");
@@ -76,6 +79,7 @@ public class Search_Adapter extends RecyclerView.Adapter<Search_Adapter.CustomVi
             public void onClick(View view) {
                 String GName = holder.Gname.getText().toString(); //그룹 이름을 저 변수에 담는다!
                 showPlanDialog();
+                dia_content.setText(GName+"에 가입하시겠습니까?");
             }
         });
 
@@ -107,7 +111,7 @@ public class Search_Adapter extends RecyclerView.Adapter<Search_Adapter.CustomVi
         }
     }
 
-    //일정을 입력할 수 있는 다이얼로그 호출(다이얼로그 관련 코드)
+    //그룹 가입 다이얼로그 호출(다이얼로그 관련 코드)
     public void showPlanDialog(){
         PlanDialog.show(); //다이얼로그 출력
         PlanDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));//끝부분을 둥굴게 하기 위해 투명색 지정
