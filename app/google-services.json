@@ -1,34 +1,42 @@
 {
   "project_info": {
-    "project_number": "265062222985",
-    "firebase_url": "https://together-6388f-default-rtdb.firebaseio.com",
-    "project_id": "together-6388f",
-    "storage_bucket": "together-6388f.appspot.com"
+    "project_number": "514636497582",
+    "firebase_url": "https://together-6cd7d-default-rtdb.firebaseio.com",
+    "project_id": "together-6cd7d",
+    "storage_bucket": "together-6cd7d.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:265062222985:android:ecbd6c347190f6fb6b8a58",
+        "mobilesdk_app_id": "1:514636497582:android:12b5a548b950bc2042633f",
         "android_client_info": {
           "package_name": "com.example.together"
         }
       },
       "oauth_client": [
         {
-          "client_id": "265062222985-umpifqh2prkbvak070omeuqptur3u8ak.apps.googleusercontent.com",
+          "client_id": "514636497582-dnbpr2hqrfs6964ctm4938sd1qaabput.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.together",
+            "certificate_hash": "9b969198d6ae6be13aa3de7ca63186723006122b"
+          }
+        },
+        {
+          "client_id": "514636497582-ohj5fqj1bs9f4gnsn3vu8u9ci5d4l5j2.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCjGhaCXwXapXgotcGfn9eBgfcb6KZ2LJw"
+          "current_key": "AIzaSyAD5yrs8QfuopUoj15YWzFhRWi86DKwdBc"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "265062222985-umpifqh2prkbvak070omeuqptur3u8ak.apps.googleusercontent.com",
+              "client_id": "514636497582-ohj5fqj1bs9f4gnsn3vu8u9ci5d4l5j2.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

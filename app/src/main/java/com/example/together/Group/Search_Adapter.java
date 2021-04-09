@@ -78,7 +78,7 @@ public class Search_Adapter extends RecyclerView.Adapter<Search_Adapter.CustomVi
             public void onClick(View view) {
                 String GName = holder.Gname.getText().toString(); //그룹 이름을 저 변수에 담는다!
                 showPlanDialog();
-                dia_content.setText(GName+"에 가입하시겠습니까?");
+                dia_content.setText(GName+"에\n가입하시겠습니까?");
             }
         });
 

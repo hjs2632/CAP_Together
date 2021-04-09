@@ -86,7 +86,7 @@ public class Together_CustomAdapter extends RecyclerView.Adapter<Together_Custom
             @Override
             public boolean onLongClick(View view) {
                 String GName = holder.Gname.getText().toString(); //그룹 이름을 저 변수에 담는다!
-                dia_content.setText(GName+" 그룹을 탈퇴하시겠습니까?");
+                dia_content.setText(GName+" 그룹을\n탈퇴하시겠습니까?");
                 showPlanDialog(GName);
                 return true;
             }
