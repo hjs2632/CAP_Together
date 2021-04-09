@@ -46,7 +46,7 @@ public class Search_Adapter extends RecyclerView.Adapter<Search_Adapter.CustomVi
     @NonNull
     @Override
     public CustomViewHoler onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.together_list_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.search_list, parent, false);
         CustomViewHoler holer = new CustomViewHoler(view);
         return holer;
     }
@@ -70,7 +70,6 @@ public class Search_Adapter extends RecyclerView.Adapter<Search_Adapter.CustomVi
 
         holder.Gname.setText(arrayList.get(position).getGname());
         holder.GAP.setText(String.valueOf(arrayList.get(position).getGAP()));
-        holder.GCP.setText(String.valueOf(arrayList.get(position).getGCP()));
 
         //클릭 이벤트
         holder.itemView.setTag(position);
@@ -99,7 +98,7 @@ public class Search_Adapter extends RecyclerView.Adapter<Search_Adapter.CustomVi
     public class CustomViewHoler extends RecyclerView.ViewHolder {
         //ImageView iv_people;
         TextView Gname;
-        TextView GCP;
+
         TextView GAP;
 
         public CustomViewHoler(@NonNull View itemView) {
@@ -107,7 +106,7 @@ public class Search_Adapter extends RecyclerView.Adapter<Search_Adapter.CustomVi
             //this.iv_people = itemView.findViewById(R.id.iv_people);
             this.Gname = itemView.findViewById(R.id.Gname);
             this.GAP = itemView.findViewById(R.id.GAP);
-            this.GCP = itemView.findViewById(R.id.GCP);
+
         }
     }
 

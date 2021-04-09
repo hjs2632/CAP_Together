@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_margin="5dp"
+            android:layout_gravity="center"
+            android:text="한울 스터디 그룹"
+            android:id="@+id/Gname"
+            android:textSize="18sp"/>
+
+        <LinearLayout
+            android:layout_width="120dp"
+            android:layout_height="10dp"></LinearLayout>
+
+
+
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/iv_people"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="5dp"
+                android:src="@drawable/person"></ImageView>
+
+            // 인원수를 리니어로 묶음(width를 80dp로 주면서 시간부분을 밀어버림, 각각의 요소들의 공간 비율을 맞추기 위함)
+
+            <FrameLayout
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp">
+
+
+                // 그룹 전체 인원 수
+
+                <TextView
+                    android:id="@+id/GAP"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_gravity="right"
+                    android:text="18"
+                    android:textSize="20sp"></TextView>
+
+
+            </FrameLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    // 그룹들 나열된거 보기 편하라고 중간에 선 하나 넣어줌
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1.5dp"
+        android:background="#81000000"></LinearLayout>
+
+
+
+</LinearLayout>
+
+
