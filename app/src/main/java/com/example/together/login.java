@@ -106,6 +106,8 @@ public class login extends AppCompatActivity {
                             FirebaseUser user = mAuth.getCurrentUser();
                             //updateUI(user);
                             Toast.makeText(getApplicationContext(), "Complete", Toast.LENGTH_LONG).show();
+                            Intent intent = new Intent(getApplicationContext(),Tab_activity.class);
+                            startActivity(intent);
 
 
                         } else {
@@ -143,8 +145,7 @@ public class login extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         Toast.makeText(getApplicationContext(), "Complete", Toast.LENGTH_LONG).show();
-                        Intent intent = new Intent(getApplicationContext(),Tab_activity.class);
-                        startActivity(intent);
+
 
                     }
                 });
