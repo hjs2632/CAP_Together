@@ -8,6 +8,7 @@ public class Together_group_list {
     private String Gintro; //그룹 설명
     private String Goaltime; //목표 시간
     private String Goalday; //목표 날짜
+    private String master; //그룹장
     private String iv_people; //인원 앞에 사람 이미지
 
 
@@ -68,14 +69,23 @@ public class Together_group_list {
         this.Goalday = Goalday;
     }
 
+    public String getmaster() {
+        return master;
+    }
+
+    public void setmaster(String userId) {
+        this.master = master;
+    }
+
     //그룹 만들기에서 사용할 녀석
-    public Together_group_list(String Gname, String Gintro, int GCP, int GAP, String Goaltime, String Goalday) {
+    public Together_group_list(String Gname, String Gintro, int GCP, int GAP, String Goaltime, String Goalday, String master) {
         this.Gname = Gname;
         this.Gintro = Gintro;
         this.GCP = GCP;
         this.GAP = GAP;
         this.Goaltime = Goaltime;
         this.Goalday = Goalday;
+        this.master = master;
 
     }
 
