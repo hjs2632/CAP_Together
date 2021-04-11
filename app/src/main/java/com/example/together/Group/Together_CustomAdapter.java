@@ -17,6 +17,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.together.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -31,6 +33,8 @@ public class Together_CustomAdapter extends RecyclerView.Adapter<Together_Custom
 
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    String uid = user.getUid();
 
 
     Dialog PlanDialog;//그룹 가입을 위한 Dialog
@@ -65,8 +69,7 @@ public class Together_CustomAdapter extends RecyclerView.Adapter<Together_Custom
         dia_content = (TextView)PlanDialog.findViewById(R.id.dia_content);// setContentView에 대한 고찰..
 
         holder.Gname.setText(arrayList.get(position).getGname());
-        holder.GAP.setText(String.valueOf(arrayList.get(position).getGAP()));
-        holder.GCP.setText(String.valueOf(arrayList.get(position).getGCP()));
+
 
         //클릭 이벤트
         holder.itemView.setTag(position);
@@ -104,20 +107,18 @@ public class Together_CustomAdapter extends RecyclerView.Adapter<Together_Custom
     public class CustomViewHoler extends RecyclerView.ViewHolder {
         //ImageView iv_people;
         TextView Gname;
-        TextView GCP;
-        TextView GAP;
+
 
         public CustomViewHoler(@NonNull View itemView) {
             super(itemView);
             //this.iv_people = itemView.findViewById(R.id.iv_people);
             this.Gname = itemView.findViewById(R.id.Gname);
-            this.GAP = itemView.findViewById(R.id.GAP);
-            this.GCP = itemView.findViewById(R.id.GCP);
+
         }
     }
 
     //그룹 탈퇴 다이얼로그 호출(다이얼로그 관련 코드)
-    public void showPlanDialog(String ittt){
+    public void showPlanDialog(String gname){
         PlanDialog.show(); //다이얼로그 출력
         PlanDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));//끝부분을 둥굴게 하기 위해 투명색 지정
         Button noBtn= PlanDialog.findViewById(R.id.noBtn);//취소 버튼
@@ -131,14 +132,18 @@ public class Together_CustomAdapter extends RecyclerView.Adapter<Together_Custom
             }
         });
 
-        //저장 버튼
+        //확인 버튼
         yesBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try{
-                    database=FirebaseDatabase.getInstance(); //데이터베이스 연결
-                    databaseReference=database.getReference().child("Together_group_list").child(ittt);
-                    databaseReference.removeValue();//선택한 데이터를 삭제
+                    database = FirebaseDatabase.getInstance(); // 파이어베이스 데이터베이스 연동
+                    databaseReference = database.getReference();
+                    databaseReference.child("Together_group_list").child(gname).child("user").child(uid).removeValue();
+                    databaseReference.child("User").child(uid).child("Group").child(gname).removeValue();
+                    // int i = databaseReference.child("Together_group_list").child(gname).child("gap"); gap값 1 하락시켜야함
+
+
 
 
                 }catch(Exception e){//예외

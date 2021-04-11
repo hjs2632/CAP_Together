@@ -30,7 +30,8 @@ public class make_group extends AppCompatActivity {
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-    String uid = user.getUid();
+    String uid = user.getUid(); //유저 아이디
+    String uname = user.getUid();//유저 닉네임으로 나중에 변경
 
 
     @Override
@@ -108,11 +109,15 @@ public class make_group extends AppCompatActivity {
         int GAP=1; //그룹 전체 인원은 방금 만든 본인이 한명 있으니까 1
         //int Goaltime_n = Integer.valueOf(goaltime).intValue();//문자를 숫자로 변환
 
+        //그룹 생성
         Together_group_list Group = new Together_group_list(Gname, Gintro, GCP, GAP, Goaltime, Goalday, uid);
-
-        //push()를 사용하여 상위 키값이 랜덤으로 나오도록 함. 키 값을 지정하고싶다면 child를 사용하자.
-        //그리고 원래 push()가 새로운 생성의 개념으로 많이 쓰이는 것 같음.
         databaseReference.child("Together_group_list").child(Gname).setValue(Group);
+
+        //그룹 마스터도 그룹에 포함
+        User_group user = new User_group(uid, uname);
+        databaseReference.child("Together_group_list").child(Gname).child("user").child(uid).setValue(user);
+        //내 그룹 보기 하려고 만든거
+        databaseReference.child("User").child(uid).child("Group").child(Gname).child("gname").setValue(Gname);
     }
 
 }

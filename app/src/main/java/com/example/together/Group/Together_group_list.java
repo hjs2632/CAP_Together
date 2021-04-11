@@ -9,6 +9,8 @@ public class Together_group_list {
     private String Goaltime; //목표 시간
     private String Goalday; //목표 날짜
     private String master; //그룹장
+    private String uid; //유저 아이디
+    private String uname;//유저 닉네임
     private String iv_people; //인원 앞에 사람 이미지
 
 
@@ -76,6 +78,23 @@ public class Together_group_list {
     public void setmaster(String userId) {
         this.master = master;
     }
+
+    public String getuid() {
+        return uid;
+    }
+
+    public void setuid(String useruid) {
+        this.uid = uid;
+    }
+
+    public String getuname() {
+        return uname;
+    }
+
+    public void setname(String username) {
+        this.uid = uname;
+    }
+
 
     //그룹 만들기에서 사용할 녀석
     public Together_group_list(String Gname, String Gintro, int GCP, int GAP, String Goaltime, String Goalday, String master) {
