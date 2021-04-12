@@ -21,6 +21,8 @@ import com.applandeo.materialcalendarview.CalendarView;
 import com.applandeo.materialcalendarview.EventDay;
 import com.applandeo.materialcalendarview.listeners.OnDayClickListener;
 import com.example.together.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -40,10 +42,10 @@ public class Calendar_note extends AppCompatActivity {
     Dialog PlanDialog;//일정 기록을 위한 Dialog
 
     /*로그인 기능 추가시 주석 제거*/
-    //private FirebaseAuth firebaseAuth;
+    private FirebaseAuth firebaseAuth;
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
-    //private FirebaseUser user;
+    private FirebaseUser user;
 
     int checkYear;
     int checkMonth;
@@ -54,10 +56,10 @@ public class Calendar_note extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.calendar_note);
 
-        /*로그인 기능 추가후 주석 제거
+
         firebaseAuth=FirebaseAuth.getInstance();
         user=firebaseAuth.getCurrentUser();
-         */
+
 
         database=FirebaseDatabase.getInstance();
 
@@ -85,7 +87,7 @@ public class Calendar_note extends AppCompatActivity {
         checkDay=todayDay;
 
         //실행시 일정이 있으면 아이콘으로 표시
-        database.getReference().child("calendar").addValueEventListener(new ValueEventListener() {
+        database.getReference().child("calendar").child(user.getUid()).addValueEventListener(new ValueEventListener() {
             //onDataChange() 메서드를 사용하여 이벤트 발생 시점에 특정 경로에 있던 콘텐츠의 정적 스냅샷을 읽음(리스너가 연결될 때 한번 트리거된 후 하위 요소를 포함한 데이터가 변경될때 마다 다시 트리거)
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -140,7 +142,7 @@ public class Calendar_note extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try{
-                    databaseReference=database.getReference().child("calendar").child(checkYear + "-" + checkMonth + "-" + checkDay);
+                    databaseReference=database.getReference().child("calendar").child(user.getUid()).child(checkYear + "-" + checkMonth + "-" + checkDay);
                     databaseReference.removeValue();//선택한 날짜의 데이터를 삭제
                     Plan.setText("");
                     Toast.makeText(getApplicationContext(),"일정 삭제 완료",Toast.LENGTH_SHORT).show();
@@ -182,7 +184,7 @@ public class Calendar_note extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try{
-                    databaseReference=database.getReference().child("calendar").child(checkYear + "-" + checkMonth + "-" + checkDay);
+                    databaseReference=database.getReference().child("calendar").child(user.getUid()).child(checkYear + "-" + checkMonth + "-" + checkDay);
                     String content=test_Edit.getText().toString();
                     databaseReference.setValue(content);//선택한 날짜에 일정 저장
                     Toast.makeText(getApplicationContext(),"일정 저장 완료",Toast.LENGTH_SHORT).show();//토스메세지 출력
@@ -199,7 +201,7 @@ public class Calendar_note extends AppCompatActivity {
     //일정 DB 읽기
     private void checkedDay(int year, int monthOfYear, int dayOfMonth){
         //DB 레퍼런스 경로 설정
-        databaseReference=database.getReference().child("calendar").child(year+"-"+monthOfYear+"-"+dayOfMonth);
+        databaseReference=database.getReference().child("calendar").child(user.getUid()).child(year+"-"+monthOfYear+"-"+dayOfMonth);
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
