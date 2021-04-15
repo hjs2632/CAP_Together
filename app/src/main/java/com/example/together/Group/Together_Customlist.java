@@ -3,6 +3,7 @@ package com.example.together.Group;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
@@ -27,7 +28,7 @@ import java.util.ArrayList;
 public class Together_Customlist extends AppCompatActivity {
 
     ImageButton menu_btn, search_btn; //이미지버튼 변수 생성
-    LinearLayout group1; //임시로 그룹 누르면 그룹 상세화면 나오도록!
+
 
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
@@ -89,13 +90,16 @@ public class Together_Customlist extends AppCompatActivity {
         recyclerView.setAdapter(adapter); // 리사이클러뷰에 어댑터 연결
 
 
+
+
+
+
         //그룹 생성 버튼 (플로팅 버튼)
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 Intent intent = new Intent(getApplicationContext(), make_group.class); //그룹 만들기 화면으로 연결
-                //intent.putExtra("User", strId); 이거는 이제 변수 넘겨줄거 있으면 쓰는거
                 startActivity(intent); //액티비티 열기
             }
         });
@@ -114,4 +118,5 @@ public class Together_Customlist extends AppCompatActivity {
 
 
     }
+
 }

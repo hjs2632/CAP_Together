@@ -5,10 +5,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -76,12 +78,15 @@ public class Together_CustomAdapter extends RecyclerView.Adapter<Together_Custom
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //Context context = view.getContext();
                 String GName = holder.Gname.getText().toString(); //그룹 이름을 저 변수에 담는다!
 
-                Intent intent = new Intent(context.getApplicationContext(), look_group.class); //그룹 상세 화면으로 연결
+                Intent intent = new Intent(context, look_group.class); //그룹 상세 화면으로 연결
                 intent.putExtra("Gname", GName); //그룹 이름 넘겨서 열기
+                //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent); //액티비티 열기
-                Toast.makeText(view.getContext(), GName,Toast.LENGTH_SHORT).show(); //토스트로 실험
+
+                //Toast.makeText(view.getContext(), GName,Toast.LENGTH_SHORT).show(); //토스트로 실험
             }
         });
 

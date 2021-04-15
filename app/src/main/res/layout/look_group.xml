@@ -1,101 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:background="@color/White"
+    tools:context=".Group.Together_home">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_weight="1" >
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
         <!--뒤로가기 이미지 버튼-->
         <ImageButton
-            android:layout_width="80dp"
-            android:layout_height="60dp"
-            android:id="@+id/backmain2"
-            android:layout_margin="10dp"/>
-    </LinearLayout>
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/back"
+            android:layout_marginLeft="5dp"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="40dp" >
-        <!--공백 표시-->
+        //그룹명
         <TextView
-            android:layout_width="170dp"
-            android:layout_height="40dp" />
-        <!--그룹명 표가-->
-        <TextView
-            android:layout_width="150dp"
+            android:gravity="center"
+            android:layout_width="330dp"
             android:layout_height="40dp"
-            android:layout_margin="10dp"
-            android:text="한-울"
+            android:layout_margin="5dp"
+            android:id="@+id/gname"
+            android:text="그룹명"
             android:textSize="20dp"/>
-        <!--알람 설정-->
-        <ImageButton
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_margin="10dp"/>
-
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_weight="1" >
-        <!--그룹 공지사항-->
+        //그룹 공지사항
         <Button
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="40dp"
             android:text="*공지사항*" />
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_margin="10dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:layout_gravity="center" >
         <!--일간별 그룹원 순위 확인-->
         <Button
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_margin="10dp"
+            android:layout_height="45dp"
             android:layout_weight="1"
-            android:textSize="20dp"
-            android:text="일간" />
+            android:textSize="18dp"
+            android:text="일간"
+            android:layout_margin="5dp"/>
         <!--주간별 그룹원 순위 확인-->
         <Button
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_margin="10dp"
+            android:layout_height="45dp"
             android:layout_weight="1"
-            android:textSize="20dp"
-            android:text="주간" />
+            android:textSize="18dp"
+            android:text="주간"
+            android:layout_margin="5dp"/>
         <!--월간별 그룹원 순위 확인-->
         <Button
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_margin="10dp"
+            android:layout_height="45dp"
             android:layout_weight="1"
-            android:textSize="20dp"
-            android:text="월간" />
+            android:textSize="18dp"
+            android:text="월간"
+            android:layout_margin="5dp"/>
     </LinearLayout>
 
-    <!--순위 확인을 위해 스크롤뷰로 작성-->
-    <ScrollView
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="10">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+        android:layout_height="match_parent">
+    </androidx.recyclerview.widget.RecyclerView>
 
-            <!--그룹 순위 표기-->
-            <ListView
-                android:layout_width="match_parent"
-                android:layout_height="330dp" />
-        </LinearLayout>
-    </ScrollView>
+    </LinearLayout>
 
-</LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
