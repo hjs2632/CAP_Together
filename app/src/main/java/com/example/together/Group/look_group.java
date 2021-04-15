@@ -26,17 +26,14 @@ import java.util.ArrayList;
 
 
 public class look_group extends AppCompatActivity {
-    //String Gname = getIntent().getStringExtra("Gname");
-    String Gname = "오순돌 사랑해";
+    private Intent intent;
+    private String Gname;
 
-    private RecyclerView recyclerView;
-    
-    //String Gname = recyclerView.viewHolder.getAdapterPosition();
     ImageButton back;
     TextView gname;
 
 
-    
+    private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<Glook_list> arrayList;
@@ -50,9 +47,13 @@ public class look_group extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.look_group);
 
+        intent = getIntent();
+        Gname = intent.getStringExtra("Gname");
+
         //변수들 레이아웃 id값이랑 연결
         back = (ImageButton)findViewById(R.id.back);
         gname = (TextView)findViewById(R.id.gname);
+
 
         gname.setText(Gname); //그룹명 연결
 

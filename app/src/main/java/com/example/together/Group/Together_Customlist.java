@@ -1,7 +1,10 @@
 package com.example.together.Group;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
@@ -23,6 +26,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Dictionary;
 
 
 public class Together_Customlist extends AppCompatActivity {
@@ -83,15 +87,10 @@ public class Together_Customlist extends AppCompatActivity {
             }
 
 
-
         });
 
         adapter = new Together_CustomAdapter(arrayList, this);
         recyclerView.setAdapter(adapter); // 리사이클러뷰에 어댑터 연결
-
-
-
-
 
 
         //그룹 생성 버튼 (플로팅 버튼)
@@ -117,6 +116,10 @@ public class Together_Customlist extends AppCompatActivity {
         });
 
 
+
+
     }
+
+
 
 }

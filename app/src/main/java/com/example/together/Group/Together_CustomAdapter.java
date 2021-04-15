@@ -32,7 +32,7 @@ public class Together_CustomAdapter extends RecyclerView.Adapter<Together_Custom
 
     private ArrayList<Together_group_list> arrayList;
     private Context context;
-
+    private Intent intent;
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -78,15 +78,12 @@ public class Together_CustomAdapter extends RecyclerView.Adapter<Together_Custom
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Context context = view.getContext();
-                String GName = holder.Gname.getText().toString(); //그룹 이름을 저 변수에 담는다!
 
-                Intent intent = new Intent(context, look_group.class); //그룹 상세 화면으로 연결
-                intent.putExtra("Gname", GName); //그룹 이름 넘겨서 열기
-                //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                String Gname = holder.Gname.getText().toString(); //그룹 이름을 저 변수에 담는다!
+                intent = new Intent(context, look_group.class); //그룹 상세 화면으로 연결
+                intent.putExtra("Gname", Gname); //그룹 이름 넘겨서 열기
                 context.startActivity(intent); //액티비티 열기
 
-                //Toast.makeText(view.getContext(), GName,Toast.LENGTH_SHORT).show(); //토스트로 실험
             }
         });
 
@@ -161,4 +158,3 @@ public class Together_CustomAdapter extends RecyclerView.Adapter<Together_Custom
 
     }
 }
-
