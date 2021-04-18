@@ -42,6 +42,7 @@ public class Search_Adapter extends RecyclerView.Adapter<Search_Adapter.CustomVi
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     String uid = user.getUid();
     String uname = user.getUid();// 나중에 유저 닉네임으로 바꿔야함.
+    String master ="no";
 
 
     public Search_Adapter(ArrayList<Together_group_list> arrayList, Context context) {
@@ -139,7 +140,8 @@ public class Search_Adapter extends RecyclerView.Adapter<Search_Adapter.CustomVi
                     User_group user = new User_group(uid, uname);
                     databaseReference.child("Together_group_list").child(Gname).child("user").child(uid).setValue(user);
                     //내 그룹 보기 하려고 만든거
-                    databaseReference.child("User").child(uid).child("Group").child(Gname).child("gname").setValue(Gname);
+                    gmake_list gmake_list = new gmake_list(Gname, master);
+                    databaseReference.child("User").child(uid).child("Group").child(Gname).setValue(gmake_list);
                     //Toast.makeText(view.getContext(), GName,Toast.LENGTH_SHORT).show(); //토스트로 실험
 
                 }catch(Exception e){//예외
