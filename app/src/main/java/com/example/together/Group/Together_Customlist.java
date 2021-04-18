@@ -1,4 +1,5 @@
 package com.example.together.Group;
+//그룹부분 홈이다. 내가 가입한 그룹을 볼수있다.
 
 import android.content.Context;
 import android.content.Intent;
@@ -37,7 +38,7 @@ public class Together_Customlist extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
-    private ArrayList<Together_group_list> arrayList;
+    private ArrayList<gmake_list> arrayList;
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -74,8 +75,8 @@ public class Together_Customlist extends AppCompatActivity {
                 // 파이어베이스 데이터베이스의 데이터를 받아오는 곳
                 arrayList.clear(); // 기존 배열리스트가 존재하지않게 초기화
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) { // 반복문으로 데이터 List를 추출해냄
-                    Together_group_list Together_group_list = snapshot.getValue(Together_group_list.class); // 만들어뒀던 Together_group_list 객체에 데이터를 담는다.
-                    arrayList.add(Together_group_list); // 담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼 준비
+                    gmake_list gmake_list = snapshot.getValue(gmake_list.class); // 만들어뒀던 Together_group_list 객체에 데이터를 담는다.
+                    arrayList.add(gmake_list); // 담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼 준비
                 }
                 adapter.notifyDataSetChanged(); // 리스트 저장 및 새로고침
             }

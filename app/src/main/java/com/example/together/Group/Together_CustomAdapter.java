@@ -1,4 +1,5 @@
 package com.example.together.Group;
+//내가 가입한 그룹 보는 어댑터
 
 import android.app.Dialog;
 import android.content.Context;
@@ -18,32 +19,39 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.applandeo.materialcalendarview.EventDay;
 import com.example.together.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 //사진 관련 부분은 일단 주석처리 했습니다. 굳이 그룹에서 데이터베이스 연동할 이유 없어보여서요.
 public class Together_CustomAdapter extends RecyclerView.Adapter<Together_CustomAdapter.CustomViewHoler> {
 
 
-    private ArrayList<Together_group_list> arrayList;
+    private ArrayList<gmake_list> arrayList;
     private Context context;
     private Intent intent;
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     String uid = user.getUid();
+    String master;
+
 
 
     Dialog PlanDialog;//그룹 가입을 위한 Dialog
     TextView dia_content; //다이얼로그 내용
 
 
-    public Together_CustomAdapter(ArrayList<Together_group_list> arrayList, Context context) {
+    public Together_CustomAdapter(ArrayList<gmake_list> arrayList, Context context) {
         this.arrayList = arrayList;
         this.context = context;
     }
@@ -54,6 +62,7 @@ public class Together_CustomAdapter extends RecyclerView.Adapter<Together_Custom
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.together_list_item, parent, false);
         CustomViewHoler holer = new CustomViewHoler(view);
         return holer;
+
     }
 
     @Override
@@ -70,16 +79,15 @@ public class Together_CustomAdapter extends RecyclerView.Adapter<Together_Custom
 
         dia_content = (TextView)PlanDialog.findViewById(R.id.dia_content);// setContentView에 대한 고찰..
 
-        holder.Gname.setText(arrayList.get(position).getGname());
-
-
+        holder.Gname.setText(arrayList.get(position).getgname());
+        holder.master.setText(arrayList.get(position).getmaster());
+        String Gname = holder.Gname.getText().toString(); //그룹 이름을 저 변수에 담는다!
+        master = holder.master.getText().toString();
         //클릭 이벤트
         holder.itemView.setTag(position);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                String Gname = holder.Gname.getText().toString(); //그룹 이름을 저 변수에 담는다!
                 intent = new Intent(context, look_group.class); //그룹 상세 화면으로 연결
                 intent.putExtra("Gname", Gname); //그룹 이름 넘겨서 열기
                 context.startActivity(intent); //액티비티 열기
@@ -90,14 +98,23 @@ public class Together_CustomAdapter extends RecyclerView.Adapter<Together_Custom
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                String GName = holder.Gname.getText().toString(); //그룹 이름을 저 변수에 담는다!
-                dia_content.setText(GName+" 그룹을\n탈퇴하시겠습니까?");
-                showPlanDialog(GName);
+
+                if(master.equals("yes")) {
+                    dia_content.setText(Gname + " 그룹을\n삭제하시겠습니까?");
+                    showPlanDialog(Gname);
+                }
+                else{
+                    Toast.makeText(view.getContext(), master,Toast.LENGTH_SHORT).show(); //토스트로 실험
+                    dia_content.setText(Gname + " 그룹을\n탈퇴하시겠습니까?");
+                    showPlanDialog(Gname);
+                }
+
                 return true;
             }
         });
 
     }
+
 
     @Override
     public int getItemCount() {
@@ -109,15 +126,18 @@ public class Together_CustomAdapter extends RecyclerView.Adapter<Together_Custom
     public class CustomViewHoler extends RecyclerView.ViewHolder {
         //ImageView iv_people;
         TextView Gname;
+        TextView master;
 
 
         public CustomViewHoler(@NonNull View itemView) {
             super(itemView);
             //this.iv_people = itemView.findViewById(R.id.iv_people);
             this.Gname = itemView.findViewById(R.id.Gname);
+            this.master = itemView.findViewById(R.id.master);
 
         }
     }
+
 
     //그룹 탈퇴 다이얼로그 호출(다이얼로그 관련 코드)
     public void showPlanDialog(String gname){
@@ -141,9 +161,18 @@ public class Together_CustomAdapter extends RecyclerView.Adapter<Together_Custom
                 try{
                     database = FirebaseDatabase.getInstance(); // 파이어베이스 데이터베이스 연동
                     databaseReference = database.getReference();
-                    databaseReference.child("Together_group_list").child(gname).child("user").child(uid).removeValue();
-                    databaseReference.child("User").child(uid).child("Group").child(gname).removeValue();
-                    // int i = databaseReference.child("Together_group_list").child(gname).child("gap"); gap값 1 하락시켜야함
+
+
+                    if(master.equals("yes")){
+                        databaseReference.child("Together_group_list").child(gname).removeValue();
+                        databaseReference.child("User").child(uid).child("Group").child(gname).removeValue();
+                    }
+                    else{
+                        databaseReference.child("Together_group_list").child(gname).child("user").child(uid).removeValue();
+                        databaseReference.child("User").child(uid).child("Group").child(gname).removeValue();
+                        // int i = databaseReference.child("Together_group_list").child(gname).child("gap"); gap값 1 하락시켜야함
+                    }
+
 
 
 

@@ -1,4 +1,6 @@
 package com.example.together.Group;
+//그룹 생성시 사용.
+//투게더 그룹 리스트 키 안으로 들어간다.
 
 public class Together_group_list {
 
@@ -20,7 +22,6 @@ public class Together_group_list {
     public String getiv_people() {
         return iv_people;
     }
-
     public void setiv_people(String iv_people) { this.iv_people = iv_people; }
      */
 

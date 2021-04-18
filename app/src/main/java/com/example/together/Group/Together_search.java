@@ -1,4 +1,5 @@
 package com.example.together.Group;
+//검색 화면 부분이다
 
 
 import android.os.Bundle;

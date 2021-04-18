@@ -19,8 +19,11 @@
             android:text="한울 스터디 그룹"
             android:id="@+id/Gname"
             android:textSize="18sp"/>
-
-
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:id="@+id/master"/>
 
 
 

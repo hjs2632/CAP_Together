@@ -1,4 +1,5 @@
 package com.example.together.Group;
+// 그룹 누르면 그룹원들이랑 공부 시간들 볼수있는 커스텀 리스트뷰 어댑터 부분
 
 import android.app.Dialog;
 import android.content.Context;
@@ -28,7 +29,7 @@ import java.util.ArrayList;
 public class Glook_Adapter extends RecyclerView.Adapter<Glook_Adapter.CustomViewHoler> {
 
 
-    private ArrayList<Glook_list> arrayList;
+    private ArrayList<User_group> arrayList;
     private Context context;
 
     private FirebaseDatabase database;
@@ -37,7 +38,7 @@ public class Glook_Adapter extends RecyclerView.Adapter<Glook_Adapter.CustomView
     //String uid = user.getUid();
 
 
-    public Glook_Adapter(ArrayList<Glook_list> arrayList, Context context) {
+    public Glook_Adapter(ArrayList<User_group> arrayList, Context context) {
         this.arrayList = arrayList;
         this.context = context;
     }
@@ -56,7 +57,7 @@ public class Glook_Adapter extends RecyclerView.Adapter<Glook_Adapter.CustomView
         Glide.with(holder.itemView)
                 .load(arrayList.get(position).getiv_people())
                 .into(holder.iv_people); */
-        holder.uid.setText(arrayList.get(position).getuname());
+        holder.uname.setText(arrayList.get(position).getuname());
 
         /*
 
@@ -93,13 +94,12 @@ public class Glook_Adapter extends RecyclerView.Adapter<Glook_Adapter.CustomView
 
     public class CustomViewHoler extends RecyclerView.ViewHolder {
         //ImageView iv_people;
-        TextView uid;
+        TextView uname;
 
 
         public CustomViewHoler(@NonNull View itemView) {
             super(itemView);
-            //this.iv_people = itemView.findViewById(R.id.iv_people);
-            this.uid = itemView.findViewById(R.id.username);
+            this.uname = itemView.findViewById(R.id.username);
 
         }
     }

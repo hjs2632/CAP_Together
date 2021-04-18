@@ -1,4 +1,5 @@
 package com.example.together.Group;
+//그룹 만들기 화면
 
 import android.os.Bundle;
 import android.view.View;
@@ -32,6 +33,7 @@ public class make_group extends AppCompatActivity {
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     String uid = user.getUid(); //유저 아이디
     String uname = user.getUid();//유저 닉네임으로 나중에 변경
+    String master = "yes";
 
 
     @Override
@@ -117,7 +119,8 @@ public class make_group extends AppCompatActivity {
         User_group user = new User_group(uid, uname);
         databaseReference.child("Together_group_list").child(Gname).child("user").child(uid).setValue(user);
         //내 그룹 보기 하려고 만든거
-        databaseReference.child("User").child(uid).child("Group").child(Gname).child("gname").setValue(Gname);
+        gmake_list gmake_list = new gmake_list(Gname, master);
+        databaseReference.child("User").child(uid).child("Group").child(Gname).setValue(gmake_list);
     }
 
 }

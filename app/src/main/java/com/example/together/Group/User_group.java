@@ -1,5 +1,7 @@
 package com.example.together.Group;
 //그룹 가입하고.. 그런거! 가입 후 활동 내역 관리
+
+
 public class User_group {
 
     private String uid; //유저 아이디
@@ -21,8 +23,8 @@ public class User_group {
         return uname;
     }
 
-    public void setname(String username) {
-        this.uid = uname;
+    public void setuname(String uname) {
+        this.uname = uname;
     }
 
 

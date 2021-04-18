@@ -1,4 +1,5 @@
 package com.example.together.Group;
+//그룹 검색쪽 어댑터
 
 import android.app.AlertDialog;
 import android.app.Dialog;

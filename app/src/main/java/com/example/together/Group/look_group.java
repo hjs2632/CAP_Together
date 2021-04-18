@@ -1,4 +1,5 @@
 package com.example.together.Group;
+//그룹 상세보기 화면
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -36,7 +37,7 @@ public class look_group extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
-    private ArrayList<Glook_list> arrayList;
+    private ArrayList<User_group> arrayList;
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
     //FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -76,8 +77,8 @@ public class look_group extends AppCompatActivity {
                 // 파이어베이스 데이터베이스의 데이터를 받아오는 곳
                 arrayList.clear(); // 기존 배열리스트가 존재하지않게 초기화
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) { // 반복문으로 데이터 List를 추출해냄
-                    Glook_list Glook_list = snapshot.getValue(Glook_list.class); // 만들어뒀던 Glook_list 객체에 데이터를 담는다.
-                    arrayList.add(Glook_list); // 담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼 준비
+                    User_group User_group = snapshot.getValue(User_group.class); // 만들어뒀던 Glook_list 객체에 데이터를 담는다.
+                    arrayList.add(User_group); // 담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼 준비
                 }
                 adapter.notifyDataSetChanged(); // 리스트 저장 및 새로고침
             }
