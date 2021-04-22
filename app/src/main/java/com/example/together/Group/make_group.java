@@ -116,7 +116,7 @@ public class make_group extends AppCompatActivity {
         databaseReference.child("Together_group_list").child(Gname).setValue(Group);
 
         //그룹 마스터도 그룹에 포함
-        User_group user = new User_group(uid, uname);
+        User_group user = new User_group(uid, uname,master);
         databaseReference.child("Together_group_list").child(Gname).child("user").child(uid).setValue(user);
         //내 그룹 보기 하려고 만든거
         gmake_list gmake_list = new gmake_list(Gname, master);

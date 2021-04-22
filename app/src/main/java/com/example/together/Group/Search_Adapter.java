@@ -84,7 +84,7 @@ public class Search_Adapter extends RecyclerView.Adapter<Search_Adapter.CustomVi
             @Override
             public void onClick(View view) {
                 String GName = holder.Gname.getText().toString(); //그룹 이름을 저 변수에 담는다!
-                showPlanDialog(GName);
+                showJoinDialog(GName);
                 dia_content.setText(GName+"에\n가입하시겠습니까?");
             }
         });
@@ -118,7 +118,7 @@ public class Search_Adapter extends RecyclerView.Adapter<Search_Adapter.CustomVi
     }
 
     //그룹 가입 다이얼로그 호출(다이얼로그 관련 코드)
-    public void showPlanDialog(String Gname){
+    public void showJoinDialog(String Gname){
         JoinDialog.show(); //다이얼로그 출력
         JoinDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));//끝부분을 둥굴게 하기 위해 투명색 지정
         Button noBtn= JoinDialog.findViewById(R.id.noBtn);//취소 버튼
@@ -137,7 +137,7 @@ public class Search_Adapter extends RecyclerView.Adapter<Search_Adapter.CustomVi
             @Override
             public void onClick(View v) {
                 try{
-                    User_group user = new User_group(uid, uname);
+                    User_group user = new User_group(uid, uname,master);
                     databaseReference.child("Together_group_list").child(Gname).child("user").child(uid).setValue(user);
                     //내 그룹 보기 하려고 만든거
                     gmake_list gmake_list = new gmake_list(Gname, master);

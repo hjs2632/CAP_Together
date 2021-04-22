@@ -6,6 +6,7 @@ public class User_group {
 
     private String uid; //유저 아이디
     private String uname;//유저 닉네임
+    private String master;//그룹장 여부
 
     public User_group(){}
 
@@ -27,10 +28,19 @@ public class User_group {
         this.uname = uname;
     }
 
+    public String getmaster() {
+        return master;
+    }
+
+    public void setmaster(String master) {
+        this.master = master;
+    }
+
 
     //그룹 가입, 나중에 시간 부분도 추가하자
-    public User_group(String uid, String uname) {
+    public User_group(String uid, String uname, String master) {
         this.uid = uid;
         this.uname = uname;
+        this.master = master;
     }
 }

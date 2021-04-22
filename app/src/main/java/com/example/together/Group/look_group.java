@@ -28,7 +28,7 @@ import java.util.ArrayList;
 
 public class look_group extends AppCompatActivity {
     private Intent intent;
-    private String Gname;
+    private String Gname,master;
 
     ImageButton back;
     TextView gname;
@@ -50,6 +50,7 @@ public class look_group extends AppCompatActivity {
 
         intent = getIntent();
         Gname = intent.getStringExtra("Gname");
+        master = intent.getStringExtra("master");//본인의 마스터정보(yes인지 no인지)
 
         //변수들 레이아웃 id값이랑 연결
         back = (ImageButton)findViewById(R.id.back);
@@ -93,7 +94,7 @@ public class look_group extends AppCompatActivity {
 
         });
 
-        adapter = new Glook_Adapter(arrayList, this);
+        adapter = new Glook_Adapter(arrayList,Gname ,master,this);//그룹이름과 마스터정보를 넘김
         recyclerView.setAdapter(adapter); // 리사이클러뷰에 어댑터 연결
 
 

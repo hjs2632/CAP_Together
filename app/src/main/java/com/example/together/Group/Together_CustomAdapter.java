@@ -90,6 +90,7 @@ public class Together_CustomAdapter extends RecyclerView.Adapter<Together_Custom
             public void onClick(View view) {
                 intent = new Intent(context, look_group.class); //그룹 상세 화면으로 연결
                 intent.putExtra("Gname", Gname); //그룹 이름 넘겨서 열기
+                intent.putExtra("master", master); //본인의 마스터 정보를 넘기기
                 context.startActivity(intent); //액티비티 열기
 
             }
@@ -104,7 +105,6 @@ public class Together_CustomAdapter extends RecyclerView.Adapter<Together_Custom
                     showPlanDialog(Gname);
                 }
                 else{
-                    Toast.makeText(view.getContext(), master,Toast.LENGTH_SHORT).show(); //토스트로 실험
                     dia_content.setText(Gname + " 그룹을\n탈퇴하시겠습니까?");
                     showPlanDialog(Gname);
                 }
@@ -150,6 +150,9 @@ public class Together_CustomAdapter extends RecyclerView.Adapter<Together_Custom
         noBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(master.equals("yes")) {
+                    Toast.makeText(v.getContext(),"그룹을 탈퇴하고싶다면 그룹장을 양도하세요.", Toast.LENGTH_SHORT).show(); //토스트로 실험
+                }
                 PlanDialog.dismiss();//다이얼로그 닫기
             }
         });
@@ -163,7 +166,7 @@ public class Together_CustomAdapter extends RecyclerView.Adapter<Together_Custom
                     databaseReference = database.getReference();
 
 
-                    if(master.equals("yes")){
+                    if(master.equals("yes")){// 그룹 삭제
                         databaseReference.child("Together_group_list").child(gname).removeValue();
                         databaseReference.child("User").child(uid).child("Group").child(gname).removeValue();
                     }
