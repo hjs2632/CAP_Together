@@ -13,11 +13,13 @@ import com.example.together.Calendar.Calendar_note;
 public class Study extends AppCompatActivity {
 
     ImageButton calendar_btn;//일정 이동 버튼
+    ImageButton focus_btn;//집중모드 이동 버튼
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.study);
         calendar_btn = (ImageButton) findViewById(R.id.calendar_btn); //일정 이동 버튼
+        focus_btn=(ImageButton)findViewById(R.id.focus_btn); //집중모드 이동 버튼
         calendar_btn.setOnClickListener(new View.OnClickListener() { // 일정으로 이동
             @Override
             public void onClick(View view) {
@@ -26,6 +28,15 @@ public class Study extends AppCompatActivity {
                 startActivity(intent); //액티비티 열기
 
             }
-        })
-        ;}
+        });
+        focus_btn.setOnClickListener(new View.OnClickListener() { // 집중모드로 이동
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(getApplicationContext(), Focus_study.class); //인텐트
+                startActivity(intent); //액티비티 열기
+
+            }
+        });
+    }
 }

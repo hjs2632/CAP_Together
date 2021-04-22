@@ -11,4 +11,11 @@
         android:layout_height="179dp"
         android:background="@drawable/ic_plan"></ImageButton>
 
+    <!--일정 버튼-->
+    <ImageButton
+        android:id="@+id/focus_btn"
+        android:layout_width="240dp"
+        android:layout_height="179dp"
+        android:background="@drawable/focus_ic"></ImageButton>
+
 </LinearLayout>
