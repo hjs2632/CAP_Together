@@ -1,13 +1,18 @@
 package com.example.together;
 
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -21,6 +26,9 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class login extends AppCompatActivity {
 
@@ -36,6 +44,8 @@ public class login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         signInButton = findViewById(R.id.btn_google);
+
+        checkPermission();//권한 승인
 
         // [START config_signin]
         // Configure Google Sign In
@@ -164,6 +174,26 @@ public class login extends AppCompatActivity {
                     }
                 });
     }
+    /*권한 요청 시작*/
+    /*참고 자료: https://github.com/kimsumin-creat/MakeYouStudy-Fuction-Explain*/
+    private static final int MULTIPLE_PERMISSIONS = 101; //권한 요청을 위한 코드 카메라 권한 요청을 위해 설정
+    private String[] permission = {
+            Manifest.permission.CAMERA
+    };
 
-
+    private boolean checkPermission(){ // 권한을 확인하고, 허용되지 않은 권한은 요청할 수 있다.
+        int result;
+        List<String> permissionList = new ArrayList<>();
+        for (String pm : permission){
+            result = ContextCompat.checkSelfPermission(this, pm);
+            if(result != PackageManager.PERMISSION_GRANTED){
+                permissionList.add(pm);
+            }
+        }if(!permissionList.isEmpty()){
+            ActivityCompat.requestPermissions(this, permissionList.toArray(new String[permissionList.size()]), MULTIPLE_PERMISSIONS);
+            return false;
+        }
+        return true;
+    }
+    /*권한 요청 끝*/
 }
