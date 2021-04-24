@@ -21,7 +21,7 @@
             android:textSize="18sp"/>
 
         <LinearLayout
-            android:layout_width="120dp"
+            android:layout_width="100dp"
             android:layout_height="10dp"></LinearLayout>
 
 
@@ -35,10 +35,10 @@
 
             <ImageView
                 android:id="@+id/iv_people"
-                android:layout_width="50dp"
+                android:layout_width="70dp"
                 android:layout_height="50dp"
                 android:layout_margin="5dp"
-                android:src="@drawable/person"></ImageView>
+                android:src="@drawable/bean"></ImageView>
 
             // 인원수를 리니어로 묶음(width를 80dp로 주면서 시간부분을 밀어버림, 각각의 요소들의 공간 비율을 맞추기 위함)
 

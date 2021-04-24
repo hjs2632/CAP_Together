@@ -22,7 +22,8 @@
             <ImageButton
                 android:id="@+id/back_btn"
                 android:layout_width="50dp"
-                android:layout_height="50dp"></ImageButton>
+                android:layout_height="50dp"
+                android:background="@drawable/back"></ImageButton>
 
             // 검색창
             <EditText
@@ -37,6 +38,7 @@
                 android:id="@+id/search_btn"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
+                android:background="@drawable/search"
                 android:layout_gravity="right"></ImageButton>
 
         </FrameLayout>

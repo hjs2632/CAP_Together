@@ -20,6 +20,7 @@
         <ImageButton
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:background="@drawable/back"
             android:id="@+id/back"
             android:layout_marginLeft="5dp"/>
 
