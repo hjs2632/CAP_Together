@@ -27,6 +27,23 @@
         <activity android:name=".Calendar.Calendar_note" android:label="일정관리"/>
         <activity android:name=".Focus_study" android:label="집중모드"/>
         <activity android:name=".Group.Together_Customlist" android:label="그룹 커스텀 리스트뷰"/>
+        <activity android:name=".FdActivity"
+            android:screenOrientation="landscape"
+            android:configChanges="keyboardHidden|orientation"
+            android:label="얼굴인식 카메라"/>//openCV 관련
     </application>
+    /*openCV 관련 시작*/
+    <supports-screens android:resizeable="true"
+        android:smallScreens="true"
+        android:normalScreens="true"
+        android:largeScreens="true"
+        android:anyDensity="true" />
 
+
+
+    <uses-feature android:name="android.hardware.camera" android:required="false"/>
+    <uses-feature android:name="android.hardware.camera.autofocus" android:required="false"/>
+    <uses-feature android:name="android.hardware.camera.front" android:required="false"/>
+    <uses-feature android:name="android.hardware.camera.front.autofocus" android:required="false"/>
+    /*openCV 관련 끝*/
 </manifest>

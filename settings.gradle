@@ -1,2 +1,6 @@
 include ':app'
 rootProject.name='Together'
+
+def opencvsdk='../'
+include ':opencv'
+project(':opencv').projectDir = new File(opencvsdk + '/sdk')
