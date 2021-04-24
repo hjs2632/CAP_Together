@@ -11,7 +11,7 @@
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="150dp"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
             android:layout_margin="5dp"
@@ -19,14 +19,6 @@
             android:text="한울 스터디 그룹"
             android:id="@+id/Gname"
             android:textSize="18sp"/>
-
-        <LinearLayout
-            android:layout_width="100dp"
-            android:layout_height="10dp"></LinearLayout>
-
-
-
-
 
         <LinearLayout
             android:layout_width="wrap_content"
