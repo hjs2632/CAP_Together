@@ -50,7 +50,6 @@ public class Together_Customlist extends AppCompatActivity {
         setContentView(R.layout.together_recycler);
 
         //변수들 레이아웃 id값이랑 연결
-        menu_btn = (ImageButton) findViewById(R.id.menu_btn); //메뉴 버튼
         search_btn = (ImageButton) findViewById(R.id.search_btn); //그룹 검색 버튼
 
         //플로팅 버튼

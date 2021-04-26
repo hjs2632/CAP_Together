@@ -16,6 +16,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:id="@+id/backmain1"
+            android:background="@drawable/back"
             android:layout_margin="5dp"/>
         <!--공백 표현-->
         <TextView

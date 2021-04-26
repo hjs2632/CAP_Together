@@ -18,17 +18,12 @@ android:background="@color/White">
         android:layout_height="wrap_content"
         android:background="@color/Yellow">
 
-        // 메뉴 버튼
-        <ImageButton
-            android:id="@+id/menu_btn"
-            android:layout_width="50dp"
-            android:layout_height="50dp"></ImageButton>
-
         // 그룹 검색 버튼
         <ImageButton
             android:id="@+id/search_btn"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:background="@drawable/search"
             android:layout_gravity="right"></ImageButton>
 
     </FrameLayout>
