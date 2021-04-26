@@ -1,0 +1,96 @@
+Index: app/src/main/java/com/example/together/login.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/together/login.java	(revision 27c0b1be0e11258fe13338871906a6e4bb2cfb73)
++++ app/src/main/java/com/example/together/login.java	(date 1619437047435)
+@@ -58,15 +58,23 @@
+ 
+         // [START initialize_auth]
+         // Initialize Firebase Auth
+-        mAuth = FirebaseAuth.getInstance();
++        mAuth = FirebaseAuth.getInstance();//회원 로그인 관련 정보(로그인 상태)
+         // [END initialize_auth]
+-
+-        signInButton.setOnClickListener(new View.OnClickListener() {
+-            @Override
+-            public void onClick(View v) {
+-                signIn();
+-            }
+-        });
++        if(mAuth.getCurrentUser() == null)//로그인이 안되어있는 경우
++        {
++            signInButton.setOnClickListener(new View.OnClickListener() {
++                @Override
++                public void onClick(View v) {
++                    signIn();
++                }
++            });
++        }
++        else{
++            //로그인이 되어있다면 로그인 다음 화면으로 넘어간다.
++            Intent signInIntent = mGoogleSignInClient.getSignInIntent();
++            startActivityForResult(signInIntent, RC_SIGN_IN);
++        }
++
+     }
+ 
+     // [START on_start_check_user]
+Index: app/src/main/res/layout/face_detect_surface_view.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/face_detect_surface_view.xml	(revision 27c0b1be0e11258fe13338871906a6e4bb2cfb73)
++++ app/src/main/res/layout/face_detect_surface_view.xml	(date 1619432127936)
+@@ -1,11 +1,17 @@
+ <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:tools="http://schemas.android.com/tools"
+     android:layout_width="match_parent"
+-    android:layout_height="match_parent" >
++    android:layout_height="match_parent"
++    android:orientation="vertical">
+ 
+     <org.opencv.android.JavaCameraView
+         android:id="@+id/fd_activity_surface_view"
+         android:layout_width="fill_parent"
+         android:layout_height="331dp" />
++    <TextView
++        android:layout_width="match_parent"
++        android:layout_height="match_parent"
++        android:id="@+id/detect_count"
++        android:text="hi"/>
+ 
+ </LinearLayout>
+Index: app/src/main/java/com/example/together/FdActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/together/FdActivity.java	(revision 27c0b1be0e11258fe13338871906a6e4bb2cfb73)
++++ app/src/main/java/com/example/together/FdActivity.java	(date 1619434225528)
+@@ -12,6 +12,7 @@
+ import org.opencv.android.CameraBridgeViewBase.CvCameraViewFrame;
+ import org.opencv.android.LoaderCallbackInterface;
+ import org.opencv.android.OpenCVLoader;
++import org.opencv.core.Core;
+ import org.opencv.core.Mat;
+ import org.opencv.core.MatOfRect;
+ import org.opencv.core.Rect;
+@@ -168,6 +169,7 @@
+     public void onCameraViewStarted(int width, int height) {
+         mGray = new Mat();
+         mRgba = new Mat();
++
+     }
+ 
+     public void onCameraViewStopped() {
+@@ -194,6 +196,7 @@
+             if (mJavaDetector != null)
+                 mJavaDetector.detectMultiScale(mGray, faces, 1.1, 2, 2, // TODO: objdetect.CV_HAAR_SCALE_IMAGE
+                         new Size(mAbsoluteFaceSize, mAbsoluteFaceSize), new Size());
++
+         }
+         else if (mDetectorType == NATIVE_DETECTOR) {
+             if (mNativeDetector != null)
