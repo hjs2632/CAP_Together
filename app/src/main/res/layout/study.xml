@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <!--일정 버튼-->
@@ -17,5 +18,15 @@
         android:layout_width="240dp"
         android:layout_height="179dp"
         android:background="@drawable/focus_ic"></ImageButton>
+
+    <!--임시 테스트 리니어 버티컬 수정-->
+    <EditText
+        android:id="@+id/test_id"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"></EditText>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/test_btn"></Button>
 
 </LinearLayout>
