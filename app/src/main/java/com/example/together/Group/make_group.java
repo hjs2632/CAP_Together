@@ -7,15 +7,20 @@ import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.together.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -33,7 +38,7 @@ public class make_group extends AppCompatActivity {
     private DatabaseReference databaseReference;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     String uid = user.getUid(); //유저 아이디
-    String uname = user.getUid();//유저 닉네임으로 나중에 변경
+    String uname;
     String master = "yes";
 
 
@@ -54,20 +59,22 @@ public class make_group extends AppCompatActivity {
         databaseReference = database.getReference(); // DB 테이블 연결
 
 
-        //로그인한 유저 관련 코드
-        if (user != null) {
-            // Name, email address
-            String name = user.getDisplayName();
-            String email = user.getEmail();
+        databaseReference.child("User").child(uid).child("username").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
+                String value = dataSnapshot.getValue(String.class);
+                uname= value;
 
-            // Check if user's email is verified
-            boolean emailVerified = user.isEmailVerified();
+            }
 
-            // The user's ID, unique to the Firebase project. Do NOT use this value to
-            // authenticate with your backend server, if you have one. Use
-            // FirebaseUser.getIdToken() instead.
-        }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // 디비를 가져오던중 에러 발생 시
+                //Log.e("MainActivity", String.valueOf(databaseError.toException())); // 에러문 출력
+            }
+
+        });
 
 
 

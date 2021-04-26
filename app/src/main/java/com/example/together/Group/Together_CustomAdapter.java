@@ -43,7 +43,7 @@ public class Together_CustomAdapter extends RecyclerView.Adapter<Together_Custom
     private DatabaseReference databaseReference;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     String uid = user.getUid();
-    String master;
+    String uname;
 
 
 
@@ -51,8 +51,9 @@ public class Together_CustomAdapter extends RecyclerView.Adapter<Together_Custom
     TextView dia_content; //다이얼로그 내용
 
 
-    public Together_CustomAdapter(ArrayList<gmake_list> arrayList, Context context) {
+    public Together_CustomAdapter(ArrayList<gmake_list> arrayList,String uname, Context context) {
         this.arrayList = arrayList;
+        this.uname = uname;
         this.context = context;
     }
 
@@ -66,11 +67,7 @@ public class Together_CustomAdapter extends RecyclerView.Adapter<Together_Custom
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final CustomViewHoler holder, int position) { //사진 만드는 그런것..
-        /*
-        Glide.with(holder.itemView)
-                .load(arrayList.get(position).getiv_people())
-                .into(holder.iv_people); */
+    public void onBindViewHolder(@NonNull final CustomViewHoler holder, int position) {
 
         //다이얼로그 관련 설정
         PlanDialog=new Dialog(context); //context로 하니까 잘 됩니다.
@@ -82,13 +79,21 @@ public class Together_CustomAdapter extends RecyclerView.Adapter<Together_Custom
         holder.Gname.setText(arrayList.get(position).getgname());
         holder.master.setText(arrayList.get(position).getmaster());
         String Gname = holder.Gname.getText().toString(); //그룹 이름을 저 변수에 담는다!
-        master = holder.master.getText().toString();
+        String master = holder.master.getText().toString();
         //클릭 이벤트
         holder.itemView.setTag(position);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                database = FirebaseDatabase.getInstance(); // 파이어베이스 데이터베이스 연동
+                databaseReference = database.getReference();
+
+                //닉네임 바뀐거 적용
+                databaseReference.child("Together_group_list").child(Gname).child("user").child(uid).child("uname").setValue(uname);
+
+
                 intent = new Intent(context, look_group.class); //그룹 상세 화면으로 연결
+                intent.putExtra("uname",uname);
                 intent.putExtra("Gname", Gname); //그룹 이름 넘겨서 열기
                 intent.putExtra("master", master); //본인의 마스터 정보를 넘기기
                 context.startActivity(intent); //액티비티 열기
@@ -102,11 +107,11 @@ public class Together_CustomAdapter extends RecyclerView.Adapter<Together_Custom
 
                 if(master.equals("yes")) {
                     dia_content.setText(Gname + " 그룹을\n삭제하시겠습니까?");
-                    showPlanDialog(Gname);
+                    showPlanDialog(Gname, master);
                 }
                 else{
                     dia_content.setText(Gname + " 그룹을\n탈퇴하시겠습니까?");
-                    showPlanDialog(Gname);
+                    showPlanDialog(Gname, master);
                 }
 
                 return true;
@@ -140,7 +145,7 @@ public class Together_CustomAdapter extends RecyclerView.Adapter<Together_Custom
 
 
     //그룹 탈퇴 다이얼로그 호출(다이얼로그 관련 코드)
-    public void showPlanDialog(String gname){
+    public void showPlanDialog(String gname, String master){
         PlanDialog.show(); //다이얼로그 출력
         PlanDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));//끝부분을 둥굴게 하기 위해 투명색 지정
         Button noBtn= PlanDialog.findViewById(R.id.noBtn);//취소 버튼
@@ -175,10 +180,6 @@ public class Together_CustomAdapter extends RecyclerView.Adapter<Together_Custom
                         databaseReference.child("User").child(uid).child("Group").child(gname).removeValue();
                         // int i = databaseReference.child("Together_group_list").child(gname).child("gap"); gap값 1 하락시켜야함
                     }
-
-
-
-
 
                 }catch(Exception e){//예외
                     e.printStackTrace();

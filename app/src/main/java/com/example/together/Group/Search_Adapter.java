@@ -41,12 +41,13 @@ public class Search_Adapter extends RecyclerView.Adapter<Search_Adapter.CustomVi
     private DatabaseReference databaseReference;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     String uid = user.getUid();
-    String uname = user.getUid();// 나중에 유저 닉네임으로 바꿔야함.
+    String uname;
     String master ="no";
 
 
-    public Search_Adapter(ArrayList<Together_group_list> arrayList, Context context) {
+    public Search_Adapter(ArrayList<Together_group_list> arrayList, String uname ,Context context) {
         this.arrayList = arrayList;
+        this.uname = uname;
         this.context = context;
     }
 
@@ -59,11 +60,7 @@ public class Search_Adapter extends RecyclerView.Adapter<Search_Adapter.CustomVi
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final CustomViewHoler holder, int position) { //사진 만드는 그런것..
-        /*
-        Glide.with(holder.itemView)
-                .load(arrayList.get(position).getiv_people())
-                .into(holder.iv_people); */
+    public void onBindViewHolder(@NonNull final CustomViewHoler holder, int position) {
 
         //다이얼로그 관련 설정
         JoinDialog=new Dialog(context); //context로 하니까 잘 됩니다.
@@ -105,7 +102,6 @@ public class Search_Adapter extends RecyclerView.Adapter<Search_Adapter.CustomVi
     public class CustomViewHoler extends RecyclerView.ViewHolder {
         //ImageView iv_people;
         TextView Gname;
-
         TextView GAP;
 
         public CustomViewHoler(@NonNull View itemView) {
@@ -142,7 +138,7 @@ public class Search_Adapter extends RecyclerView.Adapter<Search_Adapter.CustomVi
                     //내 그룹 보기 하려고 만든거
                     gmake_list gmake_list = new gmake_list(Gname, master);
                     databaseReference.child("User").child(uid).child("Group").child(Gname).setValue(gmake_list);
-                    //Toast.makeText(view.getContext(), GName,Toast.LENGTH_SHORT).show(); //토스트로 실험
+                    //Toast.makeText(v.getContext(), uname,Toast.LENGTH_SHORT).show(); //토스트로 실험
 
                 }catch(Exception e){//예외
                     e.printStackTrace();

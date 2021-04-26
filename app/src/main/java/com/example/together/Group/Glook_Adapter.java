@@ -34,7 +34,7 @@ public class Glook_Adapter extends RecyclerView.Adapter<Glook_Adapter.CustomView
 
 
     private ArrayList<User_group> arrayList;
-    private String gname, master;
+    private String gname, master,uname;
     private Context context;
 
     private FirebaseDatabase database;
@@ -48,10 +48,11 @@ public class Glook_Adapter extends RecyclerView.Adapter<Glook_Adapter.CustomView
 
 
 
-    public Glook_Adapter(ArrayList<User_group> arrayList,String gname ,String master ,Context context) {
+    public Glook_Adapter(ArrayList<User_group> arrayList,String gname ,String master,String uname,Context context) {
         this.arrayList = arrayList;
         this.gname = gname;
         this.master = master;
+        this.uname = uname;
         this.context = context;
 
 
@@ -97,7 +98,7 @@ public class Glook_Adapter extends RecyclerView.Adapter<Glook_Adapter.CustomView
         }); */
 
 
-        if(master.equals("yes") && !Uname.equals(uid)) {
+        if(master.equals("yes") && !Uname.equals(uname)) {
 
             holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override

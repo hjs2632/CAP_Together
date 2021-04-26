@@ -18,6 +18,11 @@ android:background="@color/White">
         android:layout_height="wrap_content"
         android:background="@color/Yellow">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/uname_tv"></TextView>
+
         // 그룹 검색 버튼
         <ImageButton
             android:id="@+id/search_btn"
