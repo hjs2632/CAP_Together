@@ -30,6 +30,7 @@ import java.util.ArrayList;
 import java.util.Dictionary;
 
 
+
 public class Together_Customlist extends AppCompatActivity {
 
     ImageButton menu_btn, search_btn; //이미지버튼 변수 생성
