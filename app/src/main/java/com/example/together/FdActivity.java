@@ -12,6 +12,7 @@ import org.opencv.android.CameraActivity;
 import org.opencv.android.CameraBridgeViewBase.CvCameraViewFrame;
 import org.opencv.android.LoaderCallbackInterface;
 import org.opencv.android.OpenCVLoader;
+import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfRect;
 import org.opencv.core.Rect;
@@ -168,6 +169,7 @@ public class FdActivity extends CameraActivity implements CvCameraViewListener2 
     public void onCameraViewStarted(int width, int height) {
         mGray = new Mat();
         mRgba = new Mat();
+
     }
 
     public void onCameraViewStopped() {
@@ -194,6 +196,7 @@ public class FdActivity extends CameraActivity implements CvCameraViewListener2 
             if (mJavaDetector != null)
                 mJavaDetector.detectMultiScale(mGray, faces, 1.1, 2, 2, // TODO: objdetect.CV_HAAR_SCALE_IMAGE
                         new Size(mAbsoluteFaceSize, mAbsoluteFaceSize), new Size());
+
         }
         else if (mDetectorType == NATIVE_DETECTOR) {
             if (mNativeDetector != null)

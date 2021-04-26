@@ -58,15 +58,23 @@ public class login extends AppCompatActivity {
 
         // [START initialize_auth]
         // Initialize Firebase Auth
-        mAuth = FirebaseAuth.getInstance();
+        mAuth = FirebaseAuth.getInstance();//회원 로그인 관련 정보(로그인 상태)
         // [END initialize_auth]
+        if(mAuth.getCurrentUser() == null)//로그인이 안되어있는 경우
+        {
+            signInButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    signIn();
+                }
+            });
+        }
+        else{
+            //로그인이 되어있다면 로그인 다음 화면으로 넘어간다.
+            Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+            startActivityForResult(signInIntent, RC_SIGN_IN);
+        }
 
-        signInButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                signIn();
-            }
-        });
     }
 
     // [START on_start_check_user]
