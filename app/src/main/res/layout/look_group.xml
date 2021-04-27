@@ -34,9 +34,10 @@
             android:text="그룹명"
             android:textSize="20dp"/>
 
-        <LinearLayout
+        <ImageButton
             android:layout_width="50dp"
-            android:layout_height="50dp"/>
+            android:layout_height="50dp"
+            android:id="@+id/setting"/>
     </LinearLayout>
 
         //그룹 공지사항

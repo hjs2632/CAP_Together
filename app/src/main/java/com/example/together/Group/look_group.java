@@ -31,7 +31,7 @@ public class look_group extends AppCompatActivity {
     private Intent intent;
     private String Gname,master,uname;
 
-    ImageButton back;
+    ImageButton back,setting;
     TextView gname;
 
 
@@ -57,6 +57,7 @@ public class look_group extends AppCompatActivity {
         //변수들 레이아웃 id값이랑 연결
         back = (ImageButton)findViewById(R.id.back);
         gname = (TextView)findViewById(R.id.gname);
+        setting = (ImageButton)findViewById(R.id.setting);
 
 
         gname.setText(Gname); //그룹명 연결
@@ -99,6 +100,17 @@ public class look_group extends AppCompatActivity {
         adapter = new Glook_Adapter(arrayList,Gname ,master,uname,this);//그룹이름과 마스터정보를 넘김
         recyclerView.setAdapter(adapter); // 리사이클러뷰에 어댑터 연결
 
+
+        //뒤로가기 버튼
+        setting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), Group_setting.class); //그룹 상세 화면으로 연결
+                intent.putExtra("Gname", Gname); //그룹 이름 넘겨서 열기
+                intent.putExtra("master", master); //본인의 마스터 정보를 넘기기
+                startActivity(intent); //액티비티 열기
+            }
+        });
 
 
         //뒤로가기 버튼
