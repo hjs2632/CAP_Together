@@ -25,21 +25,28 @@
                 android:layout_height="50dp"
                 android:background="@drawable/back"></ImageButton>
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="35dp"
+                android:layout_gravity="right|center"
+                android:background="#fff">
+
             // 검색창
             <EditText
                 android:id="@+id/search_edit"
-                android:layout_width="270dp"
+                android:layout_width="320dp"
                 android:layout_height="40dp"
-                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:hint="그룹명을 정확하게 입력해주세요"
                 android:background="#FFFFFF"></EditText>
+            </LinearLayout>
 
-            // 그룹 검색 버튼
-            <ImageButton
-                android:id="@+id/search_btn"
-                android:layout_width="50dp"
+            // 그룹 검색 버튼..있던 자리
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="50dp"
-                android:background="@drawable/search"
-                android:layout_gravity="right"></ImageButton>
+                android:layout_gravity="right"></LinearLayout>
 
         </FrameLayout>
 

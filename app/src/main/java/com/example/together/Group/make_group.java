@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,6 +36,7 @@ public class make_group extends AppCompatActivity {
     Button addGroup_btn; //그룹 추가하기 버튼
     Intent intent;
     String Gname="",gcate,gintro,goaltime;
+    LinearLayout Linear1;
 
 
     private FirebaseDatabase database;
@@ -57,6 +59,7 @@ public class make_group extends AppCompatActivity {
         back = (ImageButton)findViewById(R.id.backmain1); //뒤로가기 버튼 연결
         Gcate_tv =(TextView)findViewById(R.id.Gcate_tv);//카테고리 선택
         title_tv = (TextView)findViewById(R.id.title_tv);//타이틀 이름 변경
+        Linear1 = (LinearLayout)findViewById(R.id.Linear1);
 
         intent = getIntent();
         Gname = intent.getStringExtra("Gname");
@@ -86,6 +89,7 @@ public class make_group extends AppCompatActivity {
         if(Gname!=null){//그룹정보 수정이라면
 
             title_tv.setText("그룹 정보 수정");
+            Linear1.setBackgroundColor(ContextCompat.getColor(this,R.color.Gray));
             Gname_edit.setBackgroundColor(ContextCompat.getColor(this,R.color.Gray));
             Gname_edit.setText(Gname);
             Gname_edit.setFocusable(false);//포커싱과
@@ -99,7 +103,7 @@ public class make_group extends AppCompatActivity {
                 gintro = group.getGintro();
                 goaltime = group.getGoaltime();
                 gcate = group.getGcate();
-                goaltime_tv.setText(goaltime_tv.getText().toString()+goaltime); //목표시간
+                goaltime_tv.setText(goaltime_tv.getText().toString()+goaltime+"시간"); //목표시간
                 Gintro_edit.setText(Gintro_edit.getText().toString()+gintro); //그룹소개
                 Gcate_tv.setText(Gcate_tv.getText().toString()+gcate); //그룹소개
             }
@@ -115,7 +119,7 @@ public class make_group extends AppCompatActivity {
             addGroup_btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    fixGroup(Gname_edit.getText().toString(),Gintro_edit.getText().toString(),Gcate_tv.getText().toString(), goaltime_tv.getText().toString());
+                    fixGroup(Gname_edit.getText().toString(),Gintro_edit.getText().toString(),Gcate_tv.getText().toString(), goaltime);
                     finish();
                 }
             });
@@ -138,7 +142,7 @@ public class make_group extends AppCompatActivity {
                             }
                             else{
 
-                                addGroup(Gname_edit.getText().toString(),Gintro_edit.getText().toString(),Gcate_tv.getText().toString(), goaltime_tv.getText().toString());
+                                addGroup(Gname_edit.getText().toString(),Gintro_edit.getText().toString(),Gcate_tv.getText().toString(), goaltime);
                                 finish();
                             }
 
@@ -172,15 +176,27 @@ public class make_group extends AppCompatActivity {
                                 Gcate_tv.setText("자체 스터디");
                                 break;
                             case R.id.m2:
-                                Gcate_tv.setText("입시");
+                                Gcate_tv.setText("초등학교");
                                 break;
                             case R.id.m3:
-                                Gcate_tv.setText("어학");
+                                Gcate_tv.setText("중학교");
                                 break;
                             case R.id.m4:
-                                Gcate_tv.setText("자격증");
+                                Gcate_tv.setText("고등학교");
                                 break;
                             case R.id.m5:
+                                Gcate_tv.setText("대학교");
+                                break;
+                            case R.id.m6:
+                                Gcate_tv.setText("입시");
+                                break;
+                            case R.id.m7:
+                                Gcate_tv.setText("어학");
+                                break;
+                            case R.id.m8:
+                                Gcate_tv.setText("자격증");
+                                break;
+                            case R.id.m9:
                                 Gcate_tv.setText("공무원");
                                 break;
                             default:
@@ -201,7 +217,7 @@ public class make_group extends AppCompatActivity {
                 popup.getMenuInflater().inflate(R.menu.group_goaltime_menu, popup.getMenu());
                 popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
-                    public boolean onMenuItemClick(MenuItem item) {//
+                    public boolean onMenuItemClick(MenuItem item) {
                         switch (item.getItemId()){
                             case R.id.m1:
                                 goaltime_tv.setText("1시간");

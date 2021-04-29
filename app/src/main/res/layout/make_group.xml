@@ -65,13 +65,21 @@
                         android:layout_height="wrap_content"
                         android:background="@color/Yellow">
 
+                        <LinearLayout
+                            android:id="@+id/Linear1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="2dp"
+                            android:background="#fff">
+
                 <EditText
                     android:id="@+id/Gname_edit"
-                    android:layout_margin="2dp"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
                     android:background="#fff"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="7dp"
                     android:hint="그룹명을 입력하시오. (이후에 변경 불가)"/>
+                        </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
@@ -102,14 +110,23 @@
                         android:layout_height="wrap_content"
                         android:background="@color/Yellow">
 
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="2dp"
+                            android:background="#fff">
+
                     <EditText
                         android:id="@+id/Gintro_edit"
-                        android:layout_margin="2dp"
                         android:background="#fff"
                         android:layout_width="match_parent"
-                        android:layout_height="200dp"
+                        android:layout_height="190dp"
+                        android:layout_marginLeft="7dp"
+                        android:layout_marginTop="7dp"
+                        android:layout_marginBottom="7dp"
                         android:gravity="top"
                         android:hint="그룹소개를 입력하시오."/>
+                        </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
