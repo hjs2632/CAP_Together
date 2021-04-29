@@ -30,8 +30,8 @@ import com.google.firebase.database.ValueEventListener;
 public class make_group extends AppCompatActivity {
 
     ImageButton back; //이미지버튼 변수 선언
-    EditText Gname_edit, Gintro_edit,goaltime_edit; //그룹 이름, 그룹 설명, 목표시간 변수 선언
-    TextView Gcate_tv,title_tv;
+    EditText Gname_edit, Gintro_edit; //그룹 이름, 그룹 설명, 목표시간 변수 선언
+    TextView Gcate_tv,title_tv, goaltime_tv;
     Button addGroup_btn; //그룹 추가하기 버튼
     Intent intent;
     String Gname="",gcate,gintro,goaltime;
@@ -52,7 +52,7 @@ public class make_group extends AppCompatActivity {
 
         Gname_edit = (EditText)findViewById(R.id.Gname_edit); //그룹명 에딧
         Gintro_edit = (EditText)findViewById(R.id.Gintro_edit); //그룹 설명 에딧
-        goaltime_edit = (EditText)findViewById(R.id.goaltime_edit); //목표시간
+        goaltime_tv = (TextView) findViewById(R.id.goaltime_tv); //목표시간
         addGroup_btn = (Button)findViewById(R.id.addGroup_btn); //그룹 추가 버튼
         back = (ImageButton)findViewById(R.id.backmain1); //뒤로가기 버튼 연결
         Gcate_tv =(TextView)findViewById(R.id.Gcate_tv);//카테고리 선택
@@ -99,7 +99,7 @@ public class make_group extends AppCompatActivity {
                 gintro = group.getGintro();
                 goaltime = group.getGoaltime();
                 gcate = group.getGcate();
-                goaltime_edit.setText(goaltime_edit.getText().toString()+goaltime); //목표시간
+                goaltime_tv.setText(goaltime_tv.getText().toString()+goaltime); //목표시간
                 Gintro_edit.setText(Gintro_edit.getText().toString()+gintro); //그룹소개
                 Gcate_tv.setText(Gcate_tv.getText().toString()+gcate); //그룹소개
             }
@@ -115,7 +115,7 @@ public class make_group extends AppCompatActivity {
             addGroup_btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    fixGroup(Gname_edit.getText().toString(),Gintro_edit.getText().toString(),Gcate_tv.getText().toString(), goaltime_edit.getText().toString());
+                    fixGroup(Gname_edit.getText().toString(),Gintro_edit.getText().toString(),Gcate_tv.getText().toString(), goaltime_tv.getText().toString());
                     finish();
                 }
             });
@@ -138,7 +138,7 @@ public class make_group extends AppCompatActivity {
                             }
                             else{
 
-                                addGroup(Gname_edit.getText().toString(),Gintro_edit.getText().toString(),Gcate_tv.getText().toString(), goaltime_edit.getText().toString());
+                                addGroup(Gname_edit.getText().toString(),Gintro_edit.getText().toString(),Gcate_tv.getText().toString(), goaltime_tv.getText().toString());
                                 finish();
                             }
 
@@ -192,6 +192,76 @@ public class make_group extends AppCompatActivity {
                 popup.show();
                 }
         });
+
+        goaltime_tv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PopupMenu popup= new PopupMenu(make_group.this, view);
+
+                popup.getMenuInflater().inflate(R.menu.group_goaltime_menu, popup.getMenu());
+                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        switch (item.getItemId()){
+                            case R.id.m1:
+                                goaltime_tv.setText("1시간");
+                                goaltime = "1";
+                                break;
+                            case R.id.m2:
+                                goaltime_tv.setText("2시간");
+                                goaltime = "2";
+                                break;
+                            case R.id.m3:
+                                goaltime_tv.setText("3시간");
+                                goaltime = "3";
+                                break;
+                            case R.id.m4:
+                                goaltime_tv.setText("4시간");
+                                goaltime = "4";
+                                break;
+                            case R.id.m5:
+                                goaltime_tv.setText("5시간");
+                                goaltime = "5";
+                                break;
+                            case R.id.m6:
+                                goaltime_tv.setText("6시간");
+                                goaltime = "6";
+                                break;
+                            case R.id.m7:
+                                goaltime_tv.setText("7시간");
+                                goaltime = "7";
+                                break;
+                            case R.id.m8:
+                                goaltime_tv.setText("8시간");
+                                goaltime = "8";
+                                break;
+                            case R.id.m9:
+                                goaltime_tv.setText("9시간");
+                                goaltime = "9";
+                                break;
+                            case R.id.m10:
+                                goaltime_tv.setText("10시간");
+                                goaltime = "10";
+                                break;
+                            case R.id.m11:
+                                goaltime_tv.setText("11시간");
+                                goaltime = "11";
+                                break;
+                            case R.id.m12:
+                                goaltime_tv.setText("12시간");
+                                goaltime = "12";
+                                break;
+                            default:
+                                break;
+                        }
+                        return false;
+                    }
+                });
+                popup.show();
+            }
+        });
+
+
 
 
 
