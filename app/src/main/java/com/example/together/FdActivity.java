@@ -29,6 +29,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.WindowManager;
+import android.widget.TextView;
 
 import com.example.together.DetectionBasedTracker;
 import com.example.together.R;
@@ -59,6 +60,9 @@ public class FdActivity extends CameraActivity implements CvCameraViewListener2 
     private int                    mAbsoluteFaceSize   = 0;
 
     private CameraBridgeViewBase   mOpenCvCameraView;
+
+    TextView counting;
+    public int test;
 
     private BaseLoaderCallback  mLoaderCallback = new BaseLoaderCallback(this) {
         @Override
@@ -129,6 +133,8 @@ public class FdActivity extends CameraActivity implements CvCameraViewListener2 
 
         setContentView(R.layout.face_detect_surface_view);
 
+        counting=(TextView)findViewById(R.id.detect_count);
+
         mOpenCvCameraView = (CameraBridgeViewBase) findViewById(R.id.fd_activity_surface_view);
         mOpenCvCameraView.setVisibility(CameraBridgeViewBase.VISIBLE);
         mOpenCvCameraView.setCvCameraViewListener(this);
@@ -182,8 +188,10 @@ public class FdActivity extends CameraActivity implements CvCameraViewListener2 
         mRgba = inputFrame.rgba();
         mGray = inputFrame.gray();
 
+
         if (mAbsoluteFaceSize == 0) {
             int height = mGray.rows();
+
             if (Math.round(height * mRelativeFaceSize) > 0) {
                 mAbsoluteFaceSize = Math.round(height * mRelativeFaceSize);
             }
@@ -193,23 +201,29 @@ public class FdActivity extends CameraActivity implements CvCameraViewListener2 
         MatOfRect faces = new MatOfRect();
 
         if (mDetectorType == JAVA_DETECTOR) {
-            if (mJavaDetector != null)
+            if (mJavaDetector != null){
                 mJavaDetector.detectMultiScale(mGray, faces, 1.1, 2, 2, // TODO: objdetect.CV_HAAR_SCALE_IMAGE
                         new Size(mAbsoluteFaceSize, mAbsoluteFaceSize), new Size());
+}
 
         }
         else if (mDetectorType == NATIVE_DETECTOR) {
-            if (mNativeDetector != null)
+            if (mNativeDetector != null){
                 mNativeDetector.detect(mGray, faces);
+
+}
         }
         else {
             Log.e(TAG, "Detection method is not selected!");
         }
 
         Rect[] facesArray = faces.toArray();
-        for (int i = 0; i < facesArray.length; i++)
+        for (int i = 0; i < facesArray.length; i++){
             Imgproc.rectangle(mRgba, facesArray[i].tl(), facesArray[i].br(), FACE_RECT_COLOR, 3);
-
+            //얼굴 인식이 진행될 때 카운트 업 224, 225 줄
+            test+=1;
+            counting.setText(String.valueOf(test));
+        }
         return mRgba;
     }
 

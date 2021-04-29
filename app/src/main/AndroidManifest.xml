@@ -29,7 +29,7 @@
         <activity android:name=".Group.Together_Customlist" android:label="그룹 커스텀 리스트뷰"/>
         <activity android:name=".Group.Group_setting" android:label="그룹 내용 설정"/>
         <activity android:name=".FdActivity"
-            android:screenOrientation="landscape"
+            android:screenOrientation="portrait"
             android:configChanges="keyboardHidden|orientation"
             android:label="얼굴인식 카메라"/>//openCV 관련
     </application>
