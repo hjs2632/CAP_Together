@@ -13,7 +13,7 @@ extern "C" {
  * Signature: (Ljava/lang/String;F)J
  */
 JNIEXPORT jlong JNICALL Java_com_example_together_DetectionBasedTracker_nativeCreateObject
-  (JNIEnv *, jclass, jstring, jint);
+        (JNIEnv *, jclass, jstring, jint);
 
 /*
  * Class:     org_opencv_samples_fd_DetectionBasedTracker
@@ -21,7 +21,7 @@ JNIEXPORT jlong JNICALL Java_com_example_together_DetectionBasedTracker_nativeCr
  * Signature: (J)V
  */
 JNIEXPORT void JNICALL Java_com_example_together_DetectionBasedTracker_nativeDestroyObject
-  (JNIEnv *, jclass, jlong);
+        (JNIEnv *, jclass, jlong);
 
 /*
  * Class:     org_opencv_samples_fd_DetectionBasedTracker
@@ -29,7 +29,7 @@ JNIEXPORT void JNICALL Java_com_example_together_DetectionBasedTracker_nativeDes
  * Signature: (J)V
  */
 JNIEXPORT void JNICALL Java_com_example_together_DetectionBasedTracker_nativeStart
-  (JNIEnv *, jclass, jlong);
+        (JNIEnv *, jclass, jlong);
 
 /*
  * Class:     org_opencv_samples_fd_DetectionBasedTracker
@@ -37,15 +37,15 @@ JNIEXPORT void JNICALL Java_com_example_together_DetectionBasedTracker_nativeSta
  * Signature: (J)V
  */
 JNIEXPORT void JNICALL Java_com_example_together_DetectionBasedTracker_nativeStop
-  (JNIEnv *, jclass, jlong);
+        (JNIEnv *, jclass, jlong);
 
-  /*
-   * Class:     org_opencv_samples_fd_DetectionBasedTracker
-   * Method:    nativeSetFaceSize
-   * Signature: (JI)V
-   */
-  JNIEXPORT void JNICALL Java_com_example_together_DetectionBasedTracker_nativeSetFaceSize
-  (JNIEnv *, jclass, jlong, jint);
+/*
+ * Class:     org_opencv_samples_fd_DetectionBasedTracker
+ * Method:    nativeSetFaceSize
+ * Signature: (JI)V
+ */
+JNIEXPORT void JNICALL Java_com_example_together_DetectionBasedTracker_nativeSetFaceSize
+        (JNIEnv *, jclass, jlong, jint);
 
 /*
  * Class:     org_opencv_samples_fd_DetectionBasedTracker
@@ -53,7 +53,7 @@ JNIEXPORT void JNICALL Java_com_example_together_DetectionBasedTracker_nativeSto
  * Signature: (JJJ)V
  */
 JNIEXPORT void JNICALL Java_com_example_together_DetectionBasedTracker_nativeDetect
-  (JNIEnv *, jclass, jlong, jlong, jlong);
+        (JNIEnv *, jclass, jlong, jlong, jlong);
 
 #ifdef __cplusplus
 }
