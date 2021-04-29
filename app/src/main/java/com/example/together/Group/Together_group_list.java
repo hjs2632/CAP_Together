@@ -9,10 +9,8 @@ public class Together_group_list {
     private String Gname; //그룹 이름
     private String Gintro; //그룹 설명
     private String Goaltime; //목표 시간
-    private String Goalday; //목표 날짜
     private String master; //그룹장
-    private String uid; //유저 아이디
-    private String uname;//유저 닉네임
+    private String Gcate;//카테고리
     private String iv_people; //인원 앞에 사람 이미지
 
 
@@ -64,14 +62,6 @@ public class Together_group_list {
 
     public void setGoaltime(String Goaltime) { this.Goaltime = Goaltime; }
 
-    public String getGoalday() {
-        return Goalday;
-    }
-
-    public void setGoalday(String Goalday) {
-        this.Goalday = Goalday;
-    }
-
     public String getmaster() {
         return master;
     }
@@ -80,31 +70,24 @@ public class Together_group_list {
         this.master = master;
     }
 
-    public String getuid() {
-        return uid;
+    public String getGcate() {
+        return Gcate;
     }
 
-    public void setuid(String useruid) {
-        this.uid = uid;
+    public void setGcate(String Gcate) {
+        this.Gcate = Gcate;
     }
 
-    public String getuname() {
-        return uname;
-    }
-
-    public void setname(String username) {
-        this.uid = uname;
-    }
 
 
     //그룹 만들기에서 사용할 녀석
-    public Together_group_list(String Gname, String Gintro, int GCP, int GAP, String Goaltime, String Goalday, String master) {
+    public Together_group_list(String Gname, String Gintro, String Gcate, int GCP, int GAP, String Goaltime, String master) {
         this.Gname = Gname;
         this.Gintro = Gintro;
+        this.Gcate = Gcate;
         this.GCP = GCP;
         this.GAP = GAP;
         this.Goaltime = Goaltime;
-        this.Goalday = Goalday;
         this.master = master;
 
     }

@@ -69,6 +69,25 @@
             android:background="@color/Yellow"></LinearLayout>
 
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:layout_gravity="center"
+            android:text="카테고리: "
+            android:id="@+id/gcate"
+            android:textSize="24dp"></TextView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="@color/Yellow"></LinearLayout>
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -82,26 +101,6 @@
         android:text="목표 시간: "
         android:id="@+id/goaltime"
         android:textSize="24dp"></TextView>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="3dp"
-            android:background="@color/Yellow"></LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:layout_gravity="center"
-            android:text="목표 날짜: "
-            android:id="@+id/gdate"
-            android:textSize="24dp"></TextView>
 
         <LinearLayout
             android:layout_width="match_parent"

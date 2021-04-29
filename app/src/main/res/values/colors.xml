@@ -11,5 +11,6 @@
     <color name="LightOrange">#F6E3CE</color>
     <color name="Black">#000</color>
     <color name="White">#fff</color>
+    <color name="Gray">#CCCCCC</color>
     <color name="Yellow">#F8EAAE</color>
 </resources>

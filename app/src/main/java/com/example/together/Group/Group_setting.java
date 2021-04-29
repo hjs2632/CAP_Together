@@ -33,9 +33,9 @@ public class Group_setting extends AppCompatActivity {
     private String Gname,master;
 
     ImageButton back,setting;
-    TextView gname_tv,goaltime_tv,gintro_tv,gdate_tv;
+    TextView gname_tv,goaltime_tv,gintro_tv,gcate_tv;
     Button guse;
-    String gintro,goaltime,gdate;
+    String gintro,goaltime,gcate;
 
 
     private FirebaseDatabase database;
@@ -60,7 +60,7 @@ public class Group_setting extends AppCompatActivity {
         guse = (Button)findViewById(R.id.guse);
         goaltime_tv = (TextView)findViewById(R.id.goaltime);
         gintro_tv = (TextView)findViewById(R.id.gintro);
-        gdate_tv = (TextView)findViewById(R.id.gdate);
+        gcate_tv = (TextView)findViewById(R.id.gcate);
 
         gname_tv.setText(gname_tv.getText().toString()+Gname); //그룹명 연결
 
@@ -73,10 +73,10 @@ public class Group_setting extends AppCompatActivity {
                 Together_group_list group = dataSnapshot.getValue(Together_group_list.class);
                 gintro = group.getGintro();
                 goaltime = group.getGoaltime();
-                gdate = group.getGoalday();
-                goaltime_tv.setText(goaltime_tv.getText().toString()+goaltime); //목표시간
+                gcate = group.getGcate();
+                goaltime_tv.setText(goaltime_tv.getText().toString()+goaltime+"시간"); //목표시간
                 gintro_tv.setText(gintro_tv.getText().toString()+gintro); //그룹소개
-                gdate_tv.setText(gdate_tv.getText().toString()+gdate);//목표 날짜
+                gcate_tv.setText(gcate_tv.getText().toString()+gcate); //그룹소개
             }
 
             @Override
@@ -94,7 +94,16 @@ public class Group_setting extends AppCompatActivity {
         }
 
 
-
+        //뒤로가기 버튼
+        guse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), make_group.class); //그룹 상세 화면으로 연결
+                intent.putExtra("Gname", Gname); //그룹 이름 넘겨서 열기
+                startActivity(intent); //액티비티 열기
+                finish();
+            }
+        });
 
 
         //뒤로가기 버튼

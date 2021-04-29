@@ -26,9 +26,10 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:id="@+id/title_tv"
             android:layout_margin="10dp"
             android:text="그룹 만들기"
-            android:textSize="30dp"/>
+            android:textSize="25dp"/>
     </LinearLayout>
 
     <!--그룹을 만들기 위한 스크룰뷰 작성-->
@@ -58,7 +59,7 @@
                     android:id="@+id/Gname_edit"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:hint="그룹명을 입력하시오."/>
+                    android:hint="그룹명을 입력하시오. (이후에 변경 불가)"/>
             </LinearLayout>
 
             <LinearLayout
@@ -86,6 +87,29 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_weight="1">
+                <!--그룹소개-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:textSize="20dp"
+                    android:text="카테고리"/>
+                <!--카테고리 선택하기-->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/Gcate_tv"
+                    android:layout_margin="10dp"
+                    android:textSize="20dp"
+                    android:hint="---"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="1">
                 <!--그룹의 목표 시간-->
                 <TextView
                     android:layout_width="wrap_content"
@@ -98,27 +122,8 @@
                     android:id="@+id/goaltime_edit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="목표시간을 숫자로 적어주세요.  ex) 3"
+                    android:hint="목표시간을 적어주세요.  ex) 3"
                     ></EditText>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_weight="1">
-                <!--그룹의 목표 날짜 성정-->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:textSize="20dp"
-                    android:text="목표날짜"/>
-                <!--캘린더뷰로 날짜 설정-->
-                <CalendarView
-                    android:id="@+id/calendarView"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
             </LinearLayout>
 
             <LinearLayout
@@ -132,17 +137,17 @@
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
                     android:textSize="20dp"
-                    android:text="p/w"/>
+                    android:text="가입방식"/>
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:textSize="20dp"
-                    android:hint="********"/>
+                    android:hint="나중에..!여유있으면 승인가입인지.."/>
             </LinearLayout>
 
             <Button
                 android:layout_marginTop="5dp"
                 android:text="추가하기"
+                android:textSize="17dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/addGroup_btn"></Button>
