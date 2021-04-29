@@ -201,7 +201,7 @@ public class make_group extends AppCompatActivity {
                 popup.getMenuInflater().inflate(R.menu.group_goaltime_menu, popup.getMenu());
                 popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
-                    public boolean onMenuItemClick(MenuItem item) {
+                    public boolean onMenuItemClick(MenuItem item) {//
                         switch (item.getItemId()){
                             case R.id.m1:
                                 goaltime_tv.setText("1시간");
