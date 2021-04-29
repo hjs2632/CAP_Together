@@ -3,22 +3,25 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/Yellow"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="60dp"
+        android:layout_margin="3dp"
+        android:background="#fff"
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="150dp"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
             android:layout_margin="5dp"
             android:layout_gravity="center"
             android:text="한울 스터디 그룹"
             android:id="@+id/Gname"
-            android:textSize="18sp"/>
+            android:textSize="20sp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -51,8 +54,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="1.5dp"
-        android:background="#81000000"></LinearLayout>
+        android:layout_height="4dp"
+        android:background="#fff"></LinearLayout>
 
 
 

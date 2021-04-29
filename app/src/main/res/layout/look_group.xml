@@ -14,6 +14,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/Yellow"
         android:orientation="horizontal">
 
         <!--뒤로가기 이미지 버튼-->
