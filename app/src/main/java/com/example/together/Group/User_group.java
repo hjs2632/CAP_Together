@@ -16,7 +16,7 @@ public class User_group {
         return uid;
     }
 
-    public void setuid(String useruid) {
+    public void setuid(String uid) {
         this.uid = uid;
     }
 

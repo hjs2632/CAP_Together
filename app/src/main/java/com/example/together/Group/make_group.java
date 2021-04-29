@@ -110,18 +110,17 @@ public class make_group extends AppCompatActivity {
                 //Log.e("MainActivity", String.valueOf(databaseError.toException())); // 에러문 출력
             }
 
-
-
         });
 
             addGroup_btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    addGroup(Gname_edit.getText().toString(),Gintro_edit.getText().toString(),Gcate_tv.getText().toString(), goaltime_edit.getText().toString());
+                    fixGroup(Gname_edit.getText().toString(),Gintro_edit.getText().toString(),Gcate_tv.getText().toString(), goaltime_edit.getText().toString());
                     finish();
                 }
             });
         }
+
         else{
             //그룹 추가 버튼 누르면 그룹 생성 후 해당 레이아웃 종료
             addGroup_btn.setOnClickListener(new View.OnClickListener() {
@@ -224,6 +223,14 @@ public class make_group extends AppCompatActivity {
         //내 그룹 보기 하려고 만든거
         gmake_list gmake_list = new gmake_list(Gname, master);
         databaseReference.child("User").child(uid).child("Group").child(Gname).setValue(gmake_list);
+    }
+
+    //그룹 수정
+    public void fixGroup(String Gname, String Gintro, String Gcate, String Goaltime) {
+        databaseReference.child("Together_group_list").child(Gname).child("gcate").setValue(Gcate);//카테고리 수정 반영
+        databaseReference.child("Together_group_list").child(Gname).child("gintro").setValue(Gintro);//그룹소개 수정 반영
+        databaseReference.child("Together_group_list").child(Gname).child("goaltime").setValue(Goaltime);//목표시간 수정 반영
+
     }
 
 }

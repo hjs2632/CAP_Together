@@ -41,8 +41,8 @@ public class look_group extends AppCompatActivity {
     private ArrayList<User_group> arrayList;
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
-    //FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-    //String uid = user.getUid(); //유저 아이디
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    String uid = user.getUid(); //유저 아이디
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +51,7 @@ public class look_group extends AppCompatActivity {
 
         intent = getIntent();
         Gname = intent.getStringExtra("Gname");
-        master = intent.getStringExtra("master");//본인의 마스터정보(yes인지 no인지)
+        //master = intent.getStringExtra("master");//본인의 마스터정보(yes인지 no인지)
         uname = intent.getStringExtra("uname");
 
         //변수들 레이아웃 id값이랑 연결
@@ -74,34 +74,44 @@ public class look_group extends AppCompatActivity {
 
         databaseReference = database.getReference(); // DB 테이블 연결
 
-        //값이 변경되는걸 감지하는 함수! 지금 설정한 addValueEventListener은 채팅기능처럼 데이터가 바뀔때마다 반영되도록 하는 것.
-        databaseReference.child("Together_group_list").child(Gname).child("user").addValueEventListener(new ValueEventListener() {
+
+        databaseReference.child("User").child(uid).child("Group").child(Gname).child("master").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                // 파이어베이스 데이터베이스의 데이터를 받아오는 곳
-                arrayList.clear(); // 기존 배열리스트가 존재하지않게 초기화
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) { // 반복문으로 데이터 List를 추출해냄
-                    User_group User_group = snapshot.getValue(User_group.class); // 만들어뒀던 Glook_list 객체에 데이터를 담는다.
-                    arrayList.add(User_group); // 담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼 준비
-                }
-                adapter.notifyDataSetChanged(); // 리스트 저장 및 새로고침
+                master = dataSnapshot.getValue(String.class);
+
+                databaseReference.child("Together_group_list").child(Gname).child("user").addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        // 파이어베이스 데이터베이스의 데이터를 받아오는 곳
+                        arrayList.clear(); // 기존 배열리스트가 존재하지않게 초기화
+                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) { // 반복문으로 데이터 List를 추출해냄
+                            User_group User_group = snapshot.getValue(User_group.class); // 만들어뒀던 Glook_list 객체에 데이터를 담는다.
+                            arrayList.add(User_group); // 담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼 준비
+                        }
+                        adapter.notifyDataSetChanged(); // 리스트 저장 및 새로고침
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        // 디비를 가져오던중 에러 발생 시
+                        //Log.e("MainActivity", String.valueOf(databaseError.toException())); // 에러문 출력
+                    }
+
+                });
+
+                adapter = new Glook_Adapter(arrayList,Gname ,master,uname,look_group.this);//그룹이름과 마스터정보를 넘김
+                recyclerView.setAdapter(adapter); // 리사이클러뷰에 어댑터 연결
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                // 디비를 가져오던중 에러 발생 시
                 //Log.e("MainActivity", String.valueOf(databaseError.toException())); // 에러문 출력
             }
-
-
-
         });
 
-        adapter = new Glook_Adapter(arrayList,Gname ,master,uname,this);//그룹이름과 마스터정보를 넘김
-        recyclerView.setAdapter(adapter); // 리사이클러뷰에 어댑터 연결
 
 
-        //뒤로가기 버튼
         setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

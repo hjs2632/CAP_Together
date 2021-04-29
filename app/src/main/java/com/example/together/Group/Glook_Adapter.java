@@ -80,9 +80,11 @@ public class Glook_Adapter extends RecyclerView.Adapter<Glook_Adapter.CustomView
         databaseReference = database.getReference();
 
         holder.uname.setText(arrayList.get(position).getuname());
+        holder.userid.setText(arrayList.get(position).getuid());
         holder.itemView.setTag(position);
         //holder.master.setText(arrayList.get(position).getmaster());
         String Uname = holder.uname.getText().toString();
+        String userid = holder.userid.getText().toString();
         //String Master = holder.master.getText().toString();
 
        /* holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -114,12 +116,12 @@ public class Glook_Adapter extends RecyclerView.Adapter<Glook_Adapter.CustomView
                                 case R.id.m1://그룹장 위임
                                     dia_content.setText(Uname + " 그룹원에게\n그룹장을 위임하시겠습니까?");
                                     x = "위임";
-                                    showGdialog(Uname,x);
+                                    showGdialog(userid,x);
                                     break;
                                 case R.id.m2://추방
                                     dia_content.setText(Uname + " 그룹원을\n추방하시겠습니까?");
                                     x = "추방";
-                                    showGdialog(Uname,x);
+                                    showGdialog(userid,x);
                                     break;
                                 default:
                                     break;
@@ -148,20 +150,19 @@ public class Glook_Adapter extends RecyclerView.Adapter<Glook_Adapter.CustomView
 
 
     public class CustomViewHoler extends RecyclerView.ViewHolder {
-        //ImageView iv_people;
         TextView uname;
-        //TextView master;
+        TextView userid;
 
 
         public CustomViewHoler(@NonNull View itemView) {
             super(itemView);
             this.uname = itemView.findViewById(R.id.username);
-            //this.master = itemView.findViewById(R.id.master);
+            this.userid = itemView.findViewById(R.id.userid);
         }
     }
 
     //그룹 가입 다이얼로그 호출(다이얼로그 관련 코드)
-    public void showGdialog(String uname,String x){
+    public void showGdialog(String userid,String x){
         Gdialog.show(); //다이얼로그 출력
         Gdialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));//끝부분을 둥굴게 하기 위해 투명색 지정
         Button noBtn= Gdialog.findViewById(R.id.noBtn);//취소 버튼
@@ -184,8 +185,8 @@ public class Glook_Adapter extends RecyclerView.Adapter<Glook_Adapter.CustomView
 
                 if(x.equals("추방")) {
                     try {//그룹원 추방
-                        databaseReference.child("Together_group_list").child(gname).child("user").child(uname).removeValue();
-                        databaseReference.child("User").child(uname).child("Group").child(gname).removeValue();
+                        databaseReference.child("Together_group_list").child(gname).child("user").child(userid).removeValue();
+                        databaseReference.child("User").child(userid).child("Group").child(gname).removeValue();
 
                     } catch (Exception e) {//예외
                         e.printStackTrace();
@@ -196,13 +197,13 @@ public class Glook_Adapter extends RecyclerView.Adapter<Glook_Adapter.CustomView
                 else{//그룹장 위임
                     try {
                         //상대에게 위임부분
-                        databaseReference.child("Together_group_list").child(gname).child("user").child(uname).child("master").setValue("yes");
-                        databaseReference.child("User").child(uname).child("Group").child(gname).child("master").setValue("yes");
+                        databaseReference.child("Together_group_list").child(gname).child("user").child(userid).child("master").setValue("yes");
+                        databaseReference.child("User").child(userid).child("Group").child(gname).child("master").setValue("yes");
                         //본인의 권한을 없애는 부분
                         databaseReference.child("Together_group_list").child(gname).child("user").child(uid).child("master").setValue("no");
                         databaseReference.child("User").child(uid).child("Group").child(gname).child("master").setValue("no");
                         //그룹 안에서의 마스터를 변경
-                        databaseReference.child("Together_group_list").child(gname).child("master").setValue(uname);
+                        databaseReference.child("Together_group_list").child(gname).child("master").setValue(userid);
 
                     } catch (Exception e) {//예외
                         e.printStackTrace();
