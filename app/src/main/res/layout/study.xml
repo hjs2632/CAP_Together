@@ -23,7 +23,8 @@
     <EditText
         android:id="@+id/test_id"
         android:layout_width="match_parent"
-        android:layout_height="80dp"></EditText>
+        android:layout_height="80dp"
+        android:fontFamily="@font/bmjua"></EditText>
     <Button
         android:layout_width="match_parent"
         android:layout_height="match_parent"

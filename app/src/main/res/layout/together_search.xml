@@ -39,7 +39,8 @@
                 android:layout_height="40dp"
                 android:layout_marginLeft="5dp"
                 android:hint="그룹명을 정확하게 입력해주세요"
-                android:background="#FFFFFF"></EditText>
+                android:background="#FFFFFF"
+                android:fontFamily="@font/bmjua"></EditText>
             </LinearLayout>
 
             // 그룹 검색 버튼..있던 자리

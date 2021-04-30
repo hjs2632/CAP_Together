@@ -27,7 +27,8 @@
         android:backgroundTint="@color/Yellow"
         android:hint="여기에 일정을 입력해주세요."
         android:textCursorDrawable="@color/Yellow"
-        android:textColorHighlight="@color/Yellow"/>
+        android:textColorHighlight="@color/Yellow"
+        android:fontFamily="@font/bmjua"/>
 
     <LinearLayout
         android:layout_width="match_parent"

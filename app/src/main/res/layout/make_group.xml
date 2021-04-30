@@ -78,7 +78,8 @@
                     android:background="#fff"
                     android:layout_height="40dp"
                     android:layout_marginLeft="7dp"
-                    android:hint="그룹명을 입력하시오. (이후에 변경 불가)"/>
+                    android:hint="그룹명을 입력하시오. (이후에 변경 불가)"
+                    android:fontFamily="@font/bmjua"/>
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
@@ -125,7 +126,8 @@
                         android:layout_marginTop="7dp"
                         android:layout_marginBottom="7dp"
                         android:gravity="top"
-                        android:hint="그룹소개를 입력하시오."/>
+                        android:hint="그룹소개를 입력하시오."
+                        android:fontFamily="@font/bmjua"/>
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
@@ -245,7 +247,8 @@
                             android:background="#fff"
                             android:textSize="20dp"
                             android:gravity="center"
-                            android:hint="-----"/>
+                            android:hint="-----"
+                            android:fontFamily="@font/bmjua"/>
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
