@@ -1,6 +1,7 @@
 package com.example.together.Group;
 //그룹 검색쪽 어댑터
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
@@ -24,8 +25,11 @@ import com.example.together.Calendar.Calendar_note;
 import com.example.together.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -81,8 +85,33 @@ public class Search_Adapter extends RecyclerView.Adapter<Search_Adapter.CustomVi
             @Override
             public void onClick(View view) {
                 String GName = holder.Gname.getText().toString(); //그룹 이름을 저 변수에 담는다!
-                showJoinDialog(GName);
-                dia_content.setText(GName+"에\n가입하시겠습니까?");
+
+                databaseReference.child("User").child(uid).child("Group").child(GName).child("gname").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        String value = snapshot.getValue(String.class);
+
+                        if(GName.equals(value)){
+                            Toast.makeText(context,"이미 가입되었습니다",Toast.LENGTH_SHORT).show();//토스메세지 출력
+                        }
+                        else{
+
+                            showJoinDialog(GName);
+                            dia_content.setText(GName+"에\n가입하시겠습니까?");
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        // 디비를 가져오던중 에러 발생 시
+                        //Log.e("MainActivity", String.valueOf(databaseError.toException())); // 에러문 출력
+                    }
+
+
+
+                });
+
             }
         });
 
@@ -138,6 +167,7 @@ public class Search_Adapter extends RecyclerView.Adapter<Search_Adapter.CustomVi
                     //내 그룹 보기 하려고 만든거
                     gmake_list gmake_list = new gmake_list(Gname, master);
                     databaseReference.child("User").child(uid).child("Group").child(Gname).setValue(gmake_list);
+                    ((Activity)context).finish();
                     //Toast.makeText(v.getContext(), uname,Toast.LENGTH_SHORT).show(); //토스트로 실험
 
                 }catch(Exception e){//예외
