@@ -162,6 +162,21 @@ public class Search_Adapter extends RecyclerView.Adapter<Search_Adapter.CustomVi
             @Override
             public void onClick(View v) {
                 try{
+                    databaseReference.child("Together_group_list").child(Gname).child("gap").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            int value = (int)snapshot.getValue(Integer.class);
+                            value +=1;
+                            databaseReference.child("Together_group_list").child(Gname).child("gap").setValue(value);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                            // 디비를 가져오던중 에러 발생 시
+                            //Log.e("MainActivity", String.valueOf(databaseError.toException())); // 에러문 출력
+                        }
+
+                    });
                     User_group user = new User_group(uid, uname,master);
                     databaseReference.child("Together_group_list").child(Gname).child("user").child(uid).setValue(user);
                     //내 그룹 보기 하려고 만든거
@@ -172,7 +187,6 @@ public class Search_Adapter extends RecyclerView.Adapter<Search_Adapter.CustomVi
 
                 }catch(Exception e){//예외
                     e.printStackTrace();
-                    //Toast.makeText(getApplicationContext().getContext(),"오류발생",Toast.LENGTH_SHORT).show();//토스메세지 출력
                 }
                 JoinDialog.dismiss();//다이얼로그 닫기
             }

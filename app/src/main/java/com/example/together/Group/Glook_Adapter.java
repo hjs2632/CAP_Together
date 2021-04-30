@@ -24,8 +24,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.together.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -185,6 +188,19 @@ public class Glook_Adapter extends RecyclerView.Adapter<Glook_Adapter.CustomView
 
                 if(x.equals("추방")) {
                     try {//그룹원 추방
+                        databaseReference.child("Together_group_list").child(gname).child("gap").addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                int value = (int)snapshot.getValue(Integer.class);
+                                value -=1;
+                                databaseReference.child("Together_group_list").child(gname).child("gap").setValue(value);
+                            }
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+                                // 디비를 가져오던중 에러 발생 시
+                                //Log.e("MainActivity", String.valueOf(databaseError.toException())); // 에러문 출력
+                            }
+                        });
                         databaseReference.child("Together_group_list").child(gname).child("user").child(userid).removeValue();
                         databaseReference.child("User").child(userid).child("Group").child(gname).removeValue();
 

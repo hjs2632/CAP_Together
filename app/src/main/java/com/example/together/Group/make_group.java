@@ -123,6 +123,7 @@ public class make_group extends AppCompatActivity {
                     finish();
                 }
             });
+
         }
 
         else{

@@ -81,7 +81,7 @@ public class Together_group_list {
 
 
     //그룹 만들기에서 사용할 녀석
-    public Together_group_list(String Gname, String Gintro, String Gcate, int GCP, int GAP, String Goaltime, String master) {
+    public Together_group_list(String Gname, String Gintro, String Gcate, Integer GCP, Integer GAP, String Goaltime, String master) {
         this.Gname = Gname;
         this.Gintro = Gintro;
         this.Gcate = Gcate;

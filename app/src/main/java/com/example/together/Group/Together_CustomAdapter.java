@@ -176,9 +176,21 @@ public class Together_CustomAdapter extends RecyclerView.Adapter<Together_Custom
                         databaseReference.child("User").child(uid).child("Group").child(gname).removeValue();
                     }
                     else{
+                        databaseReference.child("Together_group_list").child(gname).child("gap").addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                int value = (int)snapshot.getValue(Integer.class);
+                                value -=1;
+                                databaseReference.child("Together_group_list").child(gname).child("gap").setValue(value);
+                            }
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+                                // 디비를 가져오던중 에러 발생 시
+                                //Log.e("MainActivity", String.valueOf(databaseError.toException())); // 에러문 출력
+                            }
+                        });
                         databaseReference.child("Together_group_list").child(gname).child("user").child(uid).removeValue();
                         databaseReference.child("User").child(uid).child("Group").child(gname).removeValue();
-                        // int i = databaseReference.child("Together_group_list").child(gname).child("gap"); gap값 1 하락시켜야함
                     }
 
                 }catch(Exception e){//예외
