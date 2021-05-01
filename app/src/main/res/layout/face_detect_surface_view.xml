@@ -3,15 +3,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/Yellow">
+
+    // 뒤로가기
+    <ImageButton
+        android:id="@+id/back_btn"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/back"></ImageButton>
+    </FrameLayout>
 
     <org.opencv.android.JavaCameraView
         android:id="@+id/fd_activity_surface_view"
-        android:layout_width="fill_parent"
-        android:layout_height="331dp" />
+        android:layout_width="match_parent"
+        android:layout_height="281dp" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/detect_count"
+        android:textSize="35dp"
         android:text="hi"/>
 
 </LinearLayout>

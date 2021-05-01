@@ -28,7 +28,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.together.DetectionBasedTracker;
@@ -61,6 +63,7 @@ public class FdActivity extends CameraActivity implements CvCameraViewListener2 
 
     private CameraBridgeViewBase   mOpenCvCameraView;
 
+    ImageButton back_btn;
     TextView counting;
     public int test;
 
@@ -139,6 +142,17 @@ public class FdActivity extends CameraActivity implements CvCameraViewListener2 
         mOpenCvCameraView.setVisibility(CameraBridgeViewBase.VISIBLE);
         mOpenCvCameraView.setCvCameraViewListener(this);
         mOpenCvCameraView.setCameraIndex(1);
+
+        //뒤로가기 버튼
+        back_btn = (ImageButton) findViewById(R.id.back_btn);
+        //뒤로가기 버튼 누르면 화면을 닫음
+        back_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
     }
 
     @Override

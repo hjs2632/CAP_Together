@@ -72,7 +72,7 @@ public class Study extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(getApplicationContext(), Focus_study.class); //인텐트
+                Intent intent = new Intent(getApplicationContext(), FdActivity.class); //인텐트
                 startActivity(intent); //액티비티 열기
 
             }
