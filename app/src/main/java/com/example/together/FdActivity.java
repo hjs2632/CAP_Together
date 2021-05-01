@@ -65,7 +65,10 @@ public class FdActivity extends CameraActivity implements CvCameraViewListener2 
 
     ImageButton back_btn;
     TextView counting;
-    public int test;
+    public int sec;
+    public int min;
+    public int hour;
+    public int detect;
 
     private BaseLoaderCallback  mLoaderCallback = new BaseLoaderCallback(this) {
         @Override
@@ -234,9 +237,18 @@ public class FdActivity extends CameraActivity implements CvCameraViewListener2 
         Rect[] facesArray = faces.toArray();
         for (int i = 0; i < facesArray.length; i++){
             Imgproc.rectangle(mRgba, facesArray[i].tl(), facesArray[i].br(), FACE_RECT_COLOR, 3);
-            //얼굴 인식이 진행될 때 카운트 업 224, 225 줄
-            test+=1;
-            counting.setText(String.valueOf(test));
+            //얼굴 인식이 진행될 때 카운트 업
+            //시간측정 관련 코드 추후 수정할 예정
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            detect+=1;
+            min=detect/600;
+            hour=detect/36000;
+            sec=(detect/10)-(min*60)-(hour*3600);
+            counting.setText(String.valueOf(hour)+"시 "+String.valueOf(min)+"분 "+String.valueOf(sec)+"초 동안 공부중");
         }
         return mRgba;
     }
