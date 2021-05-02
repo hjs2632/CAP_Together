@@ -4,13 +4,13 @@ package com.example.together.Group;
 
 public class Together_group_list {
 
-    private int GCP; //그룹 현재 인원
     private int GAP; //그룹 전체 인원
     private String Gname; //그룹 이름
     private String Gintro; //그룹 설명
     private String Goaltime; //목표 시간
     private String master; //그룹장
     private String Gcate;//카테고리
+    private int gmp;
     private String iv_people; //인원 앞에 사람 이미지
 
 
@@ -40,14 +40,6 @@ public class Together_group_list {
         this.GAP = GAP;
     }
 
-    public int getGCP() {
-        return GCP;
-    }
-
-    public void setGCP(int GCP) {
-        this.GCP = GCP;
-    }
-
     public String getGintro() {
         return Gintro;
     }
@@ -74,18 +66,22 @@ public class Together_group_list {
         return Gcate;
     }
 
-    public void setGcate(String Gcate) {
-        this.Gcate = Gcate;
+    public void setGcate(String Gcate) { this.Gcate = Gcate; }
+
+    public int getgmp() {
+        return gmp;
     }
+
+    public void setgmp(int gmp) { this.gmp = gmp; }
 
 
 
     //그룹 만들기에서 사용할 녀석
-    public Together_group_list(String Gname, String Gintro, String Gcate, Integer GCP, Integer GAP, String Goaltime, String master) {
+    public Together_group_list(String Gname, String Gintro, String Gcate, int gmp, int GAP, String Goaltime, String master) {
         this.Gname = Gname;
         this.Gintro = Gintro;
         this.Gcate = Gcate;
-        this.GCP = GCP;
+        this.gmp = gmp;
         this.GAP = GAP;
         this.Goaltime = Goaltime;
         this.master = master;

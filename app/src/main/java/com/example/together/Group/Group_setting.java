@@ -33,8 +33,9 @@ public class Group_setting extends AppCompatActivity {
     private String Gname,master;
 
     ImageButton back,setting;
-    TextView gname_tv,goaltime_tv,gintro_tv,gcate_tv;
+    TextView gname_tv,goaltime_tv,gintro_tv,gcate_tv,gmp_tv;
     Button guse;
+    int gmp;
     String gintro,goaltime,gcate;
 
 
@@ -61,6 +62,7 @@ public class Group_setting extends AppCompatActivity {
         goaltime_tv = (TextView)findViewById(R.id.goaltime);
         gintro_tv = (TextView)findViewById(R.id.gintro);
         gcate_tv = (TextView)findViewById(R.id.gcate);
+        gmp_tv = (TextView)findViewById(R.id.gmp);
 
         gname_tv.setText(gname_tv.getText().toString()+Gname); //그룹명 연결
 
@@ -74,9 +76,11 @@ public class Group_setting extends AppCompatActivity {
                 gintro = group.getGintro();
                 goaltime = group.getGoaltime();
                 gcate = group.getGcate();
-                goaltime_tv.setText(goaltime_tv.getText().toString()+goaltime+"시간"); //목표시간
+                gmp = group.getgmp();
+                goaltime_tv.setText(goaltime_tv.getText().toString()+goaltime+" 시간"); //목표시간
                 gintro_tv.setText(gintro_tv.getText().toString()+gintro); //그룹소개
                 gcate_tv.setText(gcate_tv.getText().toString()+gcate); //그룹소개
+                gmp_tv.setText(gmp_tv.getText().toString()+gmp+" 명");
             }
 
             @Override
