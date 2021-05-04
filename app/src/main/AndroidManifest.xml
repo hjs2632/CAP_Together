@@ -18,6 +18,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Loading"
+        android:theme="@android:style/Theme.NoTitleBar.Fullscreen"/>
         <activity android:name=".Tab_activity" android:label="투게더"/>
         <activity android:name=".Group.Together_search" android:label="투게더 검색"/>
         <activity android:name=".Group.make_group" android:label="그룹 만들기"/>
