@@ -28,6 +28,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/tablayout"
             tools:ignore="MissingConstraints"
+            android:layout_alignParentBottom = "true"
             app:tabSelectedTextColor="@color/SelectedText"
             app:tabIndicatorColor="@color/SelectedText">
 
