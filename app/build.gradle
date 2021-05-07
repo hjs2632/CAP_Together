@@ -55,7 +55,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth:20.0.3'
     implementation 'com.applandeo:material-calendar-view:1.7.0'
     implementation 'com.google.android.gms:play-services-auth:19.0.0'
-    implementation project(path: ':opencv')//Calendar 사용을 위해 작성
+    implementation project(path: ':opencv')
+    implementation 'androidx.navigation:navigation-runtime:2.2.2'//Calendar 사용을 위해 작성
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
@@ -63,4 +64,7 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.10.0'//커스텀 리스트뷰(이미지 부분)
     annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'//커스텀 리스트뷰
     implementation project(':opencv')//opencv
+    implementation 'androidx.navigation:navigation-fragment:2.2.2'
+    implementation 'androidx.navigation:navigation-ui:2.2.2'
+    implementation 'androidx.viewpager2:viewpager2:1.0.0-alpha04'
 }

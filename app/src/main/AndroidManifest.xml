@@ -20,15 +20,12 @@
         </activity>
         <activity android:name=".Loading"
         android:theme="@android:style/Theme.NoTitleBar.Fullscreen"/>
-        <activity android:name=".Tab_activity" android:label="투게더"/>
         <activity android:name=".Group.Together_search" android:label="투게더 검색"/>
         <activity android:name=".Group.make_group" android:label="그룹 만들기"/>
         <activity android:name=".Group.look_group" android:label="그룹 자세히 보기"/>
-        <activity android:name=".Daily" android:label="통계"/>
-        <activity android:name=".Study" android:label="공부"/>
         <activity android:name=".Calendar.Calendar_note" android:label="일정관리"/>
-        <activity android:name=".Group.Together_Customlist" android:label="그룹 커스텀 리스트뷰"/>
         <activity android:name=".Group.Group_setting" android:label="그룹 내용 설정"/>
+        <activity android:name=".Tab_Navi" android:label="탭 구현"/>
         <activity android:name=".FdActivity"
             android:screenOrientation="landscape"
             android:configChanges="keyboardHidden|orientation"

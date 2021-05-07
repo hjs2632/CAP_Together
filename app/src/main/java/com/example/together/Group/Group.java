@@ -1,25 +1,25 @@
 package com.example.together.Group;
-//그룹부분 홈이다. 내가 가입한 그룹을 볼수있다.
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ImageButton;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageButton;
+
+import com.example.together.Group.Together_CustomAdapter;
+import com.example.together.Group.Together_search;
+import com.example.together.Group.gmake_list;
+import com.example.together.Group.make_group;
 import com.example.together.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -29,14 +29,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Dictionary;
 
 
-
-public class Together_Customlist extends AppCompatActivity {
+public class Group extends Fragment {
 
     ImageButton search_btn; //이미지버튼 변수 생성
-
     FloatingActionButton fab;
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
@@ -48,19 +45,32 @@ public class Together_Customlist extends AppCompatActivity {
     String uid = user.getUid(); //유저 아이디
     String uname;
 
+
+
+    public Group() {
+        // Required empty public constructor
+    }
+
+
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.together_recycler);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View v = inflater.inflate(R.layout.together_recycler, container, false);
+
 
         //변수들 레이아웃 id값이랑 연결
-        search_btn = (ImageButton) findViewById(R.id.search_btn); //그룹 검색 버튼
-        fab = (FloatingActionButton)findViewById(R.id.fab_btn);
+        search_btn = (ImageButton) v.findViewById(R.id.search_btn); //그룹 검색 버튼
+        fab = (FloatingActionButton) v.findViewById(R.id.fab_btn);
 
         //커스텀 리스트뷰 시작
-        recyclerView = findViewById(R.id.recyclerView); // 아디 연결
+        recyclerView = v.findViewById(R.id.recyclerView); // 아디 연결
         recyclerView.setHasFixedSize(true); // 리사이클러뷰 기존성능 강화
-        layoutManager = new LinearLayoutManager(this);
+        layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
         arrayList = new ArrayList<>(); // 그룹 객체를 담을 어레이 리스트 (어댑터쪽으로)
 
@@ -95,7 +105,7 @@ public class Together_Customlist extends AppCompatActivity {
                         //Log.e("MainActivity", String.valueOf(databaseError.toException())); // 에러문 출력
                     }
                 });
-                adapter = new Together_CustomAdapter(arrayList, uname, Together_Customlist.this);
+                adapter = new Together_CustomAdapter(arrayList, uname, getContext());
                 recyclerView.setAdapter(adapter); // 리사이클러뷰에 어댑터 연결
             }
             @Override
@@ -111,7 +121,7 @@ public class Together_Customlist extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(getApplicationContext(), make_group.class); //그룹 만들기 화면으로 연결
+                Intent intent = new Intent(getContext(), make_group.class); //그룹 만들기 화면으로 연결
                 startActivity(intent); //액티비티 열기
             }
         });
@@ -121,17 +131,12 @@ public class Together_Customlist extends AppCompatActivity {
         search_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), Together_search.class); //인텐트
+                Intent intent = new Intent(getContext(), Together_search.class); //인텐트
                 startActivity(intent); //액티비티 열기
 
             }
         });
 
-
-
-
+        return v;
     }
-
-
-
 }
