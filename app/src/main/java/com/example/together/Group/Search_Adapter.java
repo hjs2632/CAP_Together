@@ -40,13 +40,14 @@ public class Search_Adapter extends RecyclerView.Adapter<Search_Adapter.CustomVi
     private Context context;
 
     Dialog JoinDialog;//그룹 가입을 위한 Dialog
-    TextView dia_content; //다이얼로그 내용
+    TextView gname_tv,gintro_tv,goaltime_tv,gp_tv; //다이얼로그 내용
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     String uid = user.getUid();
-    String uname;
+    String uname,gintro,goaltime;
     String master ="no";
+    int gmp,gap;
 
 
     public Search_Adapter(ArrayList<Together_group_list> arrayList, String uname ,Context context) {
@@ -69,9 +70,12 @@ public class Search_Adapter extends RecyclerView.Adapter<Search_Adapter.CustomVi
         //다이얼로그 관련 설정
         JoinDialog=new Dialog(context); //context로 하니까 잘 됩니다.
         JoinDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);//제목 제거
-        JoinDialog.setContentView(R.layout.group_dialog);
+        JoinDialog.setContentView(R.layout.group_search_dialog);
 
-        dia_content = (TextView)JoinDialog.findViewById(R.id.dia_content);// setContentView에 대한 고찰..
+        gname_tv = (TextView)JoinDialog.findViewById(R.id.gname_tv);// setContentView에 대한 고찰..
+        gintro_tv = (TextView)JoinDialog.findViewById(R.id.gintro_tv);
+        goaltime_tv = (TextView)JoinDialog.findViewById(R.id.goaltime_tv);
+        gp_tv = (TextView)JoinDialog.findViewById(R.id.gp_tv);
 
         database = FirebaseDatabase.getInstance(); // 파이어베이스 데이터베이스 연동
         databaseReference = database.getReference();
@@ -95,9 +99,37 @@ public class Search_Adapter extends RecyclerView.Adapter<Search_Adapter.CustomVi
                             Toast.makeText(context,"이미 가입되었습니다",Toast.LENGTH_SHORT).show();//토스메세지 출력
                         }
                         else{
+                            databaseReference.child("Together_group_list").child(GName).addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    Together_group_list group = snapshot.getValue(Together_group_list.class);
+                                    gmp = group.getgmp();
+                                    gap = group.getGAP();
+                                    gintro = group.getGintro();
+                                    goaltime = group.getGoaltime();
 
-                            showJoinDialog(GName);
-                            dia_content.setText(GName+"에\n가입하시겠습니까?");
+                                    if(gmp == gap){
+                                        Toast.makeText(context,"그룹 인원이 이미 꽉 찼습니다.",Toast.LENGTH_SHORT).show();//토스메세지 출력
+                                    }
+                                    else{
+                                        showJoinDialog(GName);
+                                        gname_tv.setText(GName+"에\n가입하시겠습니까?");
+                                        gintro_tv.setText(": "+gintro);
+                                        goaltime_tv.setText("목표시간: "+goaltime+" 시간");
+                                        gp_tv.setText("그룹인원: "+gap+"/"+gmp);
+                                    }
+
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+                                    // 디비를 가져오던중 에러 발생 시
+                                    //Log.e("MainActivity", String.valueOf(databaseError.toException())); // 에러문 출력
+                                }
+
+
+
+                            });
                         }
 
                     }
@@ -195,4 +227,3 @@ public class Search_Adapter extends RecyclerView.Adapter<Search_Adapter.CustomVi
     }
 
 }
-
