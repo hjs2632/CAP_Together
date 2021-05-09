@@ -73,6 +73,7 @@ public class Timer_MainActivity extends Fragment {
         database=FirebaseDatabase.getInstance();
         databaseReference = database.getReference(); // DB 테이블 연결
 
+        //닉네임 중복 확인
         databaseReference.child("User").child(user.getUid()).child("username").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

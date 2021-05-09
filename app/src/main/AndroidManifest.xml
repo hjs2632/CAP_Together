@@ -25,7 +25,7 @@
         <activity android:name=".Group.look_group" android:label="그룹 자세히 보기"/>
         <activity android:name=".Calendar.Calendar_note" android:label="일정관리"/>
         <activity android:name=".Group.Group_setting" android:label="그룹 내용 설정"/>
-        <activity android:name=".Tab_Navi" android:label="탭 구현"/>
+        <activity android:name=".Tab_Navi" android:label=""/>
         <activity android:name=".User_Name" android:label="이름 설정"/>
         <activity android:name=".FdActivity"
             android:screenOrientation="landscape"

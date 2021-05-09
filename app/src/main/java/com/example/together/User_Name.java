@@ -21,7 +21,6 @@ public class User_Name extends AppCompatActivity {
     Button name_btn;//이름 저장 버튼
     EditText user_name;//이름 입력
 
-    /*로그인 기능 추가시 주석 제거*/
     private FirebaseAuth firebaseAuth;
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
