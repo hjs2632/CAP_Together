@@ -11,22 +11,22 @@
 
         <TextView
             android:id="@+id/subject_listitem"
-            android:layout_width="140dp"
+            android:layout_width="130dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="3dp"
             android:gravity="center|left"
             android:text="과목"
-            android:textSize="15dp"
+            android:textSize="17sp"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/page_listitem"
-            android:layout_width="68dp"
+            android:layout_width="85dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="1dp"
             android:gravity="center|left"
             android:text="범위"
-            android:textSize="10dp"
+            android:textSize="14sp"
             android:textStyle="bold"/>
 
         <LinearLayout

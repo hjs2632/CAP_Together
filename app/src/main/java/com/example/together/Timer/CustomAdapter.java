@@ -130,14 +130,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
     @Override
     public void onBindViewHolder(@NonNull CustomViewHolder viewholder, int position) {
 
-        viewholder.subject.setTextSize(TypedValue.COMPLEX_UNIT_SP, 25);
-        viewholder.page.setTextSize(TypedValue.COMPLEX_UNIT_SP, 25);
-
-        viewholder.subject.setGravity(Gravity.CENTER);
-        viewholder.page.setGravity(Gravity.CENTER);
-
-
-
         viewholder.subject.setText(mList.get(position).getSubject());
         viewholder.page.setText(mList.get(position).getPage());
     }
