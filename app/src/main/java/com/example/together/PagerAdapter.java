@@ -8,7 +8,7 @@ import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.example.together.Group.Group;
-
+import com.example.together.Timer.Timer_MainActivity;
 
 
 public class PagerAdapter extends FragmentStateAdapter {
@@ -25,7 +25,7 @@ public class PagerAdapter extends FragmentStateAdapter {
     public Fragment createFragment(int position) {
         switch (position){
             case 0:
-                return new Study();
+                return new Timer_MainActivity();
             case 1:
                 return new Daily();
             case 2:
