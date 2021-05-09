@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/profile"
+        android:icon="@drawable/ic_launcher_foreground"
+        style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+        android:title="프로필"
+        />
+    <item
+        android:id="@+id/sound"
+        android:icon="@drawable/ic_launcher_foreground"
+        style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+        android:title="백색소음"
+        />
+    <item
+        android:id="@+id/item"
+        android:icon="@drawable/ic_launcher_foreground"
+        style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+        android:title="상점"
+        />
+    <item
+        android:id="@+id/announcement"
+        android:icon="@drawable/ic_launcher_foreground"
+        style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+        android:title="공지사항"
+        />
+    <item
+        android:id="@+id/version"
+        android:icon="@drawable/ic_launcher_foreground"
+        style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+        android:title="버전 정보"
+        />
+    <item
+        android:id="@+id/logout"
+        android:icon="@drawable/ic_launcher_foreground"
+        style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+        android:title="종료"
+        />
+</menu>
