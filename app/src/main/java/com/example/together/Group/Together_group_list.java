@@ -11,6 +11,7 @@ public class Together_group_list {
     private String master; //그룹장
     private String Gcate;//카테고리
     private int gmp;
+    private String announce;//공지사항
     private String iv_people; //인원 앞에 사람 이미지
 
 
@@ -74,10 +75,18 @@ public class Together_group_list {
 
     public void setgmp(int gmp) { this.gmp = gmp; }
 
+    public String getannounce() {
+        return announce;
+    }
+
+    public void setannounce(String announce) {
+        this.announce = announce;
+    }
+
 
 
     //그룹 만들기에서 사용할 녀석
-    public Together_group_list(String Gname, String Gintro, String Gcate, int gmp, int GAP, String Goaltime, String master) {
+    public Together_group_list(String Gname, String Gintro, String Gcate, int gmp, int GAP, String Goaltime, String master, String announce) {
         this.Gname = Gname;
         this.Gintro = Gintro;
         this.Gcate = Gcate;
@@ -85,6 +94,7 @@ public class Together_group_list {
         this.GAP = GAP;
         this.Goaltime = Goaltime;
         this.master = master;
+        this.announce = announce;
 
     }
 

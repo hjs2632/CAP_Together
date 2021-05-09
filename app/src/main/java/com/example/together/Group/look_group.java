@@ -1,11 +1,18 @@
 package com.example.together.Group;
 //그룹 상세보기 화면
 
+import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -29,10 +36,13 @@ import java.util.ArrayList;
 
 public class look_group extends AppCompatActivity {
     private Intent intent;
-    private String Gname,master,uname;
+    private String Gname,master,uname,announce;
 
+    Dialog announceDialog,announceDialog2;//2는 그룹 마스터가 공지사항을 눌렀을 경우, 기본은 일반  회원이 볼 경우
     ImageButton back,setting;
-    TextView gname;
+    TextView gname,dia_content;
+    EditText dia_content2;
+    Button announce_btn;
 
 
     private RecyclerView recyclerView;
@@ -51,13 +61,23 @@ public class look_group extends AppCompatActivity {
 
         intent = getIntent();
         Gname = intent.getStringExtra("Gname");
-        //master = intent.getStringExtra("master");//본인의 마스터정보(yes인지 no인지)
         uname = intent.getStringExtra("uname");
+
+        announceDialog=new Dialog(this);
+        announceDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);//제목 제거
+        announceDialog.setContentView(R.layout.one_button_dialog);
+        announceDialog2=new Dialog(this);
+        announceDialog2.requestWindowFeature(Window.FEATURE_NO_TITLE);//제목 제거
+        announceDialog2.setContentView(R.layout.edit_two_btn_dialog);
+
+        dia_content = (TextView)announceDialog.findViewById(R.id.dia_content);
+        dia_content2 = (EditText) announceDialog2.findViewById(R.id.dia_content);
 
         //변수들 레이아웃 id값이랑 연결
         back = (ImageButton)findViewById(R.id.back);
         gname = (TextView)findViewById(R.id.gname);
         setting = (ImageButton)findViewById(R.id.setting);
+        announce_btn = (Button)findViewById(R.id.announce);
 
 
         gname.setText(Gname); //그룹명 연결
@@ -110,6 +130,35 @@ public class look_group extends AppCompatActivity {
             }
         });
 
+        databaseReference.child("Together_group_list").child(Gname).child("announce").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                announce = dataSnapshot.getValue(String.class);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // 디비를 가져오던중 에러 발생 시
+                //Log.e("MainActivity", String.valueOf(databaseError.toException())); // 에러문 출력
+            }
+
+        });
+
+        announce_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if(master.equals("yes")) {
+                    showDialog2(Gname);
+                    dia_content2.setText(announce);
+                }
+                else{
+                    showDialog(Gname);
+                    dia_content.setText(announce);
+                }
+            }
+        });
+
 
 
         setting.setOnClickListener(new View.OnClickListener() {
@@ -128,6 +177,48 @@ public class look_group extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 finish();
+            }
+        });
+
+    }
+
+    //공지사항 보는 다이얼로그
+    public void showDialog(String Gname){
+        announceDialog.show(); //다이얼로그 출력
+        announceDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));//끝부분을 둥굴게 하기 위해 투명색 지정
+        Button yesBtn=announceDialog.findViewById(R.id.yesBtn);//확인 버튼
+
+        //확인 버튼
+        yesBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                announceDialog.dismiss();//다이얼로그 닫기
+            }
+        });
+
+    }
+
+    //공지사항 보는 다이얼로그
+    public void showDialog2(String Gname){
+        announceDialog2.show(); //다이얼로그 출력
+        announceDialog2.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));//끝부분을 둥굴게 하기 위해 투명색 지정
+        Button yesBtn=announceDialog2.findViewById(R.id.yesBtn);//확인 버튼
+        Button noBtn=announceDialog2.findViewById(R.id.noBtn);//취소 버튼
+
+        //확인 버튼
+        noBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                announceDialog2.dismiss();//다이얼로그 닫기
+            }
+        });
+
+        //확인 버튼
+        yesBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                databaseReference.child("Together_group_list").child(Gname).child("announce").setValue(dia_content2.getText().toString());
+                announceDialog2.dismiss();//다이얼로그 닫기
             }
         });
 

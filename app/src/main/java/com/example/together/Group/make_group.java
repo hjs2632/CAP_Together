@@ -35,7 +35,7 @@ public class make_group extends AppCompatActivity {
     TextView Gcate_tv,title_tv, goaltime_tv, gmp_tv;
     Button addGroup_btn; //그룹 추가하기 버튼
     Intent intent;
-    String Gname="",gcate,gintro,goaltime="";
+    String Gname="",gcate,gintro,goaltime="",announce="공지사항이 아직 없습니다.";
     int gmp=0;
     LinearLayout Linear1;
 
@@ -380,7 +380,7 @@ public class make_group extends AppCompatActivity {
             //int Goaltime_n = Integer.valueOf(goaltime).intValue();//문자를 숫자로 변환
 
             //그룹 생성
-            Together_group_list Group = new Together_group_list(Gname, Gintro, Gcate, gmp, GAP, Goaltime, uid);
+            Together_group_list Group = new Together_group_list(Gname, Gintro, Gcate, gmp, GAP, Goaltime, uid, announce);
             databaseReference.child("Together_group_list").child(Gname).setValue(Group);
 
             //그룹 마스터도 그룹에 포함

@@ -14,7 +14,7 @@
     <TextView
         android:id="@+id/dia_content"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:textSize="20dp"
         android:layout_margin="30dp"
         android:text=""/>
@@ -38,14 +38,6 @@
             android:text="확인"
             style="@style/Widget.AppCompat.Button.Borderless" />
 
-        <!--취소(뒤로가기 버튼), style을 아래와 같이 지정하면 투명 버튼 설정 가능-->
-        <Button
-            android:id="@+id/noBtn"
-            android:layout_width="60dp"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:text="취소"
-            style="@style/Widget.AppCompat.Button.Borderless"/>
 
 
     </LinearLayout>

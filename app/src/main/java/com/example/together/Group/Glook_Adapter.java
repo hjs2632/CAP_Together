@@ -85,22 +85,8 @@ public class Glook_Adapter extends RecyclerView.Adapter<Glook_Adapter.CustomView
         holder.uname.setText(arrayList.get(position).getuname());
         holder.userid.setText(arrayList.get(position).getuid());
         holder.itemView.setTag(position);
-        //holder.master.setText(arrayList.get(position).getmaster());
         String Uname = holder.uname.getText().toString();
         String userid = holder.userid.getText().toString();
-        //String Master = holder.master.getText().toString();
-
-       /* holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String GName = holder.Gname.getText().toString(); //그룹 이름을 저 변수에 담는다!
-
-                Intent intent = new Intent(context.getApplicationContext(), look_group.class); //그룹 상세 화면으로 연결
-                intent.putExtra("Gname", GName); //그룹 이름 넘겨서 열기
-                context.startActivity(intent); //액티비티 열기
-                Toast.makeText(view.getContext(), GName,Toast.LENGTH_SHORT).show(); //토스트로 실험
-            }
-        }); */
 
 
         if(master.equals("yes") && !Uname.equals(uname)) {
