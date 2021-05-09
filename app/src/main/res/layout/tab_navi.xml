@@ -16,8 +16,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/nav_view"
-        app:menu="@menu/nav_menu"
-        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/pro_nav_menu"
+        app:headerLayout="@layout/pro_nav_header"
         android:fitsSystemWindows="true"
         android:layout_gravity="start"/>
 
