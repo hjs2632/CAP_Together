@@ -12,5 +12,6 @@
     <color name="Black">#000</color>
     <color name="White">#fff</color>
     <color name="Gray">#CCCCCC</color>
+    <color name="DarkGray">#26272B</color>
     <color name="Yellow">#F8EAAE</color>
 </resources>

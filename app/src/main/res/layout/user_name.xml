@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:layout_marginVertical="250dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginHorizontal="50dp"
+        android:text="사용할 이름을 입력하세요."
+        android:textSize="30dp" />
+
+    <EditText
+        android:id="@+id/user_name"
+        android:layout_width="match_parent"
+        android:layout_height="91dp"
+        android:backgroundTint="@color/SelectedText"
+        android:fontFamily="@font/bmjua"
+        android:layout_margin="20dp"
+        android:hint="사용자의 이름을 입력해 주세요."
+        android:textColorHighlight="@color/SelectedText"
+        android:textCursorDrawable="@color/SelectedText"
+        android:textSize="30dp" />
+
+    <Button
+        android:layout_width="248dp"
+        android:layout_height="match_parent"
+        android:background="@color/Yellow"
+        android:text="등록"
+        android:layout_gravity="center"
+        android:id="@+id/name_btn"/>
+</LinearLayout>

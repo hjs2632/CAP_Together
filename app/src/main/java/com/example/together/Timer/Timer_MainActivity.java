@@ -3,6 +3,7 @@ package com.example.together.Timer;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,10 +27,14 @@ import com.example.together.FdActivity;
 import com.example.together.R;
 //추가된 부분
 import com.example.together.Calendar.Calendar_note;
+import com.example.together.User_Name;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -52,6 +58,7 @@ public class Timer_MainActivity extends Fragment {
     private CustomAdapter mAdapter;
     private int count = -1;
 
+    public String uname;
     @Override
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -63,8 +70,28 @@ public class Timer_MainActivity extends Fragment {
         //파이어베이스
         firebaseAuth=FirebaseAuth.getInstance();
         user=firebaseAuth.getCurrentUser();
-
         database=FirebaseDatabase.getInstance();
+        databaseReference = database.getReference(); // DB 테이블 연결
+
+        databaseReference.child("User").child(user.getUid()).child("username").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String value = dataSnapshot.getValue(String.class);
+                if(value==null){
+                    Intent intent = new Intent(getActivity().getApplicationContext(), User_Name.class);
+                    startActivity(intent);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                //Log.e("MainActivity", String.valueOf(databaseError.toException())); // 에러문 출력
+            }
+
+        }
+        );
+
+
 
         calendar_btn = (ImageButton) v.findViewById(R.id.calendar_btn); //일정 이동 버튼
         focus_btn=(ImageButton)v.findViewById(R.id.focus_btn); //집중모드 이동 버튼
@@ -162,5 +189,6 @@ public class Timer_MainActivity extends Fragment {
             }
         });
 return v;
-    }
-}
+    }}
+
+

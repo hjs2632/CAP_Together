@@ -2,17 +2,20 @@ package com.example.together;
 
 
 import android.Manifest;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.example.together.Calendar.Calendar_note;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -66,7 +69,9 @@ public class login extends AppCompatActivity {
                 public void onClick(View v) {
                     signIn();
                 }
-            });
+            }
+);
+
         }
         else{
             //로그인이 되어있다면 로그인 다음 화면으로 넘어간다.
@@ -83,6 +88,7 @@ public class login extends AppCompatActivity {
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         //updateUI(currentUser);
+
     }
     // [END on_start_check_user]
 
@@ -123,6 +129,7 @@ public class login extends AppCompatActivity {
                             FirebaseUser user = mAuth.getCurrentUser();
                             //updateUI(user);
                             Toast.makeText(getApplicationContext(), "Complete", Toast.LENGTH_LONG).show();
+                            finish();
                             Intent intent = new Intent(getApplicationContext(), Tab_Navi.class);
                             startActivity(intent);
 
@@ -148,6 +155,7 @@ public class login extends AppCompatActivity {
     private void signIn() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
+
     }
 
     // [END signin]
@@ -181,6 +189,7 @@ public class login extends AppCompatActivity {
                     }
                 });
     }
+
     /*권한 요청 시작*/
     /*참고 자료: https://github.com/kimsumin-creat/MakeYouStudy-Fuction-Explain*/
     private static final int MULTIPLE_PERMISSIONS = 101; //권한 요청을 위한 코드 카메라 권한 요청을 위해 설정
