@@ -125,9 +125,9 @@ public class login extends Activity {
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             //updateUI(user);
-                            finish();
                             Intent intent = new Intent(getApplicationContext(), Tab_Navi.class);
                             startActivity(intent);
+                            finish();
 
 
                         } else {

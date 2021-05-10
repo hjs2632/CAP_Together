@@ -43,7 +43,6 @@ public class Loading extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loading);
-        startLoading(); //로딩화면 주면서 대기
 
         checkPermission();//권한 승인
         // [START config_signin]
@@ -64,6 +63,7 @@ public class Loading extends Activity {
         {
             Intent intent = new Intent(getApplicationContext(), login.class);
             startActivity(intent);
+            finish();
 
         }
         else{
@@ -74,16 +74,6 @@ public class Loading extends Activity {
     }
 
 
-    //sleep을 주는것같음.
-    private void startLoading() {
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                finish();
-            }
-        }, 2000);
-    }
 
     private static final int MULTIPLE_PERMISSIONS = 101; //권한 요청을 위한 코드 카메라 권한 요청을 위해 설정
     private String[] permission = {
@@ -137,9 +127,9 @@ public class Loading extends Activity {
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             //updateUI(user);
-                            finish();
                             Intent intent = new Intent(getApplicationContext(), Tab_Navi.class);
                             startActivity(intent);
+                            finish();
 
 
                         } else {
