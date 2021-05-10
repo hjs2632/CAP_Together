@@ -130,7 +130,7 @@ public class look_group extends AppCompatActivity {
             }
         });
 
-        databaseReference.child("Together_group_list").child(Gname).child("announce").addListenerForSingleValueEvent(new ValueEventListener() {
+        databaseReference.child("Together_group_list").child(Gname).child("announce").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 announce = dataSnapshot.getValue(String.class);
