@@ -40,10 +40,8 @@ import java.util.ArrayList;
 
 public class Timer_MainActivity extends Fragment {
 
-    EditText test_id;
     ImageButton calendar_btn;//일정 이동 버튼
     ImageButton focus_btn;//집중모드 이동 버튼
-    Button test_btn;
 
     private Button mStartBtn, mSaveBtn;
     private TextView mTimeTextView, mSubjectTimeTextView;
@@ -97,22 +95,7 @@ public class Timer_MainActivity extends Fragment {
         calendar_btn = (ImageButton) v.findViewById(R.id.calendar_btn); //일정 이동 버튼
         focus_btn=(ImageButton)v.findViewById(R.id.focus_btn); //집중모드 이동 버튼
 
-        test_id=(EditText)v.findViewById(R.id.test_id);
-        test_btn=(Button)v.findViewById(R.id.test_btn);
-        test_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                try{
-                    databaseReference=database.getReference().child("User").child(user.getUid()).child("username");
-                    String content=test_id.getText().toString();
-                    databaseReference.setValue(content);//선택한 날짜에 일정 저장
-                    Toast.makeText(getActivity().getApplicationContext(),"일정 저장 완료",Toast.LENGTH_SHORT).show();//토스메세지 출력
-                }catch(Exception e){//예외
-                    e.printStackTrace();
-                    Toast.makeText(getActivity().getApplicationContext(),"오류발생", Toast.LENGTH_SHORT).show();//토스메세지 출력
-                }
-            }
-        });
+
 
         calendar_btn.setOnClickListener(new View.OnClickListener() { // 일정으로 이동
             @Override

@@ -14,26 +14,16 @@
         android:layout_gravity="center"
         >
 
-        <!--메뉴 버튼-->
-        <Button
-            android:id="@+id/test_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_margin="10dp"
-            android:text="닉네임 변경"
-            android:background="@color/Yellow"/>
-
-
         <!--목표설정(d-day)-->
 
         <!--캘린더-->
-        <EditText
+        <TextView
             android:id="@+id/test_id"
             android:layout_width="250dp"
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:gravity="center"
-            android:text="목표" />
+            android:text="오늘의 명언: 유일하게 빼어나 견줄 자가 없도다"/>
 
         <ImageButton
             android:id="@+id/calendar_btn"
@@ -65,23 +55,22 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="70dp"
         android:orientation="horizontal"
         android:layout_gravity="center" >
 
         <!--집중모드 임시로 빼둠-->
         <ImageButton
             android:id="@+id/focus_btn"
-            android:layout_width="40dp"
+            android:layout_width="90dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="50dp"
-            android:text="집중 모드"
-            android:background="@color/Yellow"/>
+            android:background="@drawable/focus_ic" />
 
         <!--백색소음-->
         <ImageButton
             android:id="@+id/button_white"
-            android:layout_width="40dp"
+            android:layout_width="90dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="100dp"
             android:text="백색소음"

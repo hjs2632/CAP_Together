@@ -10,13 +10,14 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginHorizontal="50dp"
+        android:layout_marginTop="70dp"
         android:text="사용할 이름을 입력하세요."
         android:textSize="30dp" />
 <!--사용할 닉네임 작성-->
     <EditText
         android:id="@+id/user_name"
         android:layout_width="match_parent"
-        android:layout_height="91dp"
+        android:layout_height="80dp"
         android:backgroundTint="@color/SelectedText"
         android:fontFamily="@font/bmjua"
         android:layout_margin="20dp"
@@ -26,8 +27,8 @@
         android:textSize="30dp" />
 
     <Button
-        android:layout_width="248dp"
-        android:layout_height="match_parent"
+        android:layout_width="250dp"
+        android:layout_height="70dp"
         android:background="@color/Yellow"
         android:text="등록"
         android:layout_gravity="center"
