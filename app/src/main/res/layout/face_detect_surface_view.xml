@@ -15,17 +15,26 @@
         android:layout_height="50dp"
         android:background="@drawable/back"></ImageButton>
     </FrameLayout>
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:layout_marginHorizontal="50dp"
+    android:layout_marginVertical="10dp">
 
     <org.opencv.android.JavaCameraView
         android:id="@+id/fd_activity_surface_view"
-        android:layout_width="match_parent"
-        android:layout_height="281dp" />
+        android:layout_width="500dp"
+        android:layout_height="280dp" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/detect_count"
+        android:gravity="center"
         android:textSize="35dp"
-        android:text="hi"/>
+        android:text="집중모드를 시작합니다."/>
+</LinearLayout>
 
 </LinearLayout>
