@@ -43,6 +43,7 @@ public class Loading extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loading);
+        startLoading();
 
         checkPermission();//권한 승인
         // [START config_signin]
@@ -140,5 +141,14 @@ public class Loading extends Activity {
                         }
                     }
                 });
+    }
+
+    private void startLoading() {
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+            }
+        }, 2000);
     }
 }
