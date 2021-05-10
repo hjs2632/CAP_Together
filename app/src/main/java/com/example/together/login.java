@@ -2,6 +2,7 @@ package com.example.together;
 
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -33,7 +34,7 @@ import com.google.firebase.auth.GoogleAuthProvider;
 import java.util.ArrayList;
 import java.util.List;
 
-public class login extends AppCompatActivity {
+public class login extends Activity {
 
     private SignInButton signInButton;
     private GoogleSignInClient mGoogleSignInClient;
@@ -43,14 +44,13 @@ public class login extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Intent intent = new Intent(this, Loading.class);
-        startActivity(intent);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         signInButton = findViewById(R.id.btn_google);
         checkPermission();//권한 승인
         // [START config_signin]
         // Configure Google Sign In
+
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
@@ -106,7 +106,7 @@ public class login extends AppCompatActivity {
             } catch (ApiException e) {
                 // Google Sign In failed, update UI appropriately
                 Log.w(TAG, "Google sign in failed", e);
-                Toast.makeText(getApplicationContext(), "Google sign in Failed", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "로그인에 실패했습니다.", Toast.LENGTH_LONG).show();
             }
         }
     }
@@ -114,9 +114,6 @@ public class login extends AppCompatActivity {
     // [START auth_with_google]
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
         Log.d(TAG, "firebaseAuthWithGoogle:" + acct.getId());
-        // [START_EXCLUDE silent]
-        //showProgressDialog();
-        // [END_EXCLUDE]
 
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
         mAuth.signInWithCredential(credential)
@@ -128,7 +125,6 @@ public class login extends AppCompatActivity {
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             //updateUI(user);
-                            Toast.makeText(getApplicationContext(), "Complete", Toast.LENGTH_LONG).show();
                             finish();
                             Intent intent = new Intent(getApplicationContext(), Tab_Navi.class);
                             startActivity(intent);
@@ -138,14 +134,10 @@ public class login extends AppCompatActivity {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
                             // Snackbar.make(findViewById(R.id.login), "Authentication Failed.", Snackbar.LENGTH_SHORT).show();
-                            Toast.makeText(getApplicationContext(), "Authentication Failed", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "로그인에 실패했습니다.", Toast.LENGTH_LONG).show();
 
                             // updateUI(null);
                         }
-
-                        // [START_EXCLUDE]
-                        // hideProgressDialog();
-                        // [END_EXCLUDE]
                     }
                 });
     }
@@ -169,8 +161,7 @@ public class login extends AppCompatActivity {
                 new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        Toast.makeText(getApplicationContext(), "Complete", Toast.LENGTH_LONG).show();
-
+                        //Toast.makeText(getApplicationContext(), "Complete", Toast.LENGTH_LONG).show();
 
                     }
                 });

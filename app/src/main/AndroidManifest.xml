@@ -11,14 +11,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".login" android:label="로그인">
+        <activity android:name=".Loading" android:label="로딩화면">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Loading"
+        <activity android:name=".login"
         android:theme="@android:style/Theme.NoTitleBar.Fullscreen"/>
         <activity android:name=".Group.Together_search" android:label="투게더 검색"/>
         <activity android:name=".Group.make_group" android:label="그룹 만들기"/>
