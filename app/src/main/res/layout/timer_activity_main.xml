@@ -9,7 +9,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:orientation="horizontal"
         android:layout_gravity="center"
         >
@@ -38,7 +38,7 @@
     <!--오늘의 한마디-->
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="23dp"
         android:text="오늘의 한마디"
         android:gravity="center"
         android:textSize="20dp"
@@ -48,7 +48,7 @@
     <TextView
         android:id="@+id/timeView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:text="00:00:00"
         android:textAlignment="center"
         android:textSize="40dp"/>
@@ -80,7 +80,8 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview_main_list"
         android:layout_width="match_parent"
-        android:layout_height="350dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
         android:scrollbarFadeDuration="0"
         android:scrollbarSize="5dp"
         android:scrollbarThumbVertical="@android:color/darker_gray"
@@ -94,7 +95,7 @@
     <Button
         android:id="@+id/button_main_insert"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="43dp"
         android:text="+"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"

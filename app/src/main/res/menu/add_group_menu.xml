@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/m1"
+        android:title="그룹 생성하기" />
+    <item
+        android:id="@+id/m2"
+        android:title="그룹 검색하기"/>
+
+</menu>

@@ -9,9 +9,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.PopupMenu;
 
 import com.example.together.Group.Together_CustomAdapter;
 import com.example.together.Group.Together_search;
@@ -33,7 +35,6 @@ import java.util.ArrayList;
 
 public class Group extends Fragment {
 
-    ImageButton search_btn; //이미지버튼 변수 생성
     FloatingActionButton fab;
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
@@ -64,7 +65,6 @@ public class Group extends Fragment {
 
 
         //변수들 레이아웃 id값이랑 연결
-        search_btn = (ImageButton) v.findViewById(R.id.search_btn); //그룹 검색 버튼
         fab = (FloatingActionButton) v.findViewById(R.id.fab_btn);
 
         //커스텀 리스트뷰 시작
@@ -121,19 +121,28 @@ public class Group extends Fragment {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(getContext(), make_group.class); //그룹 만들기 화면으로 연결
-                startActivity(intent); //액티비티 열기
-            }
-        });
+                PopupMenu popup = new PopupMenu(getActivity().getApplicationContext(), view);//v는 클릭된 뷰를 의미
 
-
-        //검색 버튼 누르면 검색화면 나오도록 함
-        search_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getContext(), Together_search.class); //인텐트
-                startActivity(intent); //액티비티 열기
-
+                popup.getMenuInflater().inflate(R.menu.add_group_menu, popup.getMenu());
+                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        switch (item.getItemId()) {
+                            case R.id.m1://그룹 생성하기
+                                Intent intent = new Intent(getContext(), make_group.class); //그룹 만들기 화면으로 연결
+                                startActivity(intent); //액티비티 열기
+                                break;
+                            case R.id.m2://그룹 검색하기
+                                Intent intent2 = new Intent(getContext(), Together_search.class); //그룹 검색 화면으로 연결
+                                startActivity(intent2); //액티비티 열기
+                                break;
+                            default:
+                                break;
+                        }
+                        return false;
+                    }
+                });
+                popup.show();
             }
         });
 

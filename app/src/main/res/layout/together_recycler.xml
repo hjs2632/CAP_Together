@@ -12,27 +12,6 @@ android:background="@color/White">
     android:orientation="vertical">
 
 
-    // 그래비티로 우측에 버튼 넣어주려고 프레임 사용
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/Yellow">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/uname_tv"></TextView>
-
-        // 그룹 검색 버튼
-        <ImageButton
-            android:id="@+id/search_btn"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@drawable/search"
-            android:layout_gravity="right"></ImageButton>
-
-    </FrameLayout>
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
