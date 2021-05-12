@@ -35,8 +35,8 @@ public class make_group extends AppCompatActivity {
     TextView Gcate_tv,title_tv, goaltime_tv, gmp_tv;
     Button addGroup_btn; //그룹 추가하기 버튼
     Intent intent;
-    String Gname="",gcate,gintro,goaltime="",announce="공지사항이 아직 없습니다.";
-    int gmp=0;
+    String Gname="",gcate,gintro,announce="공지사항이 아직 없습니다.";
+    int gmp=0, goaltime=0;
     LinearLayout Linear1;
 
 
@@ -224,51 +224,51 @@ public class make_group extends AppCompatActivity {
                         switch (item.getItemId()){
                             case R.id.m1:
                                 goaltime_tv.setText("1 시간");
-                                goaltime = "1";
+                                goaltime = 1;
                                 break;
                             case R.id.m2:
                                 goaltime_tv.setText("2 시간");
-                                goaltime = "2";
+                                goaltime = 2;
                                 break;
                             case R.id.m3:
                                 goaltime_tv.setText("3 시간");
-                                goaltime = "3";
+                                goaltime = 3;
                                 break;
                             case R.id.m4:
                                 goaltime_tv.setText("4 시간");
-                                goaltime = "4";
+                                goaltime = 4;
                                 break;
                             case R.id.m5:
                                 goaltime_tv.setText("5 시간");
-                                goaltime = "5";
+                                goaltime = 5;
                                 break;
                             case R.id.m6:
                                 goaltime_tv.setText("6 시간");
-                                goaltime = "6";
+                                goaltime = 6;
                                 break;
                             case R.id.m7:
                                 goaltime_tv.setText("7 시간");
-                                goaltime = "7";
+                                goaltime = 7;
                                 break;
                             case R.id.m8:
                                 goaltime_tv.setText("8 시간");
-                                goaltime = "8";
+                                goaltime = 8;
                                 break;
                             case R.id.m9:
                                 goaltime_tv.setText("9 시간");
-                                goaltime = "9";
+                                goaltime = 9;
                                 break;
                             case R.id.m10:
                                 goaltime_tv.setText("10 시간");
-                                goaltime = "10";
+                                goaltime = 10;
                                 break;
                             case R.id.m11:
                                 goaltime_tv.setText("11 시간");
-                                goaltime = "11";
+                                goaltime = 11;
                                 break;
                             case R.id.m12:
                                 goaltime_tv.setText("12 시간");
-                                goaltime = "12";
+                                goaltime = 12;
                                 break;
                             default:
                                 break;
@@ -358,7 +358,7 @@ public class make_group extends AppCompatActivity {
 
     }
 
-    public void addGroup(String Gname, String Gintro, String Gcate, String Goaltime, int gmp) {
+    public void addGroup(String Gname, String Gintro, String Gcate, int Goaltime, int gmp) {
 
         if(Gname.equals("")){
             Toast.makeText(getApplicationContext(),"그룹명을 입력하세요.",Toast.LENGTH_SHORT).show();
@@ -369,7 +369,7 @@ public class make_group extends AppCompatActivity {
         else if(Gcate.equals("")){
             Toast.makeText(getApplicationContext(),"카테고리를 선택하세요.",Toast.LENGTH_SHORT).show();
         }
-        else if(Goaltime.equals("")){
+        else if(Goaltime==0){
             Toast.makeText(getApplicationContext(),"목표시간을 선택하세요.",Toast.LENGTH_SHORT).show();
         }
         else if(gmp==0){
@@ -395,7 +395,7 @@ public class make_group extends AppCompatActivity {
     }
 
     //그룹 수정
-    public void fixGroup(String Gname, String Gintro, String Gcate, String Goaltime, int gmp) {
+    public void fixGroup(String Gname, String Gintro, String Gcate, int Goaltime, int gmp) {
 
         if(Gintro.equals("")){
             Toast.makeText(getApplicationContext(),"그룹 소개를 입력하세요.",Toast.LENGTH_SHORT).show();

@@ -44,9 +44,9 @@ public class Search_Adapter extends RecyclerView.Adapter<Search_Adapter.CustomVi
     private DatabaseReference databaseReference;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     String uid = user.getUid();
-    String uname,gintro,goaltime;
+    String uname,gintro;
     String master ="no";
-    int gmp,gap;
+    int gmp,gap,goaltime;
 
 
     public Search_Adapter(ArrayList<Together_group_list> arrayList, String uname ,Context context) {

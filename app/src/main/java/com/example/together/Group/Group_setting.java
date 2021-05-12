@@ -35,8 +35,8 @@ public class Group_setting extends AppCompatActivity {
     ImageButton back,setting;
     TextView gname_tv,goaltime_tv,gintro_tv,gcate_tv,gmp_tv;
     Button guse;
-    int gmp;
-    String gintro,goaltime,gcate;
+    int gmp,goaltime;
+    String gintro,gcate;
 
 
     private FirebaseDatabase database;

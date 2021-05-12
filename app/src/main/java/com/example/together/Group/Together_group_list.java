@@ -7,7 +7,7 @@ public class Together_group_list {
     private int GAP; //그룹 전체 인원
     private String Gname; //그룹 이름
     private String Gintro; //그룹 설명
-    private String Goaltime; //목표 시간
+    private int Goaltime; //목표 시간
     private String master; //그룹장
     private String Gcate;//카테고리
     private int gmp;
@@ -49,11 +49,11 @@ public class Together_group_list {
         this.Gintro = Gintro;
     }
 
-    public String getGoaltime() {
+    public int getGoaltime() {
         return Goaltime;
     }
 
-    public void setGoaltime(String Goaltime) { this.Goaltime = Goaltime; }
+    public void setGoaltime(int Goaltime) { this.Goaltime = Goaltime; }
 
     public String getmaster() {
         return master;
@@ -86,7 +86,7 @@ public class Together_group_list {
 
 
     //그룹 만들기에서 사용할 녀석
-    public Together_group_list(String Gname, String Gintro, String Gcate, int gmp, int GAP, String Goaltime, String master, String announce) {
+    public Together_group_list(String Gname, String Gintro, String Gcate, int gmp, int GAP, int Goaltime, String master, String announce) {
         this.Gname = Gname;
         this.Gintro = Gintro;
         this.Gcate = Gcate;
