@@ -11,6 +11,7 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/bmjua"
         android:text="투게더에 어서오세요:)"
         android:textSize="20dp"
         android:textColor="@color/Black"

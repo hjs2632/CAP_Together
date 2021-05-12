@@ -32,9 +32,14 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.together.DetectionBasedTracker;
 import com.example.together.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class FdActivity extends CameraActivity implements CvCameraViewListener2 {
 
@@ -69,6 +74,11 @@ public class FdActivity extends CameraActivity implements CvCameraViewListener2 
     public int min;
     public int hour;
     public int detect;
+
+    private FirebaseAuth firebaseAuth;
+    private FirebaseDatabase database;
+    private DatabaseReference databaseReference;
+    private FirebaseUser user;
 
     private BaseLoaderCallback  mLoaderCallback = new BaseLoaderCallback(this) {
         @Override
@@ -148,10 +158,20 @@ public class FdActivity extends CameraActivity implements CvCameraViewListener2 
 
         //뒤로가기 버튼
         back_btn = (ImageButton) findViewById(R.id.back_btn);
+
+        firebaseAuth=FirebaseAuth.getInstance();
+        user=firebaseAuth.getCurrentUser();
+        database=FirebaseDatabase.getInstance();
+
         //뒤로가기 버튼 누르면 화면을 닫음
         back_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //임시 데이터베이스 전송(시간이 문자열로 가기 때문에 가공 절차가 필요)
+                Toast.makeText(getApplicationContext(),String.valueOf(hour)+"시 "+String.valueOf(min)+"분 "+String.valueOf(sec)+"초 공부시간이 저장되었습니다.",Toast.LENGTH_SHORT).show();
+                databaseReference=database.getReference().child("timer").child(user.getUid()).child("focustimer");
+                String content=String.valueOf(hour)+"시 "+String.valueOf(min)+"분 "+String.valueOf(sec)+"초";
+                databaseReference.setValue(content);//선택한 날짜에 일정 저장
                 finish();
             }
         });
