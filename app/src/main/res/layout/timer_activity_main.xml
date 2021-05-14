@@ -104,5 +104,4 @@
         app:layout_constraintVertical_weight="1"
         android:background="@color/Yellow"/>
 
-
 </LinearLayout>

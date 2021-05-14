@@ -60,6 +60,8 @@ public class Tab_Navi extends AppCompatActivity implements NavigationView.OnNavi
         adapter = new PagerAdapter(getSupportFragmentManager(), getLifecycle(),mTabLayout.getTabCount());
         pager.setAdapter(adapter);
 
+        navigationView.setItemIconTintList(null); //icon 기본색상표현을 위해..
+
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @SuppressWarnings("StatementWithEmptyBody")

@@ -13,11 +13,11 @@
             android:background="@color/Yellow"
             tools:ignore="MissingConstraints" />
 
-        <androidx.viewpager2.widget.ViewPager2
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:id="@+id/viewpager2"/>
+    <androidx.viewpager2.widget.ViewPager2
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:id="@+id/viewpager2"/>
 
         <com.google.android.material.tabs.TabLayout
             android:layout_width="match_parent"

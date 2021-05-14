@@ -25,6 +25,12 @@
         <activity android:name=".Group.look_group" android:label="그룹 자세히 보기"/>
         <activity android:name=".Calendar.Calendar_note" android:label="일정관리"/>
         <activity android:name=".Group.Group_setting" android:label="그룹 내용 설정"/>
+        <activity android:name=".Profile.pro_profile" android:label="프로필"/>
+        <activity android:name=".Profile.pro_sound" android:label="백색소음"/>
+        <activity android:name=".Profile.pro_item" android:label="상점"/>
+        <activity android:name=".Profile.pro_announcement" android:label="공지사항"/>
+        <activity android:name=".Profile.pro_version" android:label="버전"/>
+        <activity android:name=".Profile.pro_edit_profile" android:label="프로필수정"/>
         <activity android:name=".Tab_Navi" android:label=""/>
         <activity android:name=".User_Name" android:label="이름 설정"/>
         <activity android:name=".FdActivity"
