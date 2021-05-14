@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.util.TypedValue;
 import android.view.ContextMenu;
 import android.view.Gravity;
@@ -17,6 +18,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.together.FdActivity;
 import com.example.together.R;
 
 import java.util.ArrayList;
@@ -31,12 +33,13 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
         protected TextView subject;
         protected TextView page;
 
+        public Button btn_focus;
 
         public CustomViewHolder(View view) {
             super(view);
             this.subject = (TextView) view.findViewById(R.id.subject_listitem);
             this.page = (TextView) view.findViewById(R.id.page_listitem);
-
+            this.btn_focus=(Button)view.findViewById(R.id.btn_focus);
             view.setOnCreateContextMenuListener(this); //2. 리스너 등록
 
         }
@@ -132,6 +135,16 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
 
         viewholder.subject.setText(mList.get(position).getSubject());
         viewholder.page.setText(mList.get(position).getPage());
+        //집중모드 연결
+        viewholder.btn_focus.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext.getApplicationContext(), FdActivity.class); //인텐트
+                mContext.startActivity(intent); //액티비티 열기
+            }
+
+        });
+
 
     }
 

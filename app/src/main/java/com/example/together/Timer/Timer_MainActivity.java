@@ -93,7 +93,6 @@ public class Timer_MainActivity extends Fragment {
 
 
         calendar_btn = (ImageButton) v.findViewById(R.id.calendar_btn); //일정 이동 버튼
-        focus_btn=(ImageButton)v.findViewById(R.id.focus_btn); //집중모드 이동 버튼
 
 
 
@@ -107,15 +106,6 @@ public class Timer_MainActivity extends Fragment {
             }
         });
 
-        focus_btn.setOnClickListener(new View.OnClickListener() { // 집중모드로 이동
-            @Override
-            public void onClick(View view) {
-
-                Intent intent = new Intent(getActivity().getApplicationContext(), FdActivity.class); //인텐트
-                startActivity(intent); //액티비티 열기
-
-            }
-        });
 
 
 
