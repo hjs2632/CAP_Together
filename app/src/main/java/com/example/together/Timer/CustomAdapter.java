@@ -39,7 +39,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
             super(view);
             this.subject = (TextView) view.findViewById(R.id.subject_listitem);
             this.page = (TextView) view.findViewById(R.id.page_listitem);
-            this.btn_focus=(Button)view.findViewById(R.id.btn_focus);
+            this.btn_focus=(Button)view.findViewById(R.id.btn_focus);//집중모드 연결 버튼
             view.setOnCreateContextMenuListener(this); //2. 리스너 등록
 
         }
@@ -135,6 +135,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
 
         viewholder.subject.setText(mList.get(position).getSubject());
         viewholder.page.setText(mList.get(position).getPage());
+        
         //집중모드 연결
         viewholder.btn_focus.setOnClickListener(new View.OnClickListener(){
             @Override
