@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-
+<!-- layout_height wrap_content로 수정(아이템간 간격을 줄이기 위해)-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="90dp"

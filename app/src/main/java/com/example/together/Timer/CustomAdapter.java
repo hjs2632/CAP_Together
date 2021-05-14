@@ -137,7 +137,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
         viewholder.subject.setText(mList.get(position).getSubject());
         viewholder.page.setText(mList.get(position).getPage());
 
-        //집중모드 연결
+        //집중모드 연결(start)
         viewholder.itemView.setTag(position);
         viewholder.btn_focus.setOnClickListener(new View.OnClickListener(){
          @Override
@@ -150,7 +150,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
 
         });
 
-
+        //집중모드 연결 (end)
     }
 
     @Override
