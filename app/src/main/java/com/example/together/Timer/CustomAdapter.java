@@ -26,6 +26,7 @@ import java.util.ArrayList;
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomViewHolder> { //ArrayList에 있는 Dictionary 클래스 타입의 데이터를 RecyclerView에 보여주는 처리를 함.
     private ArrayList<Dictionary> mList;
     private Context mContext;
+    private String Focus_Subject;
 
     public class CustomViewHolder extends RecyclerView.ViewHolder
             implements View.OnCreateContextMenuListener{ //리스너 추가
@@ -135,12 +136,15 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
 
         viewholder.subject.setText(mList.get(position).getSubject());
         viewholder.page.setText(mList.get(position).getPage());
-        
+
         //집중모드 연결
+        viewholder.itemView.setTag(position);
         viewholder.btn_focus.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
+         @Override
+         public void onClick(View v) {
+                Focus_Subject=mList.get(position).getSubject();
                 Intent intent = new Intent(mContext.getApplicationContext(), FdActivity.class); //인텐트
+                intent= intent.putExtra("Subject",Focus_Subject);
                 mContext.startActivity(intent); //액티비티 열기
             }
 
@@ -155,3 +159,5 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
     }
 
 }
+
+

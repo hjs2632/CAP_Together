@@ -24,6 +24,7 @@ import org.opencv.objdetect.CascadeClassifier;
 import org.opencv.imgproc.Imgproc;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -70,6 +71,7 @@ public class FdActivity extends CameraActivity implements CvCameraViewListener2 
 
     ImageButton back_btn;
     TextView counting;
+    TextView focus_subject;
     public int sec;
     public int min;
     public int hour;
@@ -150,6 +152,11 @@ public class FdActivity extends CameraActivity implements CvCameraViewListener2 
         setContentView(R.layout.face_detect_surface_view);
 
         counting=(TextView)findViewById(R.id.detect_count);
+        focus_subject=(TextView)findViewById(R.id.focus_subject);
+
+        Intent intent =getIntent();
+        String Subject=intent.getExtras().getString("Subject");
+        focus_subject.setText(Subject);
 
         mOpenCvCameraView = (CameraBridgeViewBase) findViewById(R.id.fd_activity_surface_view);
         mOpenCvCameraView.setVisibility(CameraBridgeViewBase.VISIBLE);
@@ -168,8 +175,8 @@ public class FdActivity extends CameraActivity implements CvCameraViewListener2 
             @Override
             public void onClick(View view) {
                 //임시 데이터베이스 전송(시간이 문자열로 가기 때문에 가공 절차가 필요)
-                Toast.makeText(getApplicationContext(),String.valueOf(hour)+"시 "+String.valueOf(min)+"분 "+String.valueOf(sec)+"초 공부시간이 저장되었습니다.",Toast.LENGTH_SHORT).show();
-                databaseReference=database.getReference().child("timer").child(user.getUid()).child("focustimer");
+                Toast.makeText(getApplicationContext(),Subject+" 과목을"+String.valueOf(hour)+"시 "+String.valueOf(min)+"분 "+String.valueOf(sec)+"초 공부시간이 저장되었습니다.",Toast.LENGTH_SHORT).show();
+                databaseReference=database.getReference().child("timer").child(user.getUid()).child("focustimer").child(Subject);
                 String content=String.valueOf(hour)+"시 "+String.valueOf(min)+"분 "+String.valueOf(sec)+"초";
                 databaseReference.setValue(content);//선택한 날짜에 일정 저장
                 finish();
