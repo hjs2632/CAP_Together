@@ -42,7 +42,7 @@ public class look_group extends AppCompatActivity {
     ImageButton back,setting;
     TextView gname,dia_content;
     EditText dia_content2;
-    Button announce_btn;
+    Button announce_btn, chat_btn;
 
 
     private RecyclerView recyclerView;
@@ -78,6 +78,7 @@ public class look_group extends AppCompatActivity {
         gname = (TextView)findViewById(R.id.gname);
         setting = (ImageButton)findViewById(R.id.setting);
         announce_btn = (Button)findViewById(R.id.announce);
+        chat_btn = (Button)findViewById(R.id.chat_btn);
 
 
         gname.setText(Gname); //그룹명 연결
@@ -165,6 +166,16 @@ public class look_group extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), Group_setting.class); //그룹 상세 화면으로 연결
+                intent.putExtra("Gname", Gname); //그룹 이름 넘겨서 열기
+                intent.putExtra("master", master); //본인의 마스터 정보를 넘기기
+                startActivity(intent); //액티비티 열기
+            }
+        });
+
+        chat_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), chat_room.class); //그룹 상세 화면으로 연결
                 intent.putExtra("Gname", Gname); //그룹 이름 넘겨서 열기
                 intent.putExtra("master", master); //본인의 마스터 정보를 넘기기
                 startActivity(intent); //액티비티 열기

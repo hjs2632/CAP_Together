@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <FrameLayout
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_margin="5dp"
+                android:text="상대방"
+                android:id="@+id/you_chat"
+                android:background="@color/Yellow"
+                android:textSize="20sp"/>
+        </FrameLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/user_id"
+            android:visibility="invisible"></TextView>
+
+        <FrameLayout
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_margin="5dp"
+                android:text="본인"
+                android:id="@+id/my_chat"
+                android:textSize="20sp"
+                android:background="@color/White"
+                android:layout_gravity="right"/>
+        </FrameLayout>
+
+
+
+
+    </FrameLayout>
+
+
+</LinearLayout>
+
+

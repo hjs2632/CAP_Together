@@ -77,7 +77,8 @@
             android:layout_height="45dp"
             android:layout_weight="1"
             android:textSize="18dp"
-            android:text="월간"
+            android:text="임시버튼"
+            android:id="@+id/chat_btn"
             android:layout_margin="5dp"/>
     </LinearLayout>
 

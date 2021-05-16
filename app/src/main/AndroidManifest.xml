@@ -31,6 +31,7 @@
         <activity android:name=".Profile.pro_announcement" android:label="공지사항"/>
         <activity android:name=".Profile.pro_version" android:label="버전"/>
         <activity android:name=".Profile.pro_edit_profile" android:label="프로필수정"/>
+        <activity android:name=".Group.chat_room" android:label="채팅"/>
         <activity android:name=".Tab_Navi" android:label=""/>
         <activity android:name=".User_Name" android:label="이름 설정"/>
         <activity android:name=".FdActivity"
