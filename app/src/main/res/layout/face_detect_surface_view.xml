@@ -42,8 +42,15 @@
         android:layout_height="match_parent"
         android:id="@+id/detect_count"
         android:gravity="center"
-        android:textSize="35dp"
+        android:textSize="20dp"
         android:text="집중모드를 시작합니다."/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/total_count"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:text="누적시간"/>
 </LinearLayout>
 
 </LinearLayout>
