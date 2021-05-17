@@ -15,6 +15,7 @@
             android:layout_height="50dp"
             android:id="@+id/back_announce"
             app:srcCompat="@drawable/back2"
+            android:background="@color/White"
             android:layout_margin="10dp"/>
         <TextView
             android:layout_width="80dp"

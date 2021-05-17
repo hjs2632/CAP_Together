@@ -9,15 +9,17 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/White"
         android:orientation="horizontal" >
         <ImageButton
             android:layout_width="60dp"
             android:layout_height="50dp"
             android:id="@+id/back_sound"
+            android:background="@color/White"
             app:srcCompat="@drawable/back2"
             android:layout_margin="10dp"/>
         <TextView
-            android:layout_width="60dp"
+            android:layout_width="80dp"
             android:layout_height="match_parent" />
         <TextView
             android:layout_width="wrap_content"
@@ -37,6 +39,165 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:orientation="horizontal" >
+                <TextView
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="모닥불 소리"
+                    android:textSize="30dp" />
+                <TextView
+                    android:layout_width="18dp"
+                    android:layout_height="match_parent" />
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="재생"
+                    android:textSize="30dp"
+                    android:id="@+id/sound1" />
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="선택"
+                    android:id="@+id/choice1"
+                    android:textSize="30dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:orientation="horizontal" >
+                <TextView
+                    android:layout_width="35dp"
+                    android:layout_height="match_parent" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="화이트 노이즈"
+                    android:textSize="30dp" />
+                <TextView
+                    android:layout_width="10dp"
+                    android:layout_height="match_parent" />
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="재생"
+                    android:textSize="30dp"
+                    android:id="@+id/sound2" />
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="선택"
+                    android:id="@+id/choice2"
+                    android:textSize="30dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:orientation="horizontal" >
+                <TextView
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="빗소리"
+                    android:textSize="30dp" />
+                <TextView
+                    android:layout_width="55dp"
+                    android:layout_height="match_parent" />
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="재생"
+                    android:textSize="30dp"
+                    android:id="@+id/sound3" />
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="선택"
+                    android:id="@+id/choice3"
+                    android:textSize="30dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:orientation="horizontal" >
+                <TextView
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="대형 독서실"
+                    android:textSize="30dp" />
+                <TextView
+                    android:layout_width="20dp"
+                    android:layout_height="match_parent" />
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="재생"
+                    android:textSize="30dp"
+                    android:id="@+id/sound4" />
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="선택"
+                    android:id="@+id/choice4"
+                    android:textSize="30dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:orientation="horizontal" >
+                <TextView
+                    android:layout_width="35dp"
+                    android:layout_height="match_parent" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="장작타는 소리"
+                    android:textSize="30dp" />
+                <TextView
+                    android:layout_width="10dp"
+                    android:layout_height="match_parent" />
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="재생"
+                    android:textSize="30dp"
+                    android:id="@+id/sound5" />
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="선택"
+                    android:id="@+id/choice5"
+                    android:textSize="30dp" />
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 
