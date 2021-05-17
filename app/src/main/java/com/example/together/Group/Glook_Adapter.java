@@ -1,6 +1,7 @@
 package com.example.together.Group;
 // 그룹 누르면 그룹원들이랑 공부 시간들 볼수있는 커스텀 리스트뷰 어댑터 부분
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -189,6 +190,12 @@ public class Glook_Adapter extends RecyclerView.Adapter<Glook_Adapter.CustomView
                         });
                         databaseReference.child("Together_group_list").child(gname).child("user").child(userid).removeValue();
                         databaseReference.child("User").child(userid).child("Group").child(gname).removeValue();
+
+                        Intent intent = ((Activity)context).getIntent();
+                        ((Activity)context).finish(); //현재 액티비티 종료 실시
+                        ((Activity)context).overridePendingTransition(0, 0); //인텐트 애니메이션 없애기
+                        ((Activity)context).startActivity(intent); //현재 액티비티 재실행 실시
+                        ((Activity)context).overridePendingTransition(0, 0); //인텐트 애니메이션 없애기
 
                     } catch (Exception e) {//예외
                         e.printStackTrace();

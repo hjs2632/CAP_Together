@@ -151,8 +151,10 @@ public class Calendar_note extends AppCompatActivity {
                     //임시로 아이콘을 지우기 위해 자기 자신을 다시 호출하는 방식을 사용했지만, 좋지 않아 보임
                     //혹시 자기 코드에 문제가 없는데 오류가 뜬다면 아래 3줄을 삭제하고 테스트 진행 그래도 문제 생기면 다시 복구
                     finish();//인텐트 종료
+                    overridePendingTransition(0, 0);
                     Intent intent = new Intent(getApplicationContext(), Calendar_note.class); //인텐트
                     startActivity(intent); //액티비티 열기
+                    overridePendingTransition(0, 0);
 
                 }catch(Exception e){
                     e.printStackTrace();

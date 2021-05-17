@@ -156,7 +156,7 @@ public class Together_CustomAdapter extends RecyclerView.Adapter<Together_Custom
             @Override
             public void onClick(View v) {
                 if(master.equals("yes")) {
-                    Toast.makeText(v.getContext(),"그룹을 탈퇴하고싶다면 그룹장을 양도하세요.", Toast.LENGTH_SHORT).show(); //토스트로 실험
+                    Toast.makeText(v.getContext(),"그룹을 탈퇴하고싶다면 그룹장을 양도하세요.", Toast.LENGTH_SHORT).show();
                 }
                 PlanDialog.dismiss();//다이얼로그 닫기
             }
@@ -170,28 +170,35 @@ public class Together_CustomAdapter extends RecyclerView.Adapter<Together_Custom
                     database = FirebaseDatabase.getInstance(); // 파이어베이스 데이터베이스 연동
                     databaseReference = database.getReference();
 
+                    databaseReference.child("Together_group_list").child(gname).child("gap").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            int value = (int)snapshot.getValue(Integer.class);
 
-                    if(master.equals("yes")){// 그룹 삭제
-                        databaseReference.child("Together_group_list").child(gname).removeValue();
-                        databaseReference.child("User").child(uid).child("Group").child(gname).removeValue();
-                    }
-                    else{
-                        databaseReference.child("Together_group_list").child(gname).child("gap").addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                int value = (int)snapshot.getValue(Integer.class);
+                            if(master.equals("yes")){// 그룹 삭제
+                                if(value==1) {
+                                    databaseReference.child("Together_group_list").child(gname).removeValue();
+                                    databaseReference.child("User").child(uid).child("Group").child(gname).removeValue();
+                                }
+                                else{
+                                    Toast.makeText(v.getContext(),"그룹원이 남아있어서 그룹을 삭제할 수 없습니다.", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                            else{
                                 value -=1;
                                 databaseReference.child("Together_group_list").child(gname).child("gap").setValue(value);
+
+                                databaseReference.child("Together_group_list").child(gname).child("user").child(uid).removeValue();
+                                databaseReference.child("User").child(uid).child("Group").child(gname).removeValue();
                             }
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError databaseError) {
-                                // 디비를 가져오던중 에러 발생 시
-                                //Log.e("MainActivity", String.valueOf(databaseError.toException())); // 에러문 출력
-                            }
-                        });
-                        databaseReference.child("Together_group_list").child(gname).child("user").child(uid).removeValue();
-                        databaseReference.child("User").child(uid).child("Group").child(gname).removeValue();
-                    }
+                        }
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                            // 디비를 가져오던중 에러 발생 시
+                            //Log.e("MainActivity", String.valueOf(databaseError.toException())); // 에러문 출력
+                        }
+                    });
+
 
                 }catch(Exception e){//예외
                     e.printStackTrace();
