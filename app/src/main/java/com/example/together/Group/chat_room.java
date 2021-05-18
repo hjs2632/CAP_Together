@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.together.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -76,8 +77,11 @@ public class chat_room extends AppCompatActivity {
 
         databaseReference = database.getReference(); // DB 테이블 연결
 
+        adapter = new chat_Adapter(arrayList,Gname ,chat_room.this);//그룹이름과 마스터정보를 넘김
+        recyclerView.setAdapter(adapter); // 리사이클러뷰에 어댑터 연결
 
-        databaseReference.child("Together_group_list").child(Gname).child("chat").addValueEventListener(new ValueEventListener() {
+
+        databaseReference.child("Together_group_list").child(Gname).child("chat").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 // 파이어베이스 데이터베이스의 데이터를 받아오는 곳
@@ -98,8 +102,27 @@ public class chat_room extends AppCompatActivity {
 
         });
 
-        adapter = new chat_Adapter(arrayList,Gname ,chat_room.this);//그룹이름과 마스터정보를 넘김
-        recyclerView.setAdapter(adapter); // 리사이클러뷰에 어댑터 연결
+        databaseReference.child("Together_group_list").child(Gname).child("chat").addChildEventListener(new ChildEventListener() {  // message는 child의 이벤트를 수신합니다.
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                    chat_list chat_list = dataSnapshot.getValue(chat_list.class);
+                    arrayList.add(chat_list); // 담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼 준비
+                    adapter.notifyDataSetChanged(); // 리스트 저장 및 새로고침
+                    recyclerView.scrollToPosition(recyclerView.getAdapter().getItemCount() - 1);
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) { }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) { }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) { }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) { }
+        });
 
 
         //뒤로가기 버튼

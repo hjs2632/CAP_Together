@@ -27,15 +27,13 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class chat_Adapter extends RecyclerView.Adapter<chat_Adapter.CustomViewHoler> {
+public class chat_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
 
     private ArrayList<chat_list> arrayList;
     private String gname, uname;
     private Context context;
 
-    private FirebaseDatabase database;
-    private DatabaseReference databaseReference;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     String uid = user.getUid();
 
@@ -52,35 +50,49 @@ public class chat_Adapter extends RecyclerView.Adapter<chat_Adapter.CustomViewHo
 
     @NonNull
     @Override
-    public CustomViewHoler onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.chat_list, parent, false);
-        CustomViewHoler holer = new CustomViewHoler(view);
-        return holer;
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view;
+        switch (viewType) {
+            case 0:
+                view = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.chat_list2, parent, false);
+                return new CustomViewHoler2(view);
+            case 1:
+                view = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.chat_list, parent, false);
+                return new CustomViewHoler(view);
+        }
+        view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.chat_list, parent, false);
+        return new CustomViewHoler(view);
 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final CustomViewHoler holder, int position) {
+    public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder, int position) {
 
-        database = FirebaseDatabase.getInstance(); // 파이어베이스 데이터베이스 연동
-        databaseReference = database.getReference();
-
-        holder.you_chat.setText(arrayList.get(position).getmessage());
-        holder.my_chat.setText(arrayList.get(position).getmessage());
-        holder.user_id.setText(arrayList.get(position).getuid());
-        holder.itemView.setTag(position);
-        String chat = holder.you_chat.getText().toString();
-        String user_id = holder.user_id.getText().toString();
-
-        if(user_id.equals(uid)){
-            holder.you_chat.setVisibility(View.INVISIBLE);
-        }
-        else{
-            holder.my_chat.setVisibility(View.INVISIBLE);
+        final chat_list model = arrayList.get(position);
+        if (model.getuid().equals(uid)) { //내 메세지인 경우
+            CustomViewHoler2 holder2 = (CustomViewHoler2) holder;
+            holder2.my_chat.setText(model.getmessage());
+        } else {
+            CustomViewHoler holder1 = (CustomViewHoler) holder;
+            holder1.you_chat.setText(model.getmessage());
         }
 
 
 
+
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        chat_list chatMessage = arrayList.get(position);
+        if (chatMessage.getuid().equals(uid)) {
+            return 0;
+        } else {
+            return 1;
+        }
     }
 
 
@@ -91,17 +103,23 @@ public class chat_Adapter extends RecyclerView.Adapter<chat_Adapter.CustomViewHo
     }
 
 
+    //상대방 채팅일 경우
     public class CustomViewHoler extends RecyclerView.ViewHolder {
         TextView you_chat;
-        TextView my_chat;
-        TextView user_id;
-
 
         public CustomViewHoler(@NonNull View itemView) {
             super(itemView);
             this.you_chat = itemView.findViewById(R.id.you_chat);
+        }
+    }
+
+    //내 채팅일 경우
+    public class CustomViewHoler2 extends RecyclerView.ViewHolder {
+        TextView my_chat;
+
+        public CustomViewHoler2(@NonNull View itemView) {
+            super(itemView);
             this.my_chat = itemView.findViewById(R.id.my_chat);
-            this.user_id = itemView.findViewById(R.id.user_id);
         }
     }
 
