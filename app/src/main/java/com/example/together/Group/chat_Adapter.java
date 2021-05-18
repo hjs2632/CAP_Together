@@ -77,6 +77,7 @@ public class chat_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             holder2.my_chat.setText(model.getmessage());
         } else {
             CustomViewHoler holder1 = (CustomViewHoler) holder;
+            holder1.user_name.setText(model.getuser());
             holder1.you_chat.setText(model.getmessage());
         }
 
@@ -106,9 +107,11 @@ public class chat_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     //상대방 채팅일 경우
     public class CustomViewHoler extends RecyclerView.ViewHolder {
         TextView you_chat;
+        TextView user_name;
 
         public CustomViewHoler(@NonNull View itemView) {
             super(itemView);
+            this.user_name = itemView.findViewById(R.id.user_name);
             this.you_chat = itemView.findViewById(R.id.you_chat);
         }
     }

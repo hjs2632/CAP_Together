@@ -38,8 +38,9 @@ public class chat_list {
 
 
 
-    public chat_list(String message, String uid) {
+    public chat_list(String message, String user,String uid) {
         this.message = message;
+        this.user = user;
         this.uid = uid;
     }
 

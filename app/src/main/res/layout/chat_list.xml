@@ -5,13 +5,18 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <FrameLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_margin="7dp"
+        android:text="fjdkslvn"
+        android:textSize="18sp"
+        android:id="@+id/user_name"></TextView>
 
         <FrameLayout
             android:layout_width="280dp"
+            android:layout_marginLeft="20dp"
+
             android:layout_height="wrap_content"
             android:layout_gravity="left"
             android:layout_marginBottom="10dp">
@@ -19,13 +24,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_margin="5dp"
                 android:text="상대방"
                 android:id="@+id/you_chat"
                 android:background="@color/Yellow"
                 android:textSize="20sp"/>
-        </FrameLayout>
 
 
 

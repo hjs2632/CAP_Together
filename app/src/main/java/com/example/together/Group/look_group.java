@@ -177,6 +177,7 @@ public class look_group extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), chat_room.class); //그룹 상세 화면으로 연결
                 intent.putExtra("Gname", Gname); //그룹 이름 넘겨서 열기
+                intent.putExtra("uname", uname); //그룹 이름 넘겨서 열기
                 intent.putExtra("master", master); //본인의 마스터 정보를 넘기기
                 startActivity(intent); //액티비티 열기
             }

@@ -136,9 +136,14 @@ public class chat_room extends AppCompatActivity {
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                chat_list list = new chat_list(chat_edit.getText().toString(), uid);
-                databaseReference.child("Together_group_list").child(Gname).child("chat").push().setValue(list);
-                chat_edit.setText("");
+
+                if(chat_edit.getText().toString().equals("")){
+                }
+                else{
+                    chat_list list = new chat_list(chat_edit.getText().toString(), uname ,uid);
+                    databaseReference.child("Together_group_list").child(Gname).child("chat").push().setValue(list);
+                    chat_edit.setText("");
+                }
             }
         });
 
