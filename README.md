@@ -1,7 +1,7 @@
 # 작은 학습 도우미 Together
 
 ## Togther 소개
-![image](https://user-images.githubusercontent.com/45118999/118638742-1e2b2c00-b812-11eb-8f9b-03cc865f4e8a.png){: width="50%" height="50%"}
+![image](https://user-images.githubusercontent.com/45118999/118638742-1e2b2c00-b812-11eb-8f9b-03cc865f4e8a.png){: width="10%" height="10%"}
 Together는 비대면 스터디를 돕기 위해 제작된 안드로이드 어플 입니다.
 COVID-19로 인해 저하된 학습 의욕을 향상시키기 위해 아래와 같은 기능을 제공합니다.
 
