@@ -27,6 +27,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
     private ArrayList<Dictionary> mList;
     private Context mContext;
     private String Focus_Subject;
+    private String Timer_Subject;
 
     public class CustomViewHolder extends RecyclerView.ViewHolder
             implements View.OnCreateContextMenuListener{ //리스너 추가
@@ -35,13 +36,15 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
         protected TextView page;
 
         public Button btn_focus;
+        public Button btn_start;
 
         public CustomViewHolder(View view) {
             super(view);
             this.subject = (TextView) view.findViewById(R.id.subject_listitem);
             this.page = (TextView) view.findViewById(R.id.page_listitem);
             this.btn_focus=(Button)view.findViewById(R.id.btn_focus);//집중모드 연결 버튼
-            view.setOnCreateContextMenuListener(this); //2. 리스너 등록
+            this.btn_start=(Button)view.findViewById(R.id.subject_start);//일반 측정 연결 버튼
+            view.setOnCreateContextMenuListener(this); //리스너 등록
 
         }
         @Override
@@ -137,11 +140,23 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
         viewholder.subject.setText(mList.get(position).getSubject());
         viewholder.page.setText(mList.get(position).getPage());
 
+        //타이머 연결(start)
+        viewholder.btn_start.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Timer_Subject=mList.get(position).getSubject();
+                Intent intent = new Intent(mContext.getApplicationContext(),Study_Timer.class); //인텐트
+                intent = intent.putExtra("Subject",Timer_Subject);
+                mContext.startActivity(intent); //액티비티 열기
+
+            }
+        });
+        //타이머 연결(end)
+
         //집중모드 연결(start)
-        viewholder.itemView.setTag(position);
         viewholder.btn_focus.setOnClickListener(new View.OnClickListener(){
-         @Override
-         public void onClick(View v) {
+            @Override
+            public void onClick(View v) {
                 Focus_Subject=mList.get(position).getSubject();
                 Intent intent = new Intent(mContext.getApplicationContext(), FdActivity.class); //인텐트
                 intent= intent.putExtra("Subject",Focus_Subject);
@@ -159,5 +174,4 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
     }
 
 }
-
 

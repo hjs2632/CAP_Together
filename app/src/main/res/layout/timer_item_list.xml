@@ -27,7 +27,8 @@
             android:gravity="center|left"
             android:text="범위"
             android:textSize="15sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -41,8 +42,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
-                android:gravity="center"
                 android:text="00:00:00"
+                android:gravity="center"
                 android:textSize="25dp" />
 
             <LinearLayout
@@ -60,22 +61,24 @@
                     android:textStyle="bold" />
 
                 <Button
-                    android:id="@+id/btn_record"
+                    android:id="@+id/subject_start"
                     android:layout_width="62dp"
                     android:layout_height="match_parent"
                     android:text="시작"
                     android:gravity="center"
                     android:background="@color/Yellow"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    />
 
                 <Button
                     android:id="@+id/btn_save"
                     android:layout_width="62dp"
                     android:layout_height="match_parent"
-                    android:text="저장"
+                    android:text="자세히"
                     android:gravity="center"
                     android:background="@color/Yellow"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold"
+                    />
 
 
             </LinearLayout>

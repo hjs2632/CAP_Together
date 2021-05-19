@@ -39,6 +39,8 @@
             android:screenOrientation="landscape"
             android:configChanges="keyboardHidden|orientation"
             android:label="집중모드"/>//openCV 관련
+        <activity android:name=".Timer.Study_Timer"/>
+
     </application>
     /*openCV 관련 시작*/
     <supports-screens android:resizeable="true"

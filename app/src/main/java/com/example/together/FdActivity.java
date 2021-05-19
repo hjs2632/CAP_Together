@@ -309,7 +309,7 @@ public class FdActivity extends CameraActivity implements CvCameraViewListener2 
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            detect+=1;
+
             min=detect/600;
             hour=detect/36000;
             sec=(detect/10)-(min*60)-(hour*3600);

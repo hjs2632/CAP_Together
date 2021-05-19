@@ -6,6 +6,7 @@ public class Dictionary { //RecyclerView의 한 줄에 보여줄 데이터(item_
     private String page;
 
 
+
     public String getSubject() {
         return subject;
     }
@@ -27,4 +28,6 @@ public class Dictionary { //RecyclerView의 한 줄에 보여줄 데이터(item_
         this.subject = subject;
         this.page = page;
     }
+
+
 }

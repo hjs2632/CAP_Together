@@ -13,6 +13,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.os.Handler;
+import android.os.Message;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,20 +40,22 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class Timer_MainActivity extends Fragment {
 
     ImageButton calendar_btn;//일정 이동 버튼
     ImageButton focus_btn;//집중모드 이동 버튼
 
-    private Button mStartBtn, mSaveBtn;
-    private TextView mTimeTextView, mSubjectTimeTextView;
+
+
+
+    //파이어베이스
     private FirebaseAuth firebaseAuth;
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
     private FirebaseUser user;
-    private Thread timeThread = null;
-    private Boolean isRunning = true;
+
 
     private ArrayList<Dictionary> mArrayList;
     private CustomAdapter mAdapter;
@@ -64,6 +69,8 @@ public class Timer_MainActivity extends Fragment {
     {
         super.onCreate(savedInstanceState);
         View v = inflater.inflate(R.layout.timer_activity_main, container, false);
+
+
 
         //파이어베이스
         firebaseAuth=FirebaseAuth.getInstance();
@@ -92,6 +99,15 @@ public class Timer_MainActivity extends Fragment {
 
 
 
+        //오늘 날짜를 받아오는 부분
+        Calendar today= Calendar.getInstance();
+        int todayYear=today.get(Calendar.YEAR);
+        int todayMonth=today.get(Calendar.MONTH);
+        int todayDay=today.get(Calendar.DAY_OF_MONTH);
+
+
+
+
         calendar_btn = (ImageButton) v.findViewById(R.id.calendar_btn); //일정 이동 버튼
 
 
@@ -109,6 +125,7 @@ public class Timer_MainActivity extends Fragment {
 
 
 
+        //리사이클러뷰 부분
         RecyclerView mRecyclerView = (RecyclerView) v.findViewById(R.id.recyclerview_main_list);
 
         LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(getActivity());
