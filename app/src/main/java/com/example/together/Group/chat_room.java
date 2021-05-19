@@ -2,6 +2,7 @@ package com.example.together.Group;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -132,6 +133,21 @@ public class chat_room extends AppCompatActivity {
                 finish();
             }
         });
+
+        /*
+        chat_edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        recyclerView.scrollToPosition(recyclerView.getAdapter().getItemCount() - 1);
+                    }
+                }, 2000);
+            }
+        });
+         */
 
         send.setOnClickListener(new View.OnClickListener() {
             @Override

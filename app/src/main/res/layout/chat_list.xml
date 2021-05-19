@@ -16,18 +16,24 @@
         <FrameLayout
             android:layout_width="280dp"
             android:layout_marginLeft="20dp"
-
             android:layout_height="wrap_content"
             android:layout_gravity="left"
             android:layout_marginBottom="10dp">
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/White">
+
             <TextView
+                android:layout_margin="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="상대방"
                 android:id="@+id/you_chat"
-                android:background="@color/Yellow"
                 android:textSize="20sp"/>
+
+            </LinearLayout>
 
 
 
