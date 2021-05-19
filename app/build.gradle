@@ -53,11 +53,11 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'com.google.firebase:firebase-database:19.7.0'
     implementation 'com.google.firebase:firebase-auth:20.0.3'
-    implementation 'com.applandeo:material-calendar-view:1.7.0'
+    implementation 'com.applandeo:material-calendar-view:1.7.0'//Calendar 사용을 위해 작성
     implementation 'com.google.android.gms:play-services-auth:19.0.0'
     implementation project(path: ':opencv')
     implementation 'androidx.navigation:navigation-runtime:2.2.2'
-    implementation 'org.jetbrains:annotations:15.0'//Calendar 사용을 위해 작성
+    implementation 'org.jetbrains:annotations:15.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'

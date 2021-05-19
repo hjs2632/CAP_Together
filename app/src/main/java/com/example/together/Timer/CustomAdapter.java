@@ -20,6 +20,13 @@ import android.widget.TextView;
 
 import com.example.together.FdActivity;
 import com.example.together.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -38,10 +45,12 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
         public Button btn_focus;
         public Button btn_start;
 
+
         public CustomViewHolder(View view) {
             super(view);
             this.subject = (TextView) view.findViewById(R.id.subject_listitem);
             this.page = (TextView) view.findViewById(R.id.page_listitem);
+
             this.btn_focus=(Button)view.findViewById(R.id.btn_focus);//집중모드 연결 버튼
             this.btn_start=(Button)view.findViewById(R.id.subject_start);//일반 측정 연결 버튼
             view.setOnCreateContextMenuListener(this); //리스너 등록
@@ -161,6 +170,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
                 Intent intent = new Intent(mContext.getApplicationContext(), FdActivity.class); //인텐트
                 intent= intent.putExtra("Subject",Focus_Subject);
                 mContext.startActivity(intent); //액티비티 열기
+
             }
 
         });

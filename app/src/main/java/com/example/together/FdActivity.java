@@ -39,6 +39,7 @@ import androidx.annotation.NonNull;
 
 import com.example.together.DetectionBasedTracker;
 import com.example.together.R;
+import com.example.together.Timer.Study_Timer;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -198,7 +199,7 @@ public class FdActivity extends CameraActivity implements CvCameraViewListener2 
                     f_min=first_detect/600;
                     f_hour=first_detect/36000;
                     f_sec=(first_detect/10)-(f_min*60)-(f_hour*3600);
-                    total_counting.setText("총 "+String.valueOf(f_hour)+"시 "+String.valueOf(f_min)+"분 "+String.valueOf(f_sec)+"초 동안 공부중");
+                    //total_counting.setText("총 "+String.valueOf(f_hour)+"시 "+String.valueOf(f_min)+"분 "+String.valueOf(f_sec)+"초 동안 공부중");
                 }
             }
 
@@ -309,11 +310,12 @@ public class FdActivity extends CameraActivity implements CvCameraViewListener2 
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-
+            detect+=1;
             min=detect/600;
             hour=detect/36000;
             sec=(detect/10)-(min*60)-(hour*3600);
-            counting.setText(String.valueOf(hour)+"시 "+String.valueOf(min)+"분 "+String.valueOf(sec)+"초 동안 공부중");
+            String newstr=String.format("%02d:%02d:%02d",hour,min,sec);
+            counting.setText(newstr);
         }
         return mRgba;
     }
