@@ -66,6 +66,8 @@ public class Study_Timer extends AppCompatActivity {
 
         Intent intent =getIntent(); //subject값 받아오는 부분
         String Subject=intent.getExtras().getString("Subject");
+        String Key=intent.getExtras().getString("Key");
+        first_detect = intent.getIntExtra("time",0); //전에 공부했던 값 받아온거
         timer_subject.setText(Subject);
 
         backbtn.setOnClickListener(onClickListener);
@@ -76,7 +78,7 @@ public class Study_Timer extends AppCompatActivity {
         database=FirebaseDatabase.getInstance();
 
         //DB 레퍼런스 경로 설정
-        databaseReference=database.getReference().child("timer").child(user.getUid()).child("subjecttimer").child(Subject);
+        databaseReference=database.getReference().child("timer").child(user.getUid()).child("study").child(Key).child("time");
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -109,7 +111,7 @@ public class Study_Timer extends AppCompatActivity {
 
                 //임시 데이터베이스 전송(시간이 문자열로 가기 때문에 가공 절차가 필요)
                 Toast.makeText(getApplicationContext(),Subject+" 과목을"+String.valueOf(hour)+"시 "+String.valueOf(min)+"분 "+String.valueOf(sec)+"초 공부시간이 저장되었습니다.",Toast.LENGTH_SHORT).show();
-                databaseReference=database.getReference().child("timer").child(user.getUid()).child("focustimer").child(Subject);
+                databaseReference=database.getReference().child("timer").child(user.getUid()).child("study").child(Key).child("time");
                 String content=String.valueOf(hour)+"시 "+String.valueOf(min)+"분 "+String.valueOf(sec)+"초";
                 databaseReference.setValue(content);//선택한 날짜에 일정 저장
                 finish();

@@ -19,6 +19,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.together.FdActivity;
+import com.example.together.Group.Together_group_list;
 import com.example.together.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -35,12 +36,19 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
     private Context mContext;
     private String Focus_Subject;
     private String Timer_Subject;
+    String Key;
+
+    private FirebaseDatabase database;
+    private DatabaseReference databaseReference;
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    String uid = user.getUid(); //유저 아이디
 
     public class CustomViewHolder extends RecyclerView.ViewHolder
             implements View.OnCreateContextMenuListener{ //리스너 추가
 
         protected TextView subject;
         protected TextView page;
+        protected TextView time;
 
         public Button btn_focus;
         public Button btn_start;
@@ -50,6 +58,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
             super(view);
             this.subject = (TextView) view.findViewById(R.id.subject_listitem);
             this.page = (TextView) view.findViewById(R.id.page_listitem);
+            this.time = (TextView) view.findViewById(R.id.subject_timeView);
 
             this.btn_focus=(Button)view.findViewById(R.id.btn_focus);//집중모드 연결 버튼
             this.btn_start=(Button)view.findViewById(R.id.subject_start);//일반 측정 연결 버튼
@@ -91,13 +100,10 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
                         final AlertDialog dialog = builder.create();
                         ButtonSubmit.setOnClickListener(new View.OnClickListener() {
                             public void onClick(View v) {
-                                String strSubject = editTextSubject.getText().toString();
-                                String strPage = editTextPage.getText().toString();
-
-                                Dictionary dict = new Dictionary(strSubject, strPage);
-
-                                mList.set(getAdapterPosition(), dict);
-                                notifyItemChanged(getAdapterPosition());
+                                database = FirebaseDatabase.getInstance(); // 파이어베이스 데이터베이스 연동
+                                databaseReference = database.getReference(); // DB 테이블 연결
+                                databaseReference.child("timer").child(uid).child("study").child(Key).child("subject").setValue(editTextSubject.getText().toString());
+                                databaseReference.child("timer").child(uid).child("study").child(Key).child("page").setValue(editTextPage.getText().toString());
 
                                 dialog.dismiss();
                             }
@@ -109,10 +115,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
 
                     case 1002:
 
-                        mList.remove(getAdapterPosition());
-                        notifyItemRemoved(getAdapterPosition());
-                        notifyItemRangeChanged(getAdapterPosition(), mList.size());
-
+                        databaseReference.child("timer").child(uid).child("study").child(Key).removeValue();
                         break;
 
                 }
@@ -145,9 +148,11 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
 
     @Override
     public void onBindViewHolder(@NonNull CustomViewHolder viewholder, int position) {
-
         viewholder.subject.setText(mList.get(position).getSubject());
         viewholder.page.setText(mList.get(position).getPage());
+        viewholder.time.setText(mList.get(position).getTime());
+        String time = viewholder.time.getText().toString();
+        Key = mList.get(position).getKey();//push로 넣었던 리스트 키값 받아오기
 
         //타이머 연결(start)
         viewholder.btn_start.setOnClickListener(new View.OnClickListener(){
@@ -156,6 +161,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
                 Timer_Subject=mList.get(position).getSubject();
                 Intent intent = new Intent(mContext.getApplicationContext(),Study_Timer.class); //인텐트
                 intent = intent.putExtra("Subject",Timer_Subject);
+                intent = intent.putExtra("Key",Key);
+                intent = intent.putExtra("time",time);
                 mContext.startActivity(intent); //액티비티 열기
 
             }
