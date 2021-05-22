@@ -165,10 +165,11 @@ public class FdActivity extends CameraActivity implements CvCameraViewListener2 
 
         counting=(TextView)findViewById(R.id.detect_count);
         focus_subject=(TextView)findViewById(R.id.focus_subject);
-        total_counting=(TextView)findViewById(R.id.total_count);
 
-        Intent intent =getIntent();
+        Intent intent =getIntent(); //subject값 받아오는 부분
         String Subject=intent.getExtras().getString("Subject");
+        String Key=intent.getExtras().getString("Key");
+        String first_time = intent.getExtras().getString("time"); //전에 공부했던 값 받아온거
         focus_subject.setText(Subject);
 
         mOpenCvCameraView = (CameraBridgeViewBase) findViewById(R.id.fd_activity_surface_view);
@@ -184,7 +185,7 @@ public class FdActivity extends CameraActivity implements CvCameraViewListener2 
         database=FirebaseDatabase.getInstance();
 
         //DB 레퍼런스 경로 설정
-        databaseReference=database.getReference().child("timer").child(user.getUid()).child("focustimer").child(Subject);
+        databaseReference=database.getReference().child("timer").child(user.getUid()).child("study").child(Key).child("time");
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -214,7 +215,7 @@ public class FdActivity extends CameraActivity implements CvCameraViewListener2 
 
                 //임시 데이터베이스 전송(시간이 문자열로 가기 때문에 가공 절차가 필요)
                 Toast.makeText(getApplicationContext(),Subject+" 과목을"+String.valueOf(hour)+"시 "+String.valueOf(min)+"분 "+String.valueOf(sec)+"초 공부시간이 저장되었습니다.",Toast.LENGTH_SHORT).show();
-                databaseReference=database.getReference().child("timer").child(user.getUid()).child("focustimer").child(Subject);
+                databaseReference=database.getReference().child("timer").child(user.getUid()).child("study").child(Key).child("time");
                 detect=detect+first_detect;
                 String content=String.valueOf(detect);
                 databaseReference.setValue(content);//선택한 날짜에 일정 저장

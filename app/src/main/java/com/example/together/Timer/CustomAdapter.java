@@ -185,7 +185,9 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
             public void onClick(View v) {
                 Focus_Subject=mList.get(position).getSubject();
                 Intent intent = new Intent(mContext.getApplicationContext(), FdActivity.class); //인텐트
-                intent= intent.putExtra("Subject",Focus_Subject);
+                intent = intent.putExtra("Subject",Focus_Subject);
+                intent = intent.putExtra("Key",Key);
+                intent = intent.putExtra("time",time);
                 mContext.startActivity(intent); //액티비티 열기
 
             }
