@@ -188,10 +188,13 @@ public class Timer_MainActivity extends Fragment {
                         databaseReference.child("timer").child(uid).child("study").push().setValue(dict);//push로 저장
 
                         dialog.dismiss();
+
+
                     }
                 });
 
                 dialog.show();
+
             }
         });
 return v;

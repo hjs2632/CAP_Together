@@ -83,9 +83,7 @@ public class Study_Timer extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 String str = dataSnapshot.getValue(String.class);
-                if (str == null) {
-                    //데이터가 없으면 공부기록이 없음
-                    total_counting.setText("");
+                if (str == null){
                 }else{
                     //저장된 문자열 받아오기
                     first_detect=Integer.valueOf(str);

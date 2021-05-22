@@ -100,6 +100,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
                         final AlertDialog dialog = builder.create();
                         ButtonSubmit.setOnClickListener(new View.OnClickListener() {
                             public void onClick(View v) {
+                                Key = mList.get(getAdapterPosition()).getKey();//push로 넣었던 리스트 키값 받아오기
                                 database = FirebaseDatabase.getInstance(); // 파이어베이스 데이터베이스 연동
                                 databaseReference = database.getReference(); // DB 테이블 연결
                                 databaseReference.child("timer").child(uid).child("study").child(Key).child("subject").setValue(editTextSubject.getText().toString());
@@ -114,7 +115,9 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
                         break;
 
                     case 1002:
-
+                        Key = mList.get(getAdapterPosition()).getKey();//push로 넣었던 리스트 키값 받아오기
+                        database = FirebaseDatabase.getInstance(); // 파이어베이스 데이터베이스 연동
+                        databaseReference = database.getReference(); // DB 테이블 연결
                         databaseReference.child("timer").child(uid).child("study").child(Key).removeValue();
                         break;
 
@@ -168,6 +171,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
         viewholder.btn_start.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+                Key = mList.get(position).getKey();//push로 넣었던 리스트 키값 받아오기
                 Timer_Subject=mList.get(position).getSubject();
                 Intent intent = new Intent(mContext.getApplicationContext(),Study_Timer.class); //인텐트
                 intent = intent.putExtra("Subject",Timer_Subject);
@@ -183,6 +187,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
         viewholder.btn_focus.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                Key = mList.get(position).getKey();//push로 넣었던 리스트 키값 받아오기
                 Focus_Subject=mList.get(position).getSubject();
                 Intent intent = new Intent(mContext.getApplicationContext(), FdActivity.class); //인텐트
                 intent = intent.putExtra("Subject",Focus_Subject);
