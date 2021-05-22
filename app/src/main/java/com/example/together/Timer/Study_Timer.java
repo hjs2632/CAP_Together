@@ -67,7 +67,7 @@ public class Study_Timer extends AppCompatActivity {
         Intent intent =getIntent(); //subject값 받아오는 부분
         String Subject=intent.getExtras().getString("Subject");
         String Key=intent.getExtras().getString("Key");
-        first_detect = intent.getIntExtra("time",0); //전에 공부했던 값 받아온거
+        String time = intent.getExtras().getString("time"); //전에 공부했던 값 받아온거
         timer_subject.setText(Subject);
 
         backbtn.setOnClickListener(onClickListener);

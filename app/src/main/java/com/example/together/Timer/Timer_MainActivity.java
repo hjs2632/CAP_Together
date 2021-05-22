@@ -182,7 +182,7 @@ public class Timer_MainActivity extends Fragment {
                         String strSubject = editTextSubject.getText().toString();
                         String strPage = editTextPage.getText().toString();
 
-                        int time =0;//누적 공부 시간은 0으로 생성
+                        String time ="0";//누적 공부 시간은 0으로 생성
                         Dictionary dict = new Dictionary(strSubject, strPage, time);//삽입할 리스트 요소
 
                         databaseReference.child("timer").child(uid).child("study").push().setValue(dict);//push로 저장

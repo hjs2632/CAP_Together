@@ -4,7 +4,7 @@ public class Dictionary { //RecyclerView의 한 줄에 보여줄 데이터(item_
 
     private String subject;
     private String page;
-    private int time;
+    private String time;
     private String Key; //리스트 키값 직접 넣은거
 
     public Dictionary() {}
@@ -27,14 +27,14 @@ public class Dictionary { //RecyclerView의 한 줄에 보여줄 데이터(item_
         this.page = page;
     }
 
-    public int getTime() { return time; }
-    public void setTime(int time){this.time= time;}
+    public String getTime() { return time; }
+    public void setTime(String time){this.time= time;}
 
     public String getKey() { return Key; }
     public void setKey(String Key){this.Key= Key;}
 
 
-    public Dictionary(String subject, String page, int time) {
+    public Dictionary(String subject, String page, String time) {
         this.subject = subject;
         this.page = page;
         this.time=time;
