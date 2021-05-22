@@ -152,6 +152,16 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
         viewholder.page.setText(mList.get(position).getPage());
         viewholder.time.setText(mList.get(position).getTime());
         String time = viewholder.time.getText().toString();
+
+        //시간 형식으로 변환(start)
+        int t_time=Integer.valueOf(time);
+        int min=t_time/600;
+        int hour=t_time/36000;
+        int sec=(t_time/10)-(min*60)-(hour*3600);
+        String newstr=String.format("%02d:%02d:%02d",hour,min,sec);
+        viewholder.time.setText(newstr);
+        //시간 형식으로 변환(end)
+
         Key = mList.get(position).getKey();//push로 넣었던 리스트 키값 받아오기
 
         //타이머 연결(start)

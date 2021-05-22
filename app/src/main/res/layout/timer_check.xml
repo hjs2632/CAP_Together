@@ -47,14 +47,6 @@
         android:text="start"
         android:background="@color/White" />
 
-    <TextView
-        android:id="@+id/total_count"
-        android:textSize="20dp"
-        android:gravity="center"
-        android:layout_marginTop="70dp"
-        android:layout_width="200dp"
-        android:layout_height="35dp"
-        android:text="누적시간" />
 
 
 </LinearLayout>

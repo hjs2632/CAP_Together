@@ -62,7 +62,6 @@ public class Study_Timer extends AppCompatActivity {
         startbtn = (Button) findViewById(R.id.start_btn);
         Timer_view = (TextView) findViewById(R.id.timer_view);
         timer_subject = (TextView) findViewById(R.id.timer_subject);
-        total_counting= (TextView) findViewById(R.id.total_count);
 
         Intent intent =getIntent(); //subject값 받아오는 부분
         String Subject=intent.getExtras().getString("Subject");
@@ -93,7 +92,6 @@ public class Study_Timer extends AppCompatActivity {
                     f_min=first_detect/600;
                     f_hour=first_detect/36000;
                     f_sec=(first_detect/10)-(f_min*60)-(f_hour*3600);
-                    total_counting.setText("총 "+String.valueOf(f_hour)+"시 "+String.valueOf(f_min)+"분 "+String.valueOf(f_sec)+"초 동안 공부중");
                 }
             }
 
@@ -112,7 +110,8 @@ public class Study_Timer extends AppCompatActivity {
                 //임시 데이터베이스 전송(시간이 문자열로 가기 때문에 가공 절차가 필요)
                 Toast.makeText(getApplicationContext(),Subject+" 과목을"+String.valueOf(hour)+"시 "+String.valueOf(min)+"분 "+String.valueOf(sec)+"초 공부시간이 저장되었습니다.",Toast.LENGTH_SHORT).show();
                 databaseReference=database.getReference().child("timer").child(user.getUid()).child("study").child(Key).child("time");
-                String content=String.valueOf(hour)+"시 "+String.valueOf(min)+"분 "+String.valueOf(sec)+"초";
+                detect=first_detect+detect;
+                String content=String.valueOf(detect);
                 databaseReference.setValue(content);//선택한 날짜에 일정 저장
                 finish();
             }
