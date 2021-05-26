@@ -60,7 +60,7 @@
                     android:layout_width="60dp"
                     android:layout_height="50dp"
                     android:layout_weight="1"
-                    android:background="@drawable/del_plan"
+                    android:background="@drawable/del_paln"
                     android:id="@+id/remove_btn"
                     android:layout_margin="5dp"/>
         </LinearLayout>

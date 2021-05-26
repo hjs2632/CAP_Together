@@ -171,7 +171,24 @@ public class Calendar_note extends AppCompatActivity {
         Button noBtn= PlanDialog.findViewById(R.id.noBtn);//취소 버튼
         Button yesBtn=PlanDialog.findViewById(R.id.yesBtn);//저장 버튼
         EditText test_Edit=PlanDialog.findViewById(R.id.test_Edit);//일정을 입력할 수 있는 EditText
-        test_Edit.setText("");
+        databaseReference=database.getReference().child("calendar").child(user.getUid()).child(checkYear + "-" + checkMonth + "-" + checkDay);
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String str = dataSnapshot.getValue(String.class);
+                if (str == null) {
+                    //데이터가 없으면 일정이 없음
+                    test_Edit.setText("");
+                }else{
+                    //저장된 문자열 받아오기
+                    test_Edit.setText(str);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) { }
+
+        });
 
         //취소 버튼
         noBtn.setOnClickListener(new View.OnClickListener() {
@@ -213,7 +230,7 @@ public class Calendar_note extends AppCompatActivity {
                     Plan.setText("");
                 }else{
                     //저장된 문자열 받아오기
-                    Plan.setText("- "+str);
+                    Plan.setText(str);
                 }
             }
 
