@@ -25,6 +25,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Calendar;
+
 
 public class Study_Timer extends AppCompatActivity {
 
@@ -52,6 +54,7 @@ public class Study_Timer extends AppCompatActivity {
     public int f_min=0;
     public int f_hour=0;
     public int first_detect=0;
+    public int total_time;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +79,12 @@ public class Study_Timer extends AppCompatActivity {
         user=firebaseAuth.getCurrentUser();
         database=FirebaseDatabase.getInstance();
 
+        //오늘 날짜를 받아오는 부분
+        Calendar today= Calendar.getInstance();
+        int todayYear=today.get(Calendar.YEAR);
+        int todayMonth=today.get(Calendar.MONTH);
+        int todayDay=today.get(Calendar.DAY_OF_MONTH);
+
         //DB 레퍼런스 경로 설정
         databaseReference=database.getReference().child("timer").child(user.getUid()).child("study").child(Key).child("time");
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -98,6 +107,23 @@ public class Study_Timer extends AppCompatActivity {
 
         });
 
+        //DB 레퍼런스 경로 설정
+        databaseReference=database.getReference().child("total").child(user.getUid()).child(todayYear + "-" + todayMonth + "-" + todayDay);
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                String total = dataSnapshot.getValue(String.class);
+                if (total == null) {
+                }else{
+                    total_time=Integer.valueOf(total);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) { }
+
+        });
 
 
         //뒤로가기 버튼 누르면 화면을 닫음
@@ -108,9 +134,13 @@ public class Study_Timer extends AppCompatActivity {
                 //임시 데이터베이스 전송(시간이 문자열로 가기 때문에 가공 절차가 필요)
                 Toast.makeText(getApplicationContext(),Subject+" 과목을"+String.valueOf(hour)+"시 "+String.valueOf(min)+"분 "+String.valueOf(sec)+"초 공부시간이 저장되었습니다.",Toast.LENGTH_SHORT).show();
                 databaseReference=database.getReference().child("timer").child(user.getUid()).child("study").child(Key).child("time");
+                total_time=detect+total_time;
                 detect=first_detect+detect;
                 String content=String.valueOf(detect);
                 databaseReference.setValue(content);//선택한 날짜에 일정 저장
+                databaseReference=database.getReference().child("total").child(user.getUid()).child(todayYear + "-" + todayMonth + "-" + todayDay);
+                String content1=String.valueOf(total_time);
+                databaseReference.setValue(content1);//선택한 날짜에 일정 저장
                 finish();
             }
         });

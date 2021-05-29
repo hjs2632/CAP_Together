@@ -49,7 +49,7 @@ public class Timer_MainActivity extends Fragment {
     ImageButton calendar_btn;//일정 이동 버튼
     ImageButton focus_btn;//집중모드 이동 버튼
 
-
+    TextView timeview; //총 공부시간
 
 
     //파이어베이스
@@ -64,6 +64,10 @@ public class Timer_MainActivity extends Fragment {
     private int count = -1;
 
     public String uname;
+    public int total_time;
+    public int t_sec=0;
+    public int t_min=0;
+    public int t_hour=0;
     @Override
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -106,8 +110,32 @@ public class Timer_MainActivity extends Fragment {
 
 
         calendar_btn = (ImageButton) v.findViewById(R.id.calendar_btn); //일정 이동 버튼
+        timeview=(TextView)v.findViewById(R.id.timeView); //공부 총합 시간
 
+        
+        //DB 레퍼런스 경로 설정
+        DatabaseReference databaseReference1 = database.getReference().child("total").child(user.getUid()).child(todayYear + "-" + todayMonth + "-" + todayDay);
+        databaseReference1.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
+                String total = dataSnapshot.getValue(String.class);
+                if (total == null) {
+                    timeview.setText("00:00:00");
+                }else{
+                    total_time=Integer.valueOf(total);
+                    t_min=total_time/600;
+                    t_hour=total_time/36000;
+                    t_sec=(total_time/10)-(t_min*60)-(t_hour*3600);
+                    String n_time=String.format("%02d:%02d:%02d",t_hour,t_min,t_sec);
+                    timeview.setText(n_time);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) { }
+
+        });
 
         calendar_btn.setOnClickListener(new View.OnClickListener() { // 일정으로 이동
             @Override

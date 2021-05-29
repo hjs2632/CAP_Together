@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 
@@ -84,6 +85,7 @@ public class FdActivity extends CameraActivity implements CvCameraViewListener2 
     public int min;
     public int hour;
     public int detect;
+    public int total_time;
 
     public int f_sec=0;
     public int f_min=0;
@@ -184,6 +186,12 @@ public class FdActivity extends CameraActivity implements CvCameraViewListener2 
         user=firebaseAuth.getCurrentUser();
         database=FirebaseDatabase.getInstance();
 
+        //오늘 날짜를 받아오는 부분
+        Calendar today= Calendar.getInstance();
+        int todayYear=today.get(Calendar.YEAR);
+        int todayMonth=today.get(Calendar.MONTH);
+        int todayDay=today.get(Calendar.DAY_OF_MONTH);
+
         //DB 레퍼런스 경로 설정
         databaseReference=database.getReference().child("timer").child(user.getUid()).child("study").child(Key).child("time");
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -192,8 +200,6 @@ public class FdActivity extends CameraActivity implements CvCameraViewListener2 
 
                 String str = dataSnapshot.getValue(String.class);
                 if (str == null) {
-                    //데이터가 없으면 공부기록이 없음
-                    total_counting.setText("");
                 }else{
                     //저장된 문자열 받아오기
                     first_detect=Integer.valueOf(str);
@@ -208,6 +214,25 @@ public class FdActivity extends CameraActivity implements CvCameraViewListener2 
             public void onCancelled(@NonNull DatabaseError databaseError) { }
 
         });
+
+        //DB 레퍼런스 경로 설정
+        databaseReference=database.getReference().child("total").child(user.getUid()).child(todayYear + "-" + todayMonth + "-" + todayDay);
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                String total = dataSnapshot.getValue(String.class);
+                if (total == null) {
+                }else{
+                    total_time=Integer.valueOf(total);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) { }
+
+        });
+
         //뒤로가기 버튼 누르면 화면을 닫음
         back_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -216,9 +241,13 @@ public class FdActivity extends CameraActivity implements CvCameraViewListener2 
                 //임시 데이터베이스 전송(시간이 문자열로 가기 때문에 가공 절차가 필요)
                 Toast.makeText(getApplicationContext(),Subject+" 과목을"+String.valueOf(hour)+"시 "+String.valueOf(min)+"분 "+String.valueOf(sec)+"초 공부시간이 저장되었습니다.",Toast.LENGTH_SHORT).show();
                 databaseReference=database.getReference().child("timer").child(user.getUid()).child("study").child(Key).child("time");
+                total_time=detect+total_time;
                 detect=detect+first_detect;
                 String content=String.valueOf(detect);
                 databaseReference.setValue(content);//선택한 날짜에 일정 저장
+                databaseReference=database.getReference().child("total").child(user.getUid()).child(todayYear + "-" + todayMonth + "-" + todayDay);
+                String content1=String.valueOf(total_time);
+                databaseReference.setValue(content1);//선택한 날짜에 일정 저장
                 finish();
             }
         });
