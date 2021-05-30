@@ -25,7 +25,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class chat_room extends AppCompatActivity {
     private Intent intent;
@@ -157,7 +159,13 @@ public class chat_room extends AppCompatActivity {
 
                 if (chat_edit.getText().toString().equals("")) {
                 } else {
-                    chat_list list = new chat_list(chat_edit.getText().toString(), uname, uid);
+                    // 현재 시간 넣는 부분
+                    long mNow = System.currentTimeMillis();
+                    Date mReDate = new Date(mNow);
+                    SimpleDateFormat mFormat = new SimpleDateFormat("aa hh:mm"); // ex) pm 7:12
+                    String formatDate = mFormat.format(mReDate);
+
+                    chat_list list = new chat_list(chat_edit.getText().toString(), uname, uid, formatDate);
                     databaseReference.child("Together_group_list").child(Gname).child("chat").push().setValue(list);
                     chat_edit.setText("");
                 }

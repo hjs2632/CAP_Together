@@ -33,6 +33,14 @@
                 android:id="@+id/you_chat"
                 android:textSize="20sp"/>
 
+                <TextView
+                    android:layout_width="60dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/you_time"
+                    android:text="pm 7:12"
+                    android:layout_gravity="right"
+                    android:gravity="bottom"></TextView>
+
             </LinearLayout>
 
 

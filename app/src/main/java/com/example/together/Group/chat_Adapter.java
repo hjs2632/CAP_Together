@@ -38,9 +38,7 @@ public class chat_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     String uid = user.getUid();
 
 
-
-
-    public chat_Adapter(ArrayList<chat_list> arrayList,String gname ,Context context) {
+    public chat_Adapter(ArrayList<chat_list> arrayList, String gname, Context context) {
         this.arrayList = arrayList;
         this.gname = gname;
         this.context = context;
@@ -75,13 +73,13 @@ public class chat_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         if (model.getuid().equals(uid)) { //내 메세지인 경우
             CustomViewHoler2 holder2 = (CustomViewHoler2) holder;
             holder2.my_chat.setText(model.getmessage());
+            holder2.my_time.setText(model.gettime());
         } else {
             CustomViewHoler holder1 = (CustomViewHoler) holder;
             holder1.user_name.setText(model.getuser());
             holder1.you_chat.setText(model.getmessage());
+            holder1.you_time.setText(model.gettime());
         }
-
-
 
 
     }
@@ -108,25 +106,27 @@ public class chat_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     public class CustomViewHoler extends RecyclerView.ViewHolder {
         TextView you_chat;
         TextView user_name;
+        TextView you_time;
 
         public CustomViewHoler(@NonNull View itemView) {
             super(itemView);
             this.user_name = itemView.findViewById(R.id.user_name);
             this.you_chat = itemView.findViewById(R.id.you_chat);
+            this.you_time = itemView.findViewById(R.id.you_time);
         }
     }
 
     //내 채팅일 경우
     public class CustomViewHoler2 extends RecyclerView.ViewHolder {
         TextView my_chat;
+        TextView my_time;
 
         public CustomViewHoler2(@NonNull View itemView) {
             super(itemView);
             this.my_chat = itemView.findViewById(R.id.my_chat);
+            this.my_time = itemView.findViewById(R.id.my_time);
         }
     }
-
-
 
 
 }
