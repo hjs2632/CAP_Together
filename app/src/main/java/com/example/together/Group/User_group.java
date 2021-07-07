@@ -8,8 +8,8 @@ public class User_group {
     private String uname;//유저 닉네임
     private String master;//그룹장 여부
 
-    public User_group(){}
-
+    public User_group() {
+    }
 
 
     public String getuid() {

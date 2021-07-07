@@ -118,7 +118,7 @@ public class make_group extends AppCompatActivity {
                 //Log.e("MainActivity", String.valueOf(databaseError.toException())); // 에러문 출력
             }
 
-        });
+            });
 
             addGroup_btn.setOnClickListener(new View.OnClickListener() {
                 @Override

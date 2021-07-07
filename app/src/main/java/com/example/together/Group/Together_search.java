@@ -5,11 +5,9 @@ package com.example.together.Group;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,10 +26,9 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 
-
 public class Together_search extends AppCompatActivity {// 히히
 
-    ImageButton back_btn, search_btn; //이미지버튼 변수 생성
+    ImageButton back_btn; // 이미지버튼 변수 생성
     EditText search_edit;// 검색 에딧텍스트
 
     private RecyclerView recyclerView;
@@ -41,7 +38,7 @@ public class Together_search extends AppCompatActivity {// 히히
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-    String uid = user.getUid(); //유저 아이디
+    String uid = user.getUid(); // 유저 아이디
     String uname;
     String searchText;
 
@@ -51,10 +48,10 @@ public class Together_search extends AppCompatActivity {// 히히
         super.onCreate(savedInstanceState);
         setContentView(R.layout.together_search);
 
-        search_edit = findViewById(R.id.search_edit); //에딧 아이디 연결
+        search_edit = findViewById(R.id.search_edit); // 에딧 아이디 연결
 
         //커스텀 리스트뷰 시작
-        recyclerView = findViewById(R.id.recyclerView); // 아디 연결
+        recyclerView = findViewById(R.id.recyclerView); // 아이디 연결
         recyclerView.setHasFixedSize(true); // 리사이클러뷰 기존성능 강화
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
@@ -77,10 +74,9 @@ public class Together_search extends AppCompatActivity {// 히히
 
             @Override
             public void afterTextChanged(Editable editable) {
-                searchText = search_edit.getText().toString();
+                searchText = search_edit.getText().toString(); // 검색창에 입력된 값
 
-                //값이 변경되는걸 감지하는 함수! 지금 설정한 addValueEventListener은 채팅기능처럼 데이터가 바뀔때마다 반영되도록 하는 것.
-                //databaseReference 이후로 나오는 녀석들로 인해 같은 값이 검색되도록 함.
+                // 검색 값의 그룹을 찾기
                 databaseReference.child("Together_group_list").orderByKey().equalTo(searchText).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -100,14 +96,14 @@ public class Together_search extends AppCompatActivity {// 히히
                     }
 
 
-
                 });
 
+                // 사용자 닉네임 추출
                 databaseReference.child("User").child(uid).child("username").addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         String value = dataSnapshot.getValue(String.class);
-                        uname= value;
+                        uname = value;
 
                     }
 
@@ -118,19 +114,14 @@ public class Together_search extends AppCompatActivity {// 히히
                     }
                 });
 
-                adapter = new Search_Adapter(arrayList, uname,Together_search.this);
+                adapter = new Search_Adapter(arrayList, uname, Together_search.this); // 추출한 닉네임과 리스트를 어댑터로 넘김
                 recyclerView.setAdapter(adapter); // 리사이클러뷰에 어댑터 연결
 
             }
         });
 
 
-
-
-
-
-
-        //변수 연결
+        //뒤로가기 버튼 변수 연결
         back_btn = (ImageButton) findViewById(R.id.back_btn);
 
         //뒤로가기 버튼 누르면 화면을 닫음
@@ -142,8 +133,6 @@ public class Together_search extends AppCompatActivity {// 히히
         });
 
     }
-
-
 
 
 }

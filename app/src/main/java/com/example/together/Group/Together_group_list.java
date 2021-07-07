@@ -4,27 +4,21 @@ package com.example.together.Group;
 
 public class Together_group_list {
 
-    private int GAP; //그룹 전체 인원
-    private String Gname; //그룹 이름
-    private String Gintro; //그룹 설명
-    private int Goaltime; //목표 시간
-    private String master; //그룹장
-    private String Gcate;//카테고리
-    private int gmp;
-    private String announce;//공지사항
-    private String iv_people; //인원 앞에 사람 이미지
+    private int GAP; // 그룹 전체 인원
+    private String Gname; // 그룹 이름
+    private String Gintro; // 그룹 설명
+    private int Goaltime; // 목표 시간
+    private String master; // 그룹장
+    private String Gcate; // 카테고리
+    private int gmp; // 그룹 최대 인원
+    private String announce; // 공지사항
 
 
-    // 뭔가 두줄씩 써주면 된다. 그냥 나는 이름을 통일시켜서 만들었음.
-    public Together_group_list(){}
-    /* 사진 부분인데 그룹에서는 굳이 데이터베이스로 쓸 이유가 없어서 일단 잠궈둠
-    public String getiv_people() {
-        return iv_people;
+    public Together_group_list() {
     }
-    public void setiv_people(String iv_people) { this.iv_people = iv_people; }
-     */
 
-    //여기 작성 잘못하면 데이터 저장 안됩니다~~
+
+    //여기 작성 잘못하면 데이터 저장 안됩니다
     public String getGname() {
         return Gname;
     }
@@ -53,7 +47,9 @@ public class Together_group_list {
         return Goaltime;
     }
 
-    public void setGoaltime(int Goaltime) { this.Goaltime = Goaltime; }
+    public void setGoaltime(int Goaltime) {
+        this.Goaltime = Goaltime;
+    }
 
     public String getmaster() {
         return master;
@@ -67,13 +63,17 @@ public class Together_group_list {
         return Gcate;
     }
 
-    public void setGcate(String Gcate) { this.Gcate = Gcate; }
+    public void setGcate(String Gcate) {
+        this.Gcate = Gcate;
+    }
 
     public int getgmp() {
         return gmp;
     }
 
-    public void setgmp(int gmp) { this.gmp = gmp; }
+    public void setgmp(int gmp) {
+        this.gmp = gmp;
+    }
 
     public String getannounce() {
         return announce;
@@ -82,7 +82,6 @@ public class Together_group_list {
     public void setannounce(String announce) {
         this.announce = announce;
     }
-
 
 
     //그룹 만들기에서 사용할 녀석
@@ -97,7 +96,6 @@ public class Together_group_list {
         this.announce = announce;
 
     }
-
 
 
 }
