@@ -1,5 +1,5 @@
 package com.example.together.Group;
-
+// 채팅 저장
 public class chat_list {
 
     private String message;
@@ -7,10 +7,7 @@ public class chat_list {
     private String uid;
     private String time;
 
-
-    // 뭔가 두줄씩 써주면 된다. 그냥 나는 이름을 통일시켜서 만들었음.
-    public chat_list(){}
-
+    public chat_list() { }
 
     public String getmessage() {
         return message;
@@ -44,16 +41,12 @@ public class chat_list {
         this.time = time;
     }
 
-
-
-
-    public chat_list(String message, String user,String uid, String time) {
+    public chat_list(String message, String user, String uid, String time) {
         this.message = message;
         this.user = user;
         this.uid = uid;
         this.time = time;
     }
-
 
 
 }
