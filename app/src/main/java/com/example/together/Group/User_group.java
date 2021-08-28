@@ -7,6 +7,7 @@ public class User_group {
     private String uid; //유저 아이디
     private String uname;//유저 닉네임
     private String master;//그룹장 여부
+    private int studytime;
 
     public User_group() {
     }
@@ -36,11 +37,20 @@ public class User_group {
         this.master = master;
     }
 
+    public int getstudytime() {
+        return studytime;
+    }
 
-    //그룹 가입, 나중에 시간 부분도 추가하자
-    public User_group(String uid, String uname, String master) {
+    public void setstudytime(int studytime) {
+        this.studytime = studytime;
+    }
+
+
+    //그룹 가입
+    public User_group(String uid, String uname, String master, int studytime) {
         this.uid = uid;
         this.uname = uname;
         this.master = master;
+        this.studytime = studytime;
     }
 }

@@ -16,6 +16,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.together.Group.Mygroup;
+import com.example.together.Group.gmake_list;
 import com.example.together.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -25,6 +27,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 
@@ -125,6 +128,26 @@ public class Study_Timer extends AppCompatActivity {
 
         });
 
+        // 본인이 가입한 그룹들에게 공부시간 합계 전달
+        ArrayList<String> groupname = new ArrayList<>(); // 가입한 그룹명을 저장할 동적배열
+        databaseReference=database.getReference();
+        databaseReference.child("User").child(user.getUid()).child("Group").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                // 파이어베이스 데이터베이스의 데이터를 받아오는 곳
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) { // 반복문으로 데이터 List를 추출해냄
+                    Mygroup mygroup = snapshot.getValue(Mygroup.class);
+                    groupname.add(mygroup.getgname());
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // 디비를 가져오던중 에러 발생 시
+                //Log.e("MainActivity", String.valueOf(databaseError.toException())); // 에러문 출력
+            }
+        });
+
+
 
         //뒤로가기 버튼 누르면 화면을 닫음
         backbtn.setOnClickListener(new View.OnClickListener() {
@@ -141,6 +164,12 @@ public class Study_Timer extends AppCompatActivity {
                 databaseReference=database.getReference().child("total").child(user.getUid()).child(todayYear + "-" + todayMonth + "-" + todayDay);
                 String content1=String.valueOf(total_time);
                 databaseReference.setValue(content1);//선택한 날짜에 일정 저장
+
+                // 본인이 가입된 모든 그룹DB에 본인 공부시간을 저장
+                for(String g:groupname){
+                    databaseReference=database.getReference().child("Together_group_list").child(g).child("user").child(user.getUid()).child("studytime");
+                    databaseReference.setValue(Integer.parseInt(content1));
+                }
                 finish();
             }
         });

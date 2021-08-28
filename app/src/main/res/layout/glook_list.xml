@@ -21,8 +21,8 @@
             android:textSize="20sp"/>
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="1dp"
+            android:layout_height="1dp"
             android:id="@+id/userid"
             android:textSize="18sp"
             android:visibility="invisible"/>
@@ -35,7 +35,7 @@
             android:layout_weight="1">
             // 그룹 내 나의 오늘 공부시간
             <TextView
-                android:id="@+id/Gtime"
+                android:id="@+id/studytime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"

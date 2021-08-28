@@ -30,24 +30,6 @@
 
 
 
-        //시간 오른쪽으로 밀려고 만듬
-        <FrameLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1">
-            // 그룹 내 나의 오늘 공부시간
-            <TextView
-                android:id="@+id/Gtime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="10dp"
-                android:layout_gravity="right"
-                android:text="00:00:00"
-                android:textSize="20sp"></TextView>
-        </FrameLayout>
-
     </LinearLayout>
 
     // 그룹들 나열된거 보기 편하라고 중간에 선 하나 넣어줌

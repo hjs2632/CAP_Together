@@ -27,6 +27,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Calendar;
+
 
 public class make_group extends AppCompatActivity {
 
@@ -46,6 +48,12 @@ public class make_group extends AppCompatActivity {
     String uid = user.getUid(); //유저 아이디
     String uname;
     String master = "yes";
+
+    // 오늘 날짜를 받아오는 부분
+    Calendar today= Calendar.getInstance();
+    int todayYear=today.get(Calendar.YEAR);
+    int todayMonth=today.get(Calendar.MONTH);
+    int todayDay=today.get(Calendar.DAY_OF_MONTH);
 
 
     @Override
@@ -383,9 +391,26 @@ public class make_group extends AppCompatActivity {
             Together_group_list Group = new Together_group_list(Gname, Gintro, Gcate, gmp, GAP, Goaltime, uid, announce);
             databaseReference.child("Together_group_list").child(Gname).setValue(Group);
 
-            //그룹 마스터도 그룹에 포함
-            User_group user = new User_group(uid, uname, master);
-            databaseReference.child("Together_group_list").child(Gname).child("user").child(uid).setValue(user);
+            // 그룹 안에 그룹원 정보 넣기
+            databaseReference.child("total").child(uid).child(todayYear + "-" + todayMonth + "-" + todayDay).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    String total = snapshot.getValue(String.class);
+                    if (total == null) {
+                        User_group user = new User_group(uid, uname, master,0);
+                        databaseReference.child("Together_group_list").child(Gname).child("user").child(uid).setValue(user);
+                    }else{
+                        User_group user = new User_group(uid, uname, master,Integer.parseInt(total));
+                        databaseReference.child("Together_group_list").child(Gname).child("user").child(uid).setValue(user);
+                    }
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    // 디비를 가져오던중 에러 발생 시
+                    //Log.e("MainActivity", String.valueOf(databaseError.toException())); // 에러문 출력
+                }
+            });
+
             //내 그룹 보기 하려고 만든거
             gmake_list gmake_list = new gmake_list(Gname, master);
             databaseReference.child("User").child(uid).child("Group").child(Gname).setValue(gmake_list);

@@ -27,6 +27,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class Search_Adapter extends RecyclerView.Adapter<Search_Adapter.CustomViewHoler> {
 
@@ -42,6 +43,12 @@ public class Search_Adapter extends RecyclerView.Adapter<Search_Adapter.CustomVi
     String uname, gintro;
     String master = "no"; // 가입자 그룹장 여부 no로 설정
     int gmp, gap, goaltime;
+
+    // 오늘 날짜를 받아오는 부분
+    Calendar today= Calendar.getInstance();
+    int todayYear=today.get(Calendar.YEAR);
+    int todayMonth=today.get(Calendar.MONTH);
+    int todayDay=today.get(Calendar.DAY_OF_MONTH);
 
 
     public Search_Adapter(ArrayList<Together_group_list> arrayList, String uname, Context context) {
@@ -197,9 +204,26 @@ public class Search_Adapter extends RecyclerView.Adapter<Search_Adapter.CustomVi
 
                     });
 
-                    // 그룹 안에 그룹원 추가
-                    User_group user = new User_group(uid, uname, master);
-                    databaseReference.child("Together_group_list").child(Gname).child("user").child(uid).setValue(user);
+                    // 그룹 안에 그룹원 정보 넣기
+                    databaseReference.child("total").child(uid).child(todayYear + "-" + todayMonth + "-" + todayDay).addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            String total = snapshot.getValue(String.class);
+                            if (total == null) {
+                                User_group user = new User_group(uid, uname, master,0);
+                                databaseReference.child("Together_group_list").child(Gname).child("user").child(uid).setValue(user);
+                            }else{
+                                User_group user = new User_group(uid, uname, master,Integer.parseInt(total));
+                                databaseReference.child("Together_group_list").child(Gname).child("user").child(uid).setValue(user);
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                            // 디비를 가져오던중 에러 발생 시
+                            //Log.e("MainActivity", String.valueOf(databaseError.toException())); // 에러문 출력
+                        }
+                    });
 
                     // 내 그룹 보기에 그룹 추가
                     gmake_list gmake_list = new gmake_list(Gname, master);

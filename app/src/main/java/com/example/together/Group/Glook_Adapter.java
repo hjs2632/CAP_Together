@@ -75,7 +75,17 @@ public class Glook_Adapter extends RecyclerView.Adapter<Glook_Adapter.CustomView
 
         holder.uname.setText(arrayList.get(position).getuname());
         holder.userid.setText(arrayList.get(position).getuid());
+
+        // 공부한 시간 불러오기
+        int total_time=arrayList.get(position).getstudytime();
+        int t_min=total_time/600;
+        int t_hour=total_time/36000;
+        int t_sec=(total_time/10)-(t_min*60)-(t_hour*3600);
+        String n_time=String.format("%02d:%02d:%02d",t_hour,t_min,t_sec);
+        holder.studytime.setText(n_time);
         holder.itemView.setTag(position);
+
+
         String Uname = holder.uname.getText().toString(); // 그룹원 이름
         String userid = holder.userid.getText().toString(); // 그룹원 아이디
 
@@ -125,11 +135,13 @@ public class Glook_Adapter extends RecyclerView.Adapter<Glook_Adapter.CustomView
     public class CustomViewHoler extends RecyclerView.ViewHolder {
         TextView uname;
         TextView userid;
+        TextView studytime;
 
         public CustomViewHoler(@NonNull View itemView) {
             super(itemView);
             this.uname = itemView.findViewById(R.id.username);
             this.userid = itemView.findViewById(R.id.userid);
+            this.studytime = itemView.findViewById(R.id.studytime);
         }
     }
 
