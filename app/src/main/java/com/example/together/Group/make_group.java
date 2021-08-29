@@ -397,11 +397,14 @@ public class make_group extends AppCompatActivity {
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     String total = snapshot.getValue(String.class);
                     if (total == null) {
-                        User_group user = new User_group(uid, uname, master,0);
+                        User_group user = new User_group(uid, uname, master);
                         databaseReference.child("Together_group_list").child(Gname).child("user").child(uid).setValue(user);
+                        databaseReference.child("Together_group_list").child(Gname).child("user").child(uid).child("studytime").child(todayYear + "-" + todayMonth + "-" + todayDay).setValue("0");
+
                     }else{
-                        User_group user = new User_group(uid, uname, master,Integer.parseInt(total));
+                        User_group user = new User_group(uid, uname, master);
                         databaseReference.child("Together_group_list").child(Gname).child("user").child(uid).setValue(user);
+                        databaseReference.child("Together_group_list").child(Gname).child("user").child(uid).child("studytime").child(todayYear + "-" + todayMonth + "-" + todayDay).setValue(total);
                     }
                 }
                 @Override

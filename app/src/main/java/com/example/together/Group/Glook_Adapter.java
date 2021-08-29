@@ -29,6 +29,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class Glook_Adapter extends RecyclerView.Adapter<Glook_Adapter.CustomViewHoler> {
 
@@ -44,6 +45,12 @@ public class Glook_Adapter extends RecyclerView.Adapter<Glook_Adapter.CustomView
 
     Dialog Gdialog; // 그룹원 추방 또는 그룹장 양도를 위한 Dialog
     TextView dia_content; // 다이얼로그 내용
+
+    //오늘 날짜를 받아오는 부분
+    Calendar today= Calendar.getInstance();
+    int todayYear=today.get(Calendar.YEAR);
+    int todayMonth=today.get(Calendar.MONTH);
+    int todayDay=today.get(Calendar.DAY_OF_MONTH);
 
     public Glook_Adapter(ArrayList<User_group> arrayList,String gname ,String master,String uname,Context context) {
         this.arrayList = arrayList;
@@ -76,13 +83,33 @@ public class Glook_Adapter extends RecyclerView.Adapter<Glook_Adapter.CustomView
         holder.uname.setText(arrayList.get(position).getuname());
         holder.userid.setText(arrayList.get(position).getuid());
 
-        // 공부한 시간 불러오기
-        int total_time=arrayList.get(position).getstudytime();
-        int t_min=total_time/600;
-        int t_hour=total_time/36000;
-        int t_sec=(total_time/10)-(t_min*60)-(t_hour*3600);
-        String n_time=String.format("%02d:%02d:%02d",t_hour,t_min,t_sec);
-        holder.studytime.setText(n_time);
+        // 오늘 날짜의 공부시간합계 가져오기
+        databaseReference.child("Together_group_list").child(gname).child("user").child(user.getUid()).child("studytime").child(todayYear + "-" + todayMonth + "-" + todayDay).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String value = dataSnapshot.getValue(String.class);
+
+                if(value == null){
+                    String n_time=String.format("%02d:%02d:%02d",0,0,0);
+                    holder.studytime.setText(n_time);
+                }else{
+                    // 공부한 시간 불러오기
+                    int total_time=Integer.parseInt(value);
+                    int t_min=total_time/600;
+                    int t_hour=total_time/36000;
+                    int t_sec=(total_time/10)-(t_min*60)-(t_hour*3600);
+                    String n_time=String.format("%02d:%02d:%02d",t_hour,t_min,t_sec);
+                    holder.studytime.setText(n_time);
+                }
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                //Log.e("MainActivity", String.valueOf(databaseError.toException())); // 에러문 출력
+            }
+        });
         holder.itemView.setTag(position);
 
 
@@ -90,8 +117,8 @@ public class Glook_Adapter extends RecyclerView.Adapter<Glook_Adapter.CustomView
         String userid = holder.userid.getText().toString(); // 그룹원 아이디
 
         // 본인은 그룹장이면서 롱클릭할 그룹원이 자신이 아닐 경우
-       if(master.equals("yes") && !Uname.equals(uname)) {
-           // 롱 클릭을 하여 그룹장 위임 또는 추방을 선택할 수 있다
+        if(master.equals("yes") && !Uname.equals(uname)) {
+            // 롱 클릭을 하여 그룹장 위임 또는 추방을 선택할 수 있다
             holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View view) {
@@ -218,4 +245,3 @@ public class Glook_Adapter extends RecyclerView.Adapter<Glook_Adapter.CustomView
         });
     }
 }
-

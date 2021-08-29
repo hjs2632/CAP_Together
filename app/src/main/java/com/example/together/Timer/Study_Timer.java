@@ -167,8 +167,8 @@ public class Study_Timer extends AppCompatActivity {
 
                 // 본인이 가입된 모든 그룹DB에 본인 공부시간을 저장
                 for(String g:groupname){
-                    databaseReference=database.getReference().child("Together_group_list").child(g).child("user").child(user.getUid()).child("studytime");
-                    databaseReference.setValue(Integer.parseInt(content1));
+                    databaseReference=database.getReference().child("Together_group_list").child(g).child("user").child(user.getUid()).child("studytime").child(todayYear + "-" + todayMonth + "-" + todayDay);
+                    databaseReference.setValue(content1);
                 }
                 finish();
             }
