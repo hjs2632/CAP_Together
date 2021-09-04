@@ -82,9 +82,11 @@ public class Glook_Adapter extends RecyclerView.Adapter<Glook_Adapter.CustomView
 
         holder.uname.setText(arrayList.get(position).getuname());
         holder.userid.setText(arrayList.get(position).getuid());
+        String Uname = holder.uname.getText().toString(); // 그룹원 이름
+        String userid = holder.userid.getText().toString(); // 그룹원 아이디
 
         // 오늘 날짜의 공부시간합계 가져오기
-        databaseReference.child("Together_group_list").child(gname).child("user").child(user.getUid()).child("studytime").child(todayYear + "-" + todayMonth + "-" + todayDay).addValueEventListener(new ValueEventListener() {
+        databaseReference.child("Together_group_list").child(gname).child("user").child(userid).child("studytime").child(todayYear + "-" + todayMonth + "-" + todayDay).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 String value = dataSnapshot.getValue(String.class);
@@ -111,10 +113,6 @@ public class Glook_Adapter extends RecyclerView.Adapter<Glook_Adapter.CustomView
             }
         });
         holder.itemView.setTag(position);
-
-
-        String Uname = holder.uname.getText().toString(); // 그룹원 이름
-        String userid = holder.userid.getText().toString(); // 그룹원 아이디
 
         // 본인은 그룹장이면서 롱클릭할 그룹원이 자신이 아닐 경우
         if(master.equals("yes") && !Uname.equals(uname)) {
